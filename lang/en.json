@@ -1,0 +1,11 @@
+{
+    "ORE.firearms": "Firearms",
+    "ORE.martial_arts": "Martial Arts",
+    "ORE.melee_weapon": "Melee Weapons",
+    "ORE.brawling": "Brawling",
+    "ORE.unarmed": "Unarmed",
+    "ORE.shockDamage": "Shock Damage",
+    "ORE.killDamage": "Killing Damage",
+    "ORE.attackSkill": "Attack Skill",
+    "ORE.none": "No Skill Used"
+}

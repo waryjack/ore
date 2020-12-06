@@ -1,0 +1,9 @@
+export const oreCfg = {
+    attackTypes: {
+        none: "",
+        firearms: "Firearms",
+        martial_arts: "Martial Arts",
+        melee_weapon: "Melee Weapon",
+        brawling: "Brawling"
+    }
+};

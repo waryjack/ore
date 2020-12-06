@@ -1,0 +1,28 @@
+{
+    "name": "ore",
+    "title": "One Roll Engine Basic System",
+    "description": "A very basic one-roll engine game system",
+    "version": "0.01",
+    "author": "Cannyjack",
+    "esmodules": [
+        "module/ore.js"
+    ],
+    "scripts": [],
+    "styles": [
+        "styles/ore.css"
+    ],
+    "languages": [
+        {
+          "lang": "en",
+          "name": "English",
+          "path": "lang/en.json"
+        }
+      ],
+    
+    "initiative":"1d20",
+    "gridDistance": 5,
+  "gridUnits": "ft",
+  "primaryTokenAttribute": null,
+  "secondaryTokenAttribute": null
+
+}
