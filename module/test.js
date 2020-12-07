@@ -1,3 +1,5 @@
+// Unrelated macro testing; disregard
+
 oneroll(8);
 
 function oneroll(count) {
