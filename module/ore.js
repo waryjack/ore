@@ -13,6 +13,9 @@ Hooks.once("init", () => {
     CONFIG.ore = ORE; 
     console.log(CONFIG.ore);
 
+
+    // Add namespace in global 
+    
     game.ore = {
         roller: OneRoll      
     }; 
