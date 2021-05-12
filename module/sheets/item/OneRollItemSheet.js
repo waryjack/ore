@@ -11,6 +11,8 @@ export default class OneRollItemSheet extends ItemSheet {
         data.myName = data.name;
 
         data.config = CONFIG.ore; 
+
+        console.warn("Data: ", data);
         
         return data;
     }

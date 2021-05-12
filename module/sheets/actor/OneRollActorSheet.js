@@ -75,7 +75,7 @@ export default class OneRollActorSheet extends ActorSheet {
     }
 
     // trigger the basic, non-pre-populated roll dialog
-    _onAbilityRoll(event) {
+    _rollAbility(event) {
         event.preventDefault();
         let element = event.currentTarget;
 
@@ -108,7 +108,7 @@ export default class OneRollActorSheet extends ActorSheet {
 
     }
 
-    _onItemEdit(event) {
+    _editItem(event) {
         event.preventDefault();
 
         let element = event.currentTarget;
@@ -149,7 +149,7 @@ export default class OneRollActorSheet extends ActorSheet {
 
       }
 
-      _onEquipItem(event) {
+      _equipItem(event) {
           event.preventDefault();
 
           let element = event.currentTarget;

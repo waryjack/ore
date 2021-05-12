@@ -3,8 +3,8 @@
 import { ORE } from "./config.js";
 import { OneRoller } from "./dice/OneRoller.js";
 import OneRollItemSheet from "./sheets/item/OneRollItemSheet.js";
-import OneRollActorSheet from "./sheets/actor/OneRollActorSheet";
-import OneRollActor from "./actor/OneRollActor";
+import OneRollActorSheet from "./sheets/actor/OneRollActorSheet.js";
+import OneRollActor from "./actor/OneRollActor.js";
 
 // Initialize system
 
@@ -16,6 +16,7 @@ Hooks.once("init", () => {
     // Add namespace in global 
 
     game.ore = {
+        OneRollActor,
         OneRoller,
         OneRollActorSheet,
         OneRollItemSheet
