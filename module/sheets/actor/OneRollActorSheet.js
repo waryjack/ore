@@ -64,6 +64,7 @@ export default class OneRollActorSheet extends ActorSheet {
 
         html.find('.equip-item').change(this._equipItem.bind(this));
 
+
         let handler = (ev) => this._onDragStart(ev);
         html.find('.item-name').each((i, item) => {
             if (item.dataset && item.dataset.itemId) {
@@ -78,6 +79,7 @@ export default class OneRollActorSheet extends ActorSheet {
     _rollAbility(event) {
         event.preventDefault();
         let element = event.currentTarget;
+        console.warn("clicked roll ability");
 
         return this.actor.basicRoll();
     }

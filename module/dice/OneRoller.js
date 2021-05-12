@@ -9,7 +9,7 @@ export class OneRoller extends Roll {
 
     roll() {
         super.roll();
-        // console.log("OneRoll called: ", this.results);
+        console.log("OneRoll called: ", this.results);
         this.buildArray(this.terms);
         this.countSets(this.raw); 
         return this;

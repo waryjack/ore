@@ -1,3 +1,5 @@
+import { OneRollDialogHelper } from "../utility/OREDialogHelper.js";
+
 export default class OneRollActor extends Actor {
  
     /**
@@ -23,6 +25,11 @@ export default class OneRollActor extends Actor {
         super.prepareDerivedData();
         const data = actorData.data;
 
+    }
+
+    basicRoll() {
+        console.warn("Basic Roll entered");
+        OneRollDialogHelper.generateRollDialog();
     }
 
 }

@@ -1,6 +1,6 @@
 {
     "Item":{
-        "types": ["ability", "weapon", "equipment", "trait", "armor"],
+        "types": ["stat", "skill", "power", "weapon", "equipment", "quality", "armor"],
         "templates":{
             "common":{
                 "name":"",
@@ -12,13 +12,19 @@
                 }
             }
         },
-        "ability":{
+        "stat":{
             "templates":["common"],
-            "isSkill":false,
+            "mod":0
+        },
+        "skill":{
+            "templates":["common"],
             "mod":0,
-            "spec":false,
+            "specialized":false,
             "specialty":"",
-            "linked_ability":"none",
+            "linked_stat":""
+        },
+        "power":{
+            "templates":["common"],
             "restrictions":"",
             "prereqs":""
         },
@@ -45,7 +51,7 @@
             },
             "linked_ability":""
         },
-        "trait": {
+        "quality": {
             "templates":["common"],
             "bonuses":"",
             "penalties":"",

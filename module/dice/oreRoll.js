@@ -3,8 +3,8 @@ export class ORERoll {
     
     roll(pool) {
 
-        var rawRoll = buildArray(pool);
-        var parsedRoll = countSets(rawRoll);
+        var rawRoll = this.buildArray(pool);
+        var parsedRoll = this.countSets(rawRoll);
 
         this.allDice = rawRoll;
         this.sets = parsedRoll.sets.toString();

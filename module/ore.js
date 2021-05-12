@@ -5,6 +5,7 @@ import { OneRoller } from "./dice/OneRoller.js";
 import OneRollItemSheet from "./sheets/item/OneRollItemSheet.js";
 import OneRollActorSheet from "./sheets/actor/OneRollActorSheet.js";
 import OneRollActor from "./actor/OneRollActor.js";
+import { registerSettings } from "./settings.js"; 
 
 // Initialize system
 
@@ -19,7 +20,8 @@ Hooks.once("init", () => {
         OneRollActor,
         OneRoller,
         OneRollActorSheet,
-        OneRollItemSheet
+        OneRollItemSheet,
+        registerSettings,
     }; 
     
     Actors.unregisterSheet("core", ActorSheet);
@@ -31,7 +33,7 @@ Hooks.once("init", () => {
     CONFIG.Actor.documentClass = OneRollActor;
     
     // Register system settings
-    // registerSettings();
+    registerSettings();
 
     // Register partials templates
     // preloadHandlebarsTemplates();
