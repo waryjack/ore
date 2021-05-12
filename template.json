@@ -1,93 +1,83 @@
 {
     "Item":{
-        "types": ["weapon", "gear", "skill", "special_stat"]
-    },
-    "templates": {
-        "skill": {
-                "skill_name": "New Skill",
-                "base":0,
-                "hardDice":0,
-                "wiggleDice":0,
-                "tempMod":0,
-                "linkedStat": "None",
-                "spec":false,
-                "specName":""
-            },
+        "types": ["ability", "weapon", "equipment", "trait", "armor"],
+        "templates":{
+            "common":{
+                "name":"",
+                "desc":"",
+                "dice":{
+                    "base":0,
+                    "hard":0,
+                    "wiggle":0
+                }
+            }
+        },
+        "ability":{
+            "templates":["common"],
+            "isSkill":false,
+            "mod":0,
+            "spec":false,
+            "specialty":"",
+            "linked_ability":"none",
+            "restrictions":"",
+            "prereqs":""
+        },
         "weapon": {
-            "weapon_name": "Name",
-            "weapon_desc": "Description",
-            "weapon_type": "melee",
-            "damage_shock_bonus":0,
-            "damage_kill_bonus":0,
-            "attack_skill": ""
+            "templates":["common"],
+            "type": "melee",
+            "hands": "one",
+            "damage":{
+                "shock":0,
+                "killing":0
+            },
+            "linked_ability": "none"
         },
-        "gear": {
-            "gear_name":"New Gear Item",
-            "gear_cost":"$100.00",
-            "gear_d":0,
-            "gear_wd":0,
-            "gear_hd":0,
-            "gear_desc":"This is a piece of gear."
+        "equipment": {
+            "templates":["common"],
+            "cost":"$100.00"
         },
-        "special_stat":
-        {
-                "spec_stat_name": "New Special Stat",
-                "base":0,
-                "hardDice":0,
-                "wiggleDice":0,
-                "tempMod":0
+        "armor": {
+            "templates":["common"],
+            "type":"",
+            "protect":{
+                "shock":0,
+                "killing":0
+            },
+            "linked_ability":""
+        },
+        "trait": {
+            "templates":["common"],
+            "bonuses":"",
+            "penalties":"",
+            "grants":"",
+            "restrictions":"",
+            "prereqs":""
         }
     },
     "Actor":{
-        "types": ["pc", "npc", "squad"],
+        "types": ["major", "minor", "squad"],
         "templates":{
-            "pc": {
-                "templates": ["bio", "stats"]
-            },
-            "npc": {
-                "templates": ["bio", "stats"]
-            },
-            "squad": {
-                "templates": ["squadTemplate"]
-            },
-            "squadTemplate":{
-                "dicePool": 5
-            },
             "bio":{
-                "char_bio_text": "--"
+                "char_bio_text": "--",
+                "height":"",
+                "weight":"",
+                "age":"",
+                "gender":""
             },
-            "stats": {
-                    "body": {
-                        "base":0,
-                        "hardDice":0,
-                        "wiggleDice":0,
-                        "tempMod":0
-                    },
-                    "coordination":{
-                        "base":0,
-                        "hardDice":0,
-                        "wiggleDice":0,
-                        "tempMod":0
-                    },
-                    "sense": {
-                        "base":0,
-                        "hardDice":0,
-                        "wiggleDice":0,
-                        "tempMod":0
-                    },
-                    "mind": {
-                        "base":0,
-                        "hardDice":0,
-                        "wiggleDice":0,
-                        "tempMod":0
-                    },
-                    "command": {
-                        "base":0,
-                        "hardDice":0,
-                        "wiggleDice":0,
-                        "tempMod":0
-                    }                
+            "health":{
+                "shock":0,
+                "killing":0
             }
+        },
+        "major": {
+            "templates": ["bio","health"]
+        },
+        "minor": {
+            "templates": ["bio","health"]
+        },
+        "squad": {
+           "squad_pool":0,
+           "squad_quality":"rabble"
         }
     }
 }

@@ -1,4 +1,4 @@
-export class OneRoll extends Roll {
+export class OneRoller extends Roll {
 
     
     constructor(formula){
