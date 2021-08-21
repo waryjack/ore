@@ -14,7 +14,8 @@
         },
         "stat":{
             "templates":["common"],
-            "mod":0
+            "mod":0,
+            "useForInitiative":false
         },
         "skill":{
             "templates":["common"],
