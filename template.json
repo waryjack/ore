@@ -14,7 +14,8 @@
         },
         "stat":{
             "templates":["common"],
-            "mod":0
+            "mod":0,
+            "isInitStat":true
         },
         "skill":{
             "templates":["common"],
@@ -73,7 +74,8 @@
             "health":{
                 "shock":0,
                 "killing":0
-            }
+            },
+            "initStat":0
         },
         "major": {
             "templates": ["bio","health"]

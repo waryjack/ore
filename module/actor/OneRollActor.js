@@ -15,6 +15,8 @@ export default class OneRollActor extends Actor {
         // console.warn("prepareBaseData object: ", actorData);
         const data = actorData.data;
         const flags = actorData.flags;
+
+        this._prepareCharacterData(actorData);
     }
 
     /**
@@ -23,7 +25,13 @@ export default class OneRollActor extends Actor {
     */
     _prepareCharacterData(actorData) {
         super.prepareDerivedData();
-        const data = actorData.data;
+        const context = actorData.data;
+
+        context.stats = ownedItems.filter(item => item.type == "stat");
+        context.stats.foreach(stat => {
+            let useForInit = stat.isInitStat;
+            useForInit ? context.stat = stat.dice.base : context.stat = context.stat; 
+        })
 
     }
 
