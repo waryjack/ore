@@ -5,6 +5,7 @@ import { OneRoller } from "./dice/OneRoller.js";
 import OneRollItemSheet from "./sheets/item/OneRollItemSheet.js";
 import OneRollActorSheet from "./sheets/actor/OneRollActorSheet.js";
 import OneRollActor from "./actor/OneRollActor.js";
+import OneRollCombat from "./combat/OneRollCombat.js";
 import { registerSettings } from "./settings.js"; 
 
 // Initialize system
@@ -21,6 +22,7 @@ Hooks.once("init", () => {
         OneRoller,
         OneRollActorSheet,
         OneRollItemSheet,
+        OneRollCombat,
         registerSettings,
     }; 
     
@@ -31,7 +33,8 @@ Hooks.once("init", () => {
     Items.registerSheet("ore", OneRollItemSheet, { makeDefault: true});
     
     CONFIG.Actor.documentClass = OneRollActor;
-    
+    CONFIG.Combat.documentClass = OneRollCombat;
+
     // Register system settings
     registerSettings();
 
