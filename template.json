@@ -1,14 +1,14 @@
 {
     "Item":{
-        "types": ["stat", "skill", "power", "weapon", "equipment", "quality", "armor"],
+        "types": ["stat", "skill", "power", "weapon", "equipment", "quality", "armor", "point_pool"],
         "templates":{
             "common":{
                 "name":"",
                 "desc":"",
                 "dice":{
                     "base":0,
-                    "hard":0,
-                    "wiggle":0
+                    "expert":0,
+                    "master":0
                 }
             }
         },
@@ -37,7 +37,13 @@
                 "shock":0,
                 "killing":0
             },
-            "linked_ability": "none"
+            "linked_ability": "none",
+            "min_range":0,
+            "max_range":100,
+            "ammo_in":"magazine",
+            "ammo_max":0,
+            "ammo_curr":0,
+            "rof":1
         },
         "equipment": {
             "templates":["common"],
@@ -59,6 +65,13 @@
             "grants":"",
             "restrictions":"",
             "prereqs":""
+        },
+        "point_pool": {
+            "name":"",
+            "desc":"",
+            "min_points":0,
+            "max_points":0,
+            "curr_points":0
         }
     },
     "Actor":{
@@ -68,16 +81,59 @@
                 "char_bio_text": "--",
                 "height":"",
                 "weight":"",
+                "eyes":"",
+                "hair":"",
+                "skin":"",
+                "identifying_marks":"",
+                "other_feature":"",
                 "age":"",
-                "gender":""
+                "gender":"",
+                "profession":""                
             },
             "health":{
                 "shock":0,
                 "killing":0
+            },
+            "hitlocs":{
+                "head":{
+                    "box_max":4,
+                    "shock":0,
+                    "killing":0
+                },
+                "torso":{
+                    "box_max":6,
+                    "shock":0,
+                    "killing":0
+                },
+                "vitals":{
+                    "box_max":4,
+                    "shock":0,
+                    "killing":0
+                },
+                "larm":{
+                    "box_max":5,
+                    "shock":0,
+                    "killing":0
+                },
+                "rarm":{
+                    "box_max":5,
+                    "shock":0,
+                    "killing":0
+                },
+                "lleg":{
+                    "box_max":5,
+                    "shock":0,
+                    "killing":0
+                },
+                "rleg":{
+                    "box_max":5,
+                    "shock":0,
+                    "killing":0
+                }
             }
         },
         "major": {
-            "templates": ["bio","health"]
+            "templates": ["bio","hitlocs"]
         },
         "minor": {
             "templates": ["bio","health"]

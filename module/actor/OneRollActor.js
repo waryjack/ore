@@ -10,20 +10,25 @@ export default class OneRollActor extends Actor {
     prepareBaseData(){
         super.prepareBaseData();
 
-        const actorData = this.data; // actorData is "actor.data.data"
+        const charStats = this.system; // actorData is "actor.data.data"
 
         // console.warn("prepareBaseData object: ", actorData);
-        const data = actorData.data;
-        const flags = actorData.flags;
+    
+        if(this.type === "major" || this.type === "minor") {
+            this._prepareCharacterData(charStats);
+        } else {
+            this._prepareSquadData(charStats);
+        }
+        
     }
 
     /**
     * @param actorData {EWActor} - this EWActor object's system-specific data
     * stub at the moment
     */
-    _prepareCharacterData(actorData) {
+    _prepareCharacterData(charStats) {
         super.prepareDerivedData();
-        const data = actorData.data;
+        
 
     }
 

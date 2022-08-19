@@ -1,5 +1,4 @@
 <form class="{{cssClass}}" autocomplete="off">
-    {{log "Sheet data: " data}}
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
@@ -7,14 +6,17 @@
     <div>
         <table>
             <tr>
-                <td><b>Description:</b></td><td><input type="text" name="data.desc" value="{{data.desc}}" data-dtype="String"></td>
+                <td><b>Type: </b>{{item.type}}</td>
+            <tr>
+                <td><b>Description:</b></td><td><input type="text" name="system.desc" value="{{system.desc}}" data-dtype="String"></td>
+                
             </tr>
         </table>
         <table>
             <tr>
-                <td><b>Base Dice</b><td><input type="text" name="data.dice.base" value="{{data.dice.base}}" data-dtype="Number"/></td></b></td>
-                <td><b>Hard Dice</b><td><input type="text" name="data.dice.hard" value="{{data.dice.hard}}" data-dtype="Number"/></td></b></td>
-                <td><b>Wiggle Dice</b><td><input type="text" name="data.dice.wiggle" value="{{data.dice.wiggle}}" data-dtype="Number"/></td></b></td>
+                <td><b>Base Dice</b><td><input type="text" name="system.dice.base" value="{{system.dice.base}}" data-dtype="Number"/></td></b></td>
+                <td><b>Hard Dice</b><td><input type="text" name="system.dice.expert" value="{{system.dice.expert}}" data-dtype="Number"/></td></b></td>
+                <td><b>Wiggle Dice</b><td><input type="text" name="system.dice.master" value="{{system.dice.master}}" data-dtype="Number"/></td></b></td>
             </tr>
         </table>
     </div>

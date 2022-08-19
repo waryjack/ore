@@ -2,68 +2,77 @@ export default class OneRollActorSheet extends ActorSheet {
 
     get template() {
         const path = 'systems/ore/templates/actor/';
-        return `${path}${this.actor.data.type}sheet.hbs`;
+        return `${path}${this.actor.type}sheet.hbs`;
     }
 
-    /**
-     * @override
-     */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-        classes: ['ore', 'sheet', 'actor', 'actor-sheet'],
-        width: 775,
-        height: 685,
-        left:120,
-        tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheetbody", initial: "main"}],
-        dragDrop: [{dragSelector: ".dragline", dropSelector: null}]
-        });
+            classes: ['ewhen', 'sheet', 'actor', 'actor-sheet'],
+            width: 775,
+            height: 685,
+            left:120,
+            tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheetbody", initial: "main"}],
+            dragDrop: [{dragSelector: ".dragline", dropSelector: null}]
+            });
     }
 
     /**
      * @override
      */
+
     getData() {
-        const data = deepClone(this.actor.data);
+        const charData = deepClone(this.actor.system);
 
-       // console.warn("080 super getdata, data.items: ", data);
-        
-        data.config = CONFIG.ore; 
+        charData.config = CONFIG.ORE;
+        charData.actor = this.actor;
+        charData.type = this.actor.type;
+
+        // Assemble item variables
+
         let ownedItems = this.actor.items;
-        data.actor = this.actor; 
 
-        // console.warn("Owned Items: ", ownedItems);
-        data.abilities = ownedItems.filter(function(item) {return item.type == "ability"});
+        if(charType === "major" || charType === "minor") {
+            charData.stats = ownedItems.filter(item => item.type === "stat");
+            charData.skills = ownedItems.filter(item => item.type === "skill");
+            charData.powers = owendItems.filter(item => item.type === "power");
+            charData.weapons = ownedItems.filter(item => item.type === "weapon");
+            charData.equipment = ownedItems.filter(item => item.type === "equipment");
+            charData.qualities = ownedItems.filter(item => item.type === "quality");
+            charData.armor = ownedItems.filter(item => item.type === "armor");
+            charData.pools = ownedItems.filter(item => item.type === "point_pool");
+            
+        } else if (charType === "squad") {
+            charData.weapons = ownedItems.filter(item => item.type === "weapon");
+            charData.powers = owendItems.filter(item => item.type === "power");
+            charData.weapons = ownedItems.filter(item => item.type === "weapon");
+            charData.equipment = ownedItems.filter(item => item.type === "equipment");
+            charData.qualities = ownedItems.filter(item => item.type === "quality");
+        }
 
-        data.armors = ownedItems.filter(function(item) {return item.type == "armor"});
+        return charData;
 
-        data.weapons = ownedItems.filter(function(item) {return item.type == "weapon"});
-
-        data.equipment = ownedItems.filter(function(item) {return item.type == "equipment"});
-        //console.warn("data.weapons: ", data.weapons);
-        data.traits = ownedItems.filter(function(item) {return item.type == "trait"});
-        //console.warn("data.traits: ", data.traits);
-        
-        return data;
     }
 
     /**
      * @override
      */
-    activateListeners(html) {
+     activateListeners(html) {
         super.activateListeners(html);
         // Everything below here is only needed if the sheet is editable
         if (!this.options.editable) return;
 
-        html.find('.item-create').click(this._addItem.bind(this));
+        // Popout editing of items (remember, all stats / traits are Items)
+        html.find('.item-create').click(this._onAddItem.bind(this));
+        html.find('.item-edit').click(this._onEditItem.bind(this));
+        html.find('.item-delete').click(this._onDeleteItem.bind(this));
 
-        html.find('.item-edit').click(this._editItem.bind(this));
+        // On-sheet editing of stats and skill values
+        html.find('.inline-edit').click(this._onSheetEditItem.bind(this));
 
-        html.find('.item-delete').click(this._deleteItem.bind(this));
-
-        html.find('.basic-roll').click(this._rollAbility.bind(this));
-
-        html.find('.equip-item').change(this._equipItem.bind(this));
-
+        // Rolls
+        html.find('.stat-roll').click(this._onRollStat.bind(this));
+        html.find('.skill-roll').click(this._onRollSkill.bind(this));
+        html.find('.basic-roll').click(this._onRollBasic.bind(this));
 
         let handler = (ev) => this._onDragStart(ev);
         html.find('.item-name').each((i, item) => {
@@ -75,47 +84,59 @@ export default class OneRollActorSheet extends ActorSheet {
 
     }
 
-    // trigger the basic, non-pre-populated roll dialog
-    _rollAbility(event) {
-        event.preventDefault();
-        let element = event.currentTarget;
-        console.warn("clicked roll ability");
+    _onAddItem(e) {
+        e.preventDefault();
+        var localizeString = "ORE.sheet.new";
 
-        return this.actor.basicRoll();
-    }
+        let elem = e.currentTarget;
+        localizeString += elem.dataset.type;
 
-    _addItem(event) {
-        event.preventDefault();
-        console.warn("_addItem fired: ");
-        var subtype = "";
-        var locString = "ORE.sheet.new";
-
-        let element = event.currentTarget;
-        if(element.dataset.type == "ability"){
-            subtype = element.dataset.subType;
-            locString += subtype;
-        } else {
-            locString += element.dataset.type;
+        let newItemData = {
+            name: game.il8n.localize(localizeString),
+            type: elem.dataset.type,
         }
 
-        let itemData  = {
-            name: game.i18n.localize(locString),
-            type: element.dataset.type,
-            data: {
-                    type: subtype
-            }
-        }
-
-        return Item.create(itemData, {parent: this.actor, renderSheet:true});
+        return Item.create(itemData, {parent:this.actor, renderSheet:true});
 
     }
 
-    _editItem(event) {
-        event.preventDefault();
+    _onDeleteItem(e) {
+        e.preventDefault();
+        let elem = e.currentTarget;
+        let itemId = elem.closest(".item").dataset.itemId;
 
-        let element = event.currentTarget;
+        let d = new Dialog({
+          title: "Delete This Item?",
+          content: "<p>Are you sure you want to delete this item?</p>",
+          buttons: {
+           one: {
+            icon: '<i class="fas fa-check"></i>',
+            label: "Yes",
+            callback: () => { 
+                let itemToDelete = this.actor.items.get(itemId);
+                itemToDelete.delete();
+              }
+           },
+           two: {
+            icon: '<i class="fas fa-times"></i>',
+            label: "Cancel",
+            callback: () => { return; }
+           }
+          },
+          default: "two",
+          render: html => console.log("Register interactivity in the rendered dialog"),
+          close: html => console.log("This always is logged no matter which option is chosen")
+         });
+         d.render(true);
 
-        let itemId = element.closest(".item").dataset.itemId;
+    }
+
+    _onEditItem(e) {
+        e.preventDefault();
+
+        let elem = e.currentTarget;
+
+        let itemId = elem.closest(".item").dataset.itemId;
 
         let item = this.actor.items.get(itemId);
 
@@ -123,50 +144,31 @@ export default class OneRollActorSheet extends ActorSheet {
 
     }
 
-    _deleteItem(event) {
-          event.preventDefault();
-          let element = event.currentTarget;
-          let itemId = element.closest(".item").dataset.itemId;
+    _onSheetEditItem(e) {
+        e.preventDefault();
+        let elem = e.currentTarget;
+        let itemId = elem.closest(".item").dataset.itemId;
+        let item = this.actor.items.get(itemId);
+        let field = elem.dataset.field;
+        return item.update({[field]:elem.value});
+    }
 
-          let d = new Dialog({
-            title: "Delete This Item?",
-            content: "<p>Are you sure you want to delete this item?</p>",
-            buttons: {
-             one: {
-              icon: '<i class="fas fa-check"></i>',
-              label: "Yes",
-              callback: () => { this.actor.deleteOwnedItem(itemId) }
-             },
-             two: {
-              icon: '<i class="fas fa-times"></i>',
-              label: "Cancel",
-              callback: () => { return; }
-             }
-            },
-            default: "two",
-            render: html => console.log("Register interactivity in the rendered dialog"),
-            close: html => console.log("This always is logged no matter which option is chosen")
-           });
-           d.render(true);
+    // Roll Methods
 
-      }
+    // trigger the basic, non-pre-populated roll dialog
+    _onRollBasic(e) {
+        e.preventDefault();
+        let element = e.currentTarget;
+        return this.actor.RollBasicPool();
+    }
 
-      _equipItem(event) {
-          event.preventDefault();
+    _onRollStat(e) {
+        e.preventDefault();
+    }
 
-          let element = event.currentTarget;
-
-          let itemId = element.closest(".item").dataset.itemId;
-
-          let item = this.actor.items.get(itemId);
-          
-          let field = element.dataset.field;
-
-          let val = element.checked;
-
-          return item.update({ [field]: val});
-
-      }
+    _onRollSkill(e) {
+        e.preventDefault();
+    }
 
 
 

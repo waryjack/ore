@@ -1,27 +1,83 @@
-<form class="actor-sheet {{cssClass}}" autocomplete="off">
-    <header class="sheet-header">
-        <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
-        <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
-    </header>
 
-    <section class="items">
-        <h3>Dice Roll</h3>
-        <a class="basic-roll">BASIC ROLL</a>
-        <h3>Owned Items</h3>
-        <ol class="actor-items">
-        {{#each actor.items as |item id|}}
-            <li class="actor-item" data-item-id="{{id}}">
-                <div class="item-name">
-                  <img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/>
-                    <h4>{{item.name}}</h4>
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="ore sheethead">
+        <div class="ore header-flexitem">
+        <img class="profile-img" style="min-width:64px !important; min-height:64px !important" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
+        </div>
+        <div class="ore header-flexitem name-block">
+            <div class="charname">
+                <input class="ore charname" style="width:50%; vertical-align:top; background:lightgray;" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
+                <div class="form-group" style="float:right; color:white;">
                 </div>
-                <div class="item-controls">
-                    <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                    <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+            </div>
+
+        </div>
+       <div class="ore flexcol">
+        <div style="align-items:flex-start;"><a class="basic-roll roll-icon" style="margin:0px !important;"><i class="fa fa-dice-six"></i></a></div>
+
+        </div>
+
+    </header>
+    <div class="ore flexcol">
+         <div class="ore flexrow" style="color:white; ">
+                {{> 'systems/ore/templates/partials/pools.hbs'}}
+            </div>
+    </div>
+
+{{!-- Sheet Tab Navigation --}}
+    <nav class="ore sheet-tabs tabs" data-group="primary">
+        <a class="ore item" data-tab="main">Stats and Skills</a>
+        <a class="ore item" data-tab="gear">Equipment and Powers</a>
+        <a class="ore item" data-tab="misc">Other Details</a>
+    </nav>
+
+    <section class="sheetbody">
+        <div class="tab main" data-group="primary" data-tab="main">
+            <div class="ore flexcol"> {{!--Outermost Flex Container--}}
+                <div class="ore flexrow">
+                    {{> 'systems/ore/templates/partials/stats.hbs'}}
+                    {{> 'systems/ore/templates/partials/skills.hbs'}}
+                    {{> 'systems/ore/templates/partials/hitlocs.hbs'}}
                 </div>
-            </li>
-        {{/each}}
-        </ol>
+                <div class="ore flexrow">
+                    <div class="ore flex-item">
+                        {{> 'systems/ore/templates/partials/qualities.hbs'}}
+                        {{> 'systems/ore/templates/partials/powers.hbs'}}
+                    </div>
+                    <div class="ore flex-item">
+                        {{> 'systems/ore/templates/partials/weapons.hbs'}}
+                        {{> 'systems/ore/templates/partials/armor.hbs'}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab gear" data-group="primary" data-tab="gear">
+            <div class="ore flexcol">
+                <div class="ore flexrow">
+                     <div class="ore flex-item">
+                    {{> 'systems/ore/templates/partials/equipment.hbs'}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab misc" data-group="primary" data-tab="misc">
+            <div class="ore flexcol">
+                <div class="ore flexrow">
+                     <div class="ore flex-item">
+                         <h3 class="traitsheet-header"><div>{{localize "EW.game_term.miscmods"}}</div>
+                    </h3>
+                    </div>
+                    <div class="ore flex-item edit-cont">
+                        {{editor backstory target="system.bio.char_bio_text" button=true owner=owner editable="editable"}}
+                    </div>
+                </div>
+                <div class="ore flexrow">
+                    
+                </div>
+
+            </div>
+        </div>
+
     </section>
 </form>
 

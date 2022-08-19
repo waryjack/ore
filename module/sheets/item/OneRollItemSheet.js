@@ -6,7 +6,7 @@ export default class OneRollItemSheet extends ItemSheet {
     }
 
     getData () {
-        const data = this.item.data;
+        const data = this.item.system;
         data.item = this.item;
         data.myName = data.name;
 
