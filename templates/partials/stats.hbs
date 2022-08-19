@@ -1,24 +1,39 @@
 <div class="ore flex-item">
     <h3 class="traitsheet-header">
-        <div>{{localize "ORE.gen.stats"}}</div>
+        <div>{{localize "ORE.gen.stats"}} {{localize "ORE.gen.diceabbrev"}}</div>
         <a class="item-create" title="Add Stat" data-type="stat"><i class="fas fa-plus-square"></i></a>
     </h3>
     <table class="item-table">
     {{#each stats as |stat id|}}
-        <tr>
-            <td class="item-name item" data-item-id="{{stat.id}}">
-                <a class="stat-roll weapon-image" title="Roll Stat"><img src="{{stat.img}}" height="24" width="24"/></a>
-                <a class="item-edit" title="Edit"><strong>{{weapon.name}}</strong></a>
+    {{log "Stat.id" stat.id "Stat name" stat.name}}
+        <tr class="item-name item" data-item-id="{{stat.id}}">
+            <td >
+              <a class="item-edit" title="Edit"><strong>{{stat.name}}</strong></a>
             </td>
             <td class="ore statfield" style="width:2ch;">
                 <input class="stat-rank inline-edit" data-field="system.dice.base" type="text" value="{{stat.system.dice.base}}" data-dtype="Number" maxwidth='2' size='3' />
+            </td>
+            <td class="ore statfield" style="width:2ch;">
                 <input class="stat-rank inline-edit" data-field="system.dice.expert" type="text" value="{{stat.system.dice.expert}}" data-dtype="Number" maxwidth='2' size='3' />
+            </td>
+            <td class="ore statfield" style="width:2ch;"> 
                 <input class="stat-rank inline-edit" data-field="system.dice.master" type="text" value="{{stat.system.dice.master}}" data-dtype="Number" maxwidth='2' size='3' />
             </td>
             <td style="right:100%;">
                 <a class="item-delete item" data-item-id="{{stat.id}}"><i class="fas fa-trash"></i></a>
             </td>
         </tr>
+        <!--tr>
+            <td class="item-name item" data-item-id="{{stat.id}}">
+              <a class="item-edit" title="Edit"><strong>{{stat.name}}</strong></a>
+            </td>
+            <td>
+                {{stat.system.dice.base}}D + {{stat.system.dice.expert}}ED + {{stat.system.dice.master}}MD
+            </td>
+            <td style="right:100%;">
+                <a class="item-delete item" data-item-id="{{stat.id}}"><i class="fas fa-trash"></i></a>
+            </td>
+        </tr-->
     {{/each}}
     </table>
 </div>

@@ -7,7 +7,7 @@ export default class OneRollActorSheet extends ActorSheet {
 
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            classes: ['ewhen', 'sheet', 'actor', 'actor-sheet'],
+            classes: ['ore', 'sheet', 'actor', 'actor-sheet'],
             width: 775,
             height: 685,
             left:120,
@@ -29,21 +29,25 @@ export default class OneRollActorSheet extends ActorSheet {
 
         // Assemble item variables
 
+        console.warn("charData.type", charData.type);
+
         let ownedItems = this.actor.items;
 
-        if(charType === "major" || charType === "minor") {
+        if(charData.Type != "squad") {
             charData.stats = ownedItems.filter(item => item.type === "stat");
+            console.warn("stats list: ", charData.stats);
             charData.skills = ownedItems.filter(item => item.type === "skill");
-            charData.powers = owendItems.filter(item => item.type === "power");
+            charData.powers = ownedItems.filter(item => item.type === "power");
             charData.weapons = ownedItems.filter(item => item.type === "weapon");
             charData.equipment = ownedItems.filter(item => item.type === "equipment");
             charData.qualities = ownedItems.filter(item => item.type === "quality");
             charData.armor = ownedItems.filter(item => item.type === "armor");
             charData.pools = ownedItems.filter(item => item.type === "point_pool");
+
             
-        } else if (charType === "squad") {
+        } else {
             charData.weapons = ownedItems.filter(item => item.type === "weapon");
-            charData.powers = owendItems.filter(item => item.type === "power");
+            charData.powers = ownedItems.filter(item => item.type === "power");
             charData.weapons = ownedItems.filter(item => item.type === "weapon");
             charData.equipment = ownedItems.filter(item => item.type === "equipment");
             charData.qualities = ownedItems.filter(item => item.type === "quality");
@@ -67,7 +71,7 @@ export default class OneRollActorSheet extends ActorSheet {
         html.find('.item-delete').click(this._onDeleteItem.bind(this));
 
         // On-sheet editing of stats and skill values
-        html.find('.inline-edit').click(this._onSheetEditItem.bind(this));
+        html.find('.inline-edit').blur(this._onSheetEditItem.bind(this));
 
         // Rolls
         html.find('.stat-roll').click(this._onRollStat.bind(this));
@@ -86,7 +90,7 @@ export default class OneRollActorSheet extends ActorSheet {
 
     _onAddItem(e) {
         e.preventDefault();
-        var localizeString = "ORE.sheet.new";
+        var localizeString = "ORE.gen.new.";
 
         let elem = e.currentTarget;
         localizeString += elem.dataset.type;
@@ -96,7 +100,7 @@ export default class OneRollActorSheet extends ActorSheet {
             type: elem.dataset.type,
         }
 
-        return Item.create(itemData, {parent:this.actor, renderSheet:true});
+        return Item.create(newItemData, {parent:this.actor, renderSheet:true});
 
     }
 
@@ -150,6 +154,8 @@ export default class OneRollActorSheet extends ActorSheet {
         let itemId = elem.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
         let field = elem.dataset.field;
+
+        console.warn("Updated Item info: ", itemId, item.name, field, elem.value);
         return item.update({[field]:elem.value});
     }
 

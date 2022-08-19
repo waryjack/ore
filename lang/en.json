@@ -24,6 +24,8 @@
     "ORE.gen.weapons":"Weapons",
     "ORE.gen.equipment":"Equipment",
     "ORE.gen.health":"Health",
+    "ORE.gen.hitlocs":"Hit Locations",
+    "ORE.gen.diceabbrev":"D/ED/MD",
     
     "ORE.gen.new.weapon":"New Weapon",
     "ORE.gen.new.stat":"New Stat",
@@ -34,7 +36,7 @@
     "ORE.gen.new.armor":"New Armor",
     "ORE.gen.new.point_pool":"New Point Pool",
     "ORE.gen.new.character":"New Character",
-    "ORE.gen.new.squad":"New Squad",
+    "ORE.gen.new.sqd":"New Squad",
 
     "ORE.bio.text":"Biography",
     "ORE.bio.height":"Height",
@@ -48,37 +50,36 @@
     "ORE.bio.gender":"Gender",
     "ORE.bio.prof":"Profession",
     
-    "ORE.stat":"Stat",
+    "ORE.stat.term":"Stat",
 
-    "ORE.squad":"Squad",
-    "ORE.squad.qual":"Squad Quality",
-    "ORE.squad.qual.rabble":"Rabble",
-    "ORE.squad.qual.recruit":"Recruit",
-    "ORE.squad.qual.veteran":"Veteran",
-    "ORE.squad.qual.elite":"Elite",
-    "ORE.squad.pool":"Squad Pool",
+    "ORE.character.sqd.term":"Squad",
+    "ORE.character.sqd.rabble":"Rabble",
+    "ORE.character.sqd.recruit":"Recruit",
+    "ORE.character.sqd.veteran":"Veteran",
+    "ORE.character.sqd.elite":"Elite",
+    "ORE.character.sqd.pool":"Squad Pool",
 
-    "ORE.initiative":"Initiative",
+    "ORE.initiative.term":"Initiative",
     "ORE.declare_order":"Declare Order",
     
-    "ORE.skill":"Skill",
+    "ORE.skill.term":"Skill",
     "ORE.skill.link":"Linked Stat",
     "ORE.skill.specialized":"Specialized",
     "ORE.skill.specialty":"Specialty",
 
-    "ORE.power": "Power",
+    "ORE.power.term": "Power",
     "ORE.power.restrict":"Restrictions",
     "ORE.power.prereq":"Prerequisites",
 
-    "ORE.weapon":"Weapon",
+    "ORE.weapon.term":"Weapon",
     "ORE.weapon.type.melee":"Melee",
     "ORE.weapon.type.ranged":"Ranged",
     "ORE.weapon.damage":"Damage",
     "ORE.weapon.link":"Linked Ability",
 
-    "ORE.equipment":"Equipment",
+    "ORE.equipment.term":"Equipment",
     
-    "ORE.armor":"Armor",
+    "ORE.armor.term":"Armor",
     "ORE.armor.type.light":"Light Armor",
     "ORE.armor.type.heavy":"Heavy Armor",
     "ORE.armor.type.hardened":"Hardened Armor",
@@ -86,19 +87,17 @@
     "ORE.armor.protection.killing":"Killing Protection",
     "ORE.armor.link":"Linked Ability",
 
-    "ORE.quality":"Quality",
+    "ORE.quality.term":"Quality",
     "ORE.quality.bonuses":"Bonuses",
     "ORE.quality.penalties":"Penalties",
     "ORE.quality.grants":"Grants",
     "ORE.quality.restrictions":"Restrictions",
     "ORE.quality.prereq":"Prerequisites",
 
-    "ORE.pool":"Pool",
+    "ORE.pool.term":"Pool",
     "ORE.pool.min":"Minimum",
     "ORE.pool.max":"Maximum",
     "ORE.pool.curr":"Current",
-
-    
 
     "ORE.roll.type.attack":"Attack Roll",
     "ORE.roll.type.defense":"Defense Roll",
@@ -110,8 +109,8 @@
     "ORE.roll.width":"Width",
     "ORE.roll.loose":"Loose Dice",
     
-    "ORE.dice":"Dice",
-    "ORE.die":"Die",
+    "ORE.dice.term":"Dice",
+    "ORE.die.term":"Die",
     "ORE.dice.standard":"Standard",
     "ORE.dice.expert":"Expert",
     "ORE.dice.master":"Master",

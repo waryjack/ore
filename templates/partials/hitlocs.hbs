@@ -1,1 +1,78 @@
-<p>Hitlocation Placeholder</p>
+<div class="ore flex-item">
+    <h3 class="traitsheet-header">
+        <div>{{localize "ORE.gen.hitlocs"}}</div>
+       
+    </h3>
+    <table class="item-table">
+        <tr>
+            <td>
+                <b>{{localize "ORE.hitloc.head"}}</b>
+            </td>
+            <td>
+                {{#times head.box_max}}
+                    <i class="far fa-circle res-box"></i>
+                {{/times}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>{{localize "ORE.hitloc.torso"}}</b>
+            </td>
+            <td>
+                {{#times torso.box_max}}
+                    <i class="far fa-circle res-box"></i>
+                {{/times}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>{{localize "ORE.hitloc.vitals"}}</b>
+            </td>
+            <td>
+                {{#times vitals.box_max}}
+                    <i class="far fa-circle res-box"></i>
+                {{/times}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>{{localize "ORE.hitloc.la"}}</b>
+            </td>
+            <td>
+                {{#times larm.box_max}}
+                    <i class="far fa-circle res-box"></i>
+                {{/times}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>{{localize "ORE.hitloc.ra"}}</b>
+            </td>
+            <td>
+                {{#times rarm.box_max}}
+                    <i class="far fa-circle res-box"></i>
+                {{/times}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>{{localize "ORE.hitloc.ll"}}</b>
+            </td>
+            <td>
+                {{#times lleg.box_max}}
+                    <i class="far fa-circle res-box"></i>
+                {{/times}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>{{localize "ORE.hitloc.rl"}}</b>
+            </td>
+            <td>
+                {{#times rleg.box_max}}
+                    <i class="far fa-circle res-box"></i>
+                {{/times}}
+            </td>
+        </tr>
+    </table>
+</div>

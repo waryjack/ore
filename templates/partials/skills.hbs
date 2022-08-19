@@ -1,19 +1,17 @@
 <div class="ore flex-item">
     <h3 class="traitsheet-header">
-        <div>{{localize "ORE.gen.skills"}}</div>
+        <div>{{localize "ORE.gen.skills"}} {{localize "ORE.gen.diceabbrev"}}</div>
         <a class="item-create" title="Add Skill" data-type="skill"><i class="fas fa-plus-square"></i></a>
     </h3>
     <table class="item-table">
+        
     {{#each skills as |skill id|}}
-        <tr>
-            <td class="item-name item" data-item-id="{{stat.id}}">
-                <a class="skill-roll weapon-image" title="Roll Skill"><img src="{{skill.img}}" height="24" width="24"/></a>
-                <a class="item-edit" title="Edit"><strong>{{weapon.name}}</strong></a>
+         <tr>
+            <td class="item-name item" data-item-id="{{skill.id}}">
+              <a class="item-edit" title="Edit"><strong>{{skill.name}}</strong></a>
             </td>
-            <td class="ore statfield" style="width:2ch;">
-                <input class="skill-rank inline-edit" data-field="system.dice.base" type="text" value="{{skill.system.dice.base}}" data-dtype="Number" maxwidth='2' size='3' />
-                <input class="skill-rank inline-edit" data-field="system.dice.expert" type="text" value="{{skill.system.dice.expert}}" data-dtype="Number" maxwidth='2' size='3' />
-                <input class="skill-rank inline-edit" data-field="system.dice.master" type="text" value="{{skill.system.dice.master}}" data-dtype="Number" maxwidth='2' size='3' />
+            <td>
+                {{skill.system.dice.base}}d + {{skill.system.dice.expert}}ed + {{skill.system.dice.master}}md
             </td>
             <td style="right:100%;">
                 <a class="item-delete item" data-item-id="{{skill.id}}"><i class="fas fa-trash"></i></a>

@@ -1,5 +1,6 @@
 // Imports
 
+import { preloadHandlebarsTemplates } from "./templates.js";
 import { ORE } from "./config.js";
 import { OneRoller } from "./dice/OneRoller.js";
 import OneRollItemSheet from "./sheets/item/OneRollItemSheet.js";

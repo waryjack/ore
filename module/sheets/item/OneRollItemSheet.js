@@ -1,19 +1,19 @@
 export default class OneRollItemSheet extends ItemSheet {
     
     get template() {
-        const path = 'systems/ore/templates/item/itemsheet.hbs';
-        return path;
+        const path = 'systems/ore/templates/item/';
+        return `${path}${this.item.type}sheet.hbs`;
     }
 
     getData () {
-        const data = this.item.system;
-        data.item = this.item;
-        data.myName = data.name;
-
-        data.config = CONFIG.ore; 
-
-        console.warn("Data: ", data);
+        const itemData = this.item.system;
+        itemData.config = CONFIG.ore; 
+        itemData.img = this.item.img;
+        itemData.name = this.item.name;
+        itemData.type = this.item.type;
         
-        return data;
+        console.warn("Item Data for sheet: ", itemData);
+        
+        return itemData;
     }
 }

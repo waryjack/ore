@@ -35,7 +35,7 @@ export const ORE =
     chartypes: {
         major: "ORE.character.major",
         minor: "ORE.character.minor",
-        squad: "ORE.squad"
+        squad: "ORE.character.sqd"
     },
     dicetypes: {
         standard: "ORE.dice.standard",

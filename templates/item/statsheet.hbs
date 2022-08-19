@@ -1,0 +1,23 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{img}}" data-edit="img" title="{{name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{name}}" placeholder="Name"/></h1>
+    </header>
+    <div>
+        <table>
+            <tr>
+                <td><b>Type: </b>{{item.type}}</td>
+            <tr>
+                <td><b>Description:</b></td><td><input type="text" name="system.desc" value="{{desc}}" data-dtype="String"></td>
+                
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td><b>Base Dice</b><td><input type="text" name="system.dice.base" value="{{dice.base}}" data-dtype="Number"/></td></b></td>
+                <td><b>Expert Dice</b><td><input type="text" name="system.dice.expert" value="{{dice.expert}}" data-dtype="Number"/></td></b></td>
+                <td><b>Master Dice</b><td><input type="text" name="system.dice.master" value="{{dice.master}}" data-dtype="Number"/></td></b></td>
+            </tr>
+        </table>
+    </div>
+</form>
