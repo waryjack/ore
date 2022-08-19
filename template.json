@@ -15,7 +15,7 @@
         "stat":{
             "templates":["common"],
             "mod":0,
-            "useForInitiative":false
+            "isInitStat":true
         },
         "skill":{
             "templates":["common"],
