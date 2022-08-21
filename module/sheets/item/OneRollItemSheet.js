@@ -5,6 +5,16 @@ export default class OneRollItemSheet extends ItemSheet {
         return `${path}${this.item.type}sheet.hbs`;
     }
 
+    static get defaultOptions() {
+        return mergeObject(super.defaultOptions, {
+            classes: ['ore', 'sheet', 'item', 'item-sheet'],
+            width: 480,
+            height: 240,
+            tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheetbody", initial: "main"}],
+            dragDrop: [{dragSelector: ".dragline", dropSelector: null}]
+            });
+    }
+
     getData () {
         const itemData = this.item.system;
         itemData.config = CONFIG.ore; 

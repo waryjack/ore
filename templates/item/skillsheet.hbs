@@ -1,22 +1,38 @@
 <form class="{{cssClass}}" autocomplete="off">
-    <header class="sheet-header">
-        <img src="{{img}}" data-edit="img" title="{{name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{name}}" placeholder="Name"/></h1>
+    <header class="ore sheethead">
+        <div class="ore header-flexitem">
+           <img src="{{img}}" data-edit="img" title="{{name}}" height="24" width="24"/>
+        </div>
+        <div class="ore header-flexitem name-block">
+            <div class="charname">
+                <input style="color:white; display:inline;" name="name" type="text" value="{{name}}"/>
+            </div>
     </header>
-    <div>
-        <table>
+    <div class="ore">
+        <table style="color:white;">
             <tr>
-                <td><b>Type: </b>{{type}}</td>
+                <td><b>Type: </b></td><td><em>{{type}}</em></td>
+            </tr>
             <tr>
-                <td><b>Description:</b></td><td><input type="text" name="system.desc" value="{{desc}}" data-dtype="String"></td>
-                
+                <td><b>Description:</b></td>
+                <td><input style="color:white" type="text" name="system.desc" value="{{desc}}" data-dtype="String"></td>
             </tr>
         </table>
-        <table>
+        <table style="color:white;">
             <tr>
-                <td><b>Base Dice</b><td><input type="text" name="system.dice.base" value="{{dice.base}}" data-dtype="Number"/></td></b></td>
-                <td><b>Expert Dice</b><td><input type="text" name="system.dice.expert" value="{{dice.expert}}" data-dtype="Number"/></td></b></td>
-                <td><b>Master Dice</b><td><input type="text" name="system.dice.master" value="{{dice.master}}" data-dtype="Number"/></td></b></td>
+                <td><b>Base Dice</b></td><td><input class="ore statfield" style="width:2ch;" type="text" name="system.dice.base" value="{{dice.base}}" data-dtype="Number"/></td></b></td>
+                <td><b>Expert Dice</b></td><td><input class="ore statfield" style="width:2ch;" type="text" name="system.dice.expert" value="{{dice.expert}}" data-dtype="Number"/></td></b></td>
+                <td><b>Master Dice</b></td><td><input class="ore statfield" style="width:2ch;" type="text" name="system.dice.master" value="{{dice.master}}" data-dtype="Number"/></td></b></td>
+            </tr>
+             <tr>
+                <td><b>Specialized?</b></td>
+                <td>
+                    <input name="system.specialized" type="checkbox" {{checked specialized}} />
+                </td>
+                <td><b>Specialty</b></td>
+                <td colspan="3">
+                    <input style="color:white;" type="text" name="system.specialty" value="{{specialty}}" data-dtype="String">
+                </td>
             </tr>
         </table>
     </div>
