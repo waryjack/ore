@@ -108,7 +108,7 @@ export default class OneRollActorSheet extends ActorSheet {
         localizeString += elem.dataset.type;
 
         let newItemData = {
-            name: game.il8n.localize(localizeString),
+            name: game.i18n.localize(localizeString),
             type: elem.dataset.type,
         }
 

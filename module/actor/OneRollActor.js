@@ -1,4 +1,5 @@
 import { OneRollDialogHelper } from "../utility/OREDialogHelper.js";
+import { ORERoll } from "../dice/OreRoll.js";
 
 export default class OneRollActor extends Actor {
  
@@ -125,9 +126,12 @@ export default class OneRollActor extends Actor {
 
     rollStat(stat) {
 
+        let statSelectList = [];
+        let skillSelectList = [];
         let selectSkill = "None";
-        let allSkills = this.items.filter(i => i.type == "skill");
+        let allSkills = this.items.filter(i => i.type === "skill");
         let allStats = this.system.stats;
+
         let defName = this.system.stats[stat].defname;
         let statBase = this.system.stats[stat].base;
         let statExp = this.system.stats[stat].base;
@@ -142,7 +146,7 @@ export default class OneRollActor extends Actor {
             statname: defName,
             base: statBase,
             expert: statExp,
-            master: statMas
+            master: statMas,
         }
 
         renderTemplate(template, dialogData).then((dlg) => {
@@ -156,28 +160,152 @@ export default class OneRollActor extends Actor {
                      callback: (html) => {
                       //  console.log("passed html: ", html); 
 
-                      console.warn("in callback");
-                        
-                        let pool = html.find("#poolVal").val();
-                        let dtype = game.settings.get("ore", "coreDieType");
-                        let expr = pool+""+dtype;
-                        let roll = new ORERoll();
+                      console.warn("in stat roll callback");
+                      
+                      let chosenStat = html.find("#selStat").val();
+                      let chosenSkill = html.find("#selSkill").val();
+                      let chosenStatVal = 0;
+                      let chosenSkillVal = 0;
+                      let chosenSkillObj = {};
+
+                      if(selSkill != "none") {
+                        chosenSkillObj = this.items.filter(i => i.name === chosenSkill);
+                        console.warn("skill obj ", chosenSkillObj);
+                        chosenSkillVal = chosenSkillObj[0].system.dice.base;
+                      }
+                      
+                      chosenStatVal = this.system.stats[chosenStat].base;
+                       
+                      let pool = Math.min(10, chosenStatVal + chosenSkillVal);
+
+
+                      // get dice values
+                      
+                      console.warn("What is this? ", this);
+                      console.warn("Roll selStat: ", chosenStat);
+                      console.warn("Roll selSkill: ", chosenSkill);
+                      console.warn("Chosen Skill Object: ", chosenSkillObj);
+                      console.warn("chosen stat val: ", chosenStatVal);
+                      console.warn("chosen skill val: ", chosenSkillVal);
+                      
+                      let roll = new ORERoll();
                         roll.roll(pool);
                         let sets = roll.sets;
                         let loose = roll.loose;
                         let all = roll.allDice;
                         let msg = "<b>Rolling "+pool+"D</b></br>" +
-                                  "<b>Results "+all+"<br/>" +
-                                  "<b>Sets</b>: "+sets+"<br/>" +
-                                  "<b>Loose</b>: "+loose;
+                                    "<b>Results "+all+"<br/>" +
+                                    "<b>Sets</b>: "+sets+"<br/>" +
+                                    "<b>Loose</b>: "+loose;
 
                         ChatMessage.create({
                             user: game.user._id,
-                           // roll: data.roll,
-                           //  type:CONST.CHAT_MESSAGE_TYPES.ROLL,
+                            // roll: data.roll,
+                            //  type:CONST.CHAT_MESSAGE_TYPES.ROLL,
                             speaker: ChatMessage.getSpeaker(),
                             content: msg
-                        });
+                        });    
+
+                        }
+                    },
+                    close: {
+                     icon: '<i class="fas fa-times"></i>',
+                     label: "Cancel",
+                     callback: () => { console.log("Clicked Cancel"); return; }
+                    }
+                   },
+                default: "close"
+            }).render(true);
+        
+        });
+
+    }
+
+    rollSkill(stat) {
+
+        let statSelectList = [];
+        let skillSelectList = [];
+        let selectSkill = stat;
+        let selectSkillObject = this.items.get(selectSkill);
+        let selectSkillLinkedStat = selectSkillObject.system.linked_stat;
+        let allSkills = this.items.filter(i => i.type === "skill");
+        let allStats = this.system.stats;
+        
+        
+
+        /* let defName = this.system.stats[stat].defname;
+        let statBase = this.system.stats[stat].base;
+        let statExp = this.system.stats[stat].base;
+        let statMas = this.system.stats[stat].master; */
+
+        let template = "systems/ore/templates/roll/rolltemplate.hbs";
+        let dialogData = {
+            selectStat: stat,
+            allStats: allStats,
+            selectSkill: selectSkillObject.name,
+            allSkills: allSkills,
+            statname: "none",
+            linkedStat: selectSkillLinkedStat
+        }
+
+        console.warn("Dialog Data: ", dialogData);
+
+        renderTemplate(template, dialogData).then((dlg) => {
+            new Dialog({
+                title:"Stat / Skill Roll", // figure this out at some point...not localized right
+                content: dlg,
+                buttons: {
+                    roll: {
+                     icon: '<i class="fas fa-check"></i>',
+                     label: "Continue",
+                     callback: (html) => {
+                      //  console.log("passed html: ", html); 
+
+                      console.warn("in stat roll callback");
+                      
+                      let chosenStat = html.find("#selStat").val();
+                      let chosenSkill = html.find("#selSkill").val();
+                      let chosenStatVal = 0;
+                      let chosenSkillVal = 0;
+                      let chosenSkillObj = {};
+
+                      if(selSkill != "none") {
+                        chosenSkillObj = this.items.filter(i => i.name === chosenSkill);
+                        console.warn("skill obj ", chosenSkillObj);
+                        chosenSkillVal = chosenSkillObj[0].system.dice.base;
+                      }
+                      
+                      chosenStatVal = this.system.stats[chosenStat].base;
+                       
+                      let pool = Math.min(10, chosenStatVal + chosenSkillVal);
+
+
+                      // get dice values
+                      
+                      console.warn("What is this? ", this);
+                      console.warn("Roll selStat: ", chosenStat);
+                      console.warn("Roll selSkill: ", chosenSkill);
+                      console.warn("Chosen Skill Object: ", chosenSkillObj);
+                      console.warn("chosen stat val: ", chosenStatVal);
+                      console.warn("chosen skill val: ", chosenSkillVal);
+                      
+                      let roll = new ORERoll();
+                        roll.roll(pool);
+                        let sets = roll.sets;
+                        let loose = roll.loose;
+                        let all = roll.allDice;
+                        let msg = "<b>Rolling "+pool+"D</b></br>" +
+                                    "<b>Results "+all+"<br/>" +
+                                    "<b>Sets</b>: "+sets+"<br/>" +
+                                    "<b>Loose</b>: "+loose;
+
+                        ChatMessage.create({
+                            user: game.user._id,
+                            // roll: data.roll,
+                            //  type:CONST.CHAT_MESSAGE_TYPES.ROLL,
+                            speaker: ChatMessage.getSpeaker(),
+                            content: msg
+                        });    
 
                         }
                     },

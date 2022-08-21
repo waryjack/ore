@@ -27,7 +27,7 @@ Hooks.once("init", () => {
         registerSettings,
     }; 
 
-    CONFIG.debug.hooks = true;
+    // CONFIG.debug.hooks = true;
     
     Actors.unregisterSheet("core", ActorSheet);
     Items.unregisterSheet("core", ItemSheet);

@@ -17,6 +17,21 @@
                 <td><b>Description:</b></td>
                 <td><input style="color:white" type="text" name="system.desc" value="{{desc}}" data-dtype="String"></td>
             </tr>
+            <tr>
+                <td><b>Linked Stat:</b></td>
+                <td>
+                <select style="color:white" id="linkStat" style="width:100%;" name="system.linked_stat" data-main-att="link">
+                {{#select system.linked_stat}}
+                <option class="ore" style="background-color:black" value="bod" {{#if (eq linked_stat "bod")}}selected{{/if}}>Body</option>
+                <option class="ore" style="background-color:black" value="crd" {{#if (eq linked_stat "crd")}}selected{{/if}}>Coordination</option>
+                <option class="ore" style="background-color:black" value="sns" {{#if (eq linked_stat "sns")}}selected{{/if}}>Sense</option>
+                <option class="ore" style="background-color:black" value="mnd" {{#if (eq linked_stat "mnd")}}selected{{/if}}>Mind</option>
+                <option class="ore" style="background-color:black" value="cmd" {{#if (eq linked_stat "cmd")}}selected{{/if}}>Command</option>
+                <option class="ore" style="background-color:black" value="emp" {{#if (eq linked_stat "emp")}}selected{{/if}}>Empathy</option>
+                {{/select}}
+         </select>
+         </td>
+            </tr>
         </table>
         <table style="color:white;">
             <tr>
