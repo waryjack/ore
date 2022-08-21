@@ -185,7 +185,7 @@ export default class OneRollActorSheet extends ActorSheet {
         console.warn("onRollStat fired");
         let elem = e.currentTarget;
         let statToRoll = elem.dataset.statToRoll;
-        return this.actor.rollStat(statToRoll);
+        return this.actor.rollStatOrSkill(statToRoll, "stat");
     }
 
     _onRollSkill(e) {
@@ -193,7 +193,7 @@ export default class OneRollActorSheet extends ActorSheet {
         console.warn("onRollSkill fired");
         let elem = e.currentTarget;
         let skillToRoll = elem.dataset.skillToRoll;
-        return this.actor.rollSkill(skillToRoll);
+        return this.actor.rollStatOrSkill(skillToRoll, "skill");
         
     }
 

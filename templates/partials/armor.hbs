@@ -1,0 +1,32 @@
+<div class="ore flex-item">
+    <h3 class="traitsheet-header">
+        <div>{{localize "ORE.gen.armors"}}</div>
+        <a class="item-create" title="Add Armor" data-type="armor"><i class="fas fa-plus-square"></i></a>
+    </h3>
+    <table class="item-table">
+        
+    {{#each armors as |armor id|}}
+         <tr>
+         <td>
+            <a class="armor-roll" data-armor-to-roll="{{armor.id}}"><i class="fa-solid fa-dice-d10"></i></a>
+         </td>
+        </td>
+            <td class="item-name item" data-item-id="{{armor.id}}">
+              <a class="item-edit" title="Edit"><strong>{{armor.name}}</strong></a>
+            </td>
+            <td>
+                {{armor.system.dice.base}}d
+                {{#if (ne armor.system.dice.expert 0)}}
+                    + {{armor.system.dice.expert}}ed
+                {{/if}}
+                {{#if (ne armor.system.dice.master 0)}}
+                    + {{armor.system.dice.master}}md
+                {{/if}}
+            </td>
+            <td style="right:100%;">
+                <a class="item-delete item" data-item-id="{{armor.id}}"><i class="fas fa-trash"></i></a>
+            </td>
+        </tr>
+    {{/each}}
+    </table>
+</div>
