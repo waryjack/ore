@@ -34,6 +34,10 @@ export default class OneRollActorSheet extends ActorSheet {
         if(charData.Type != "squad") {
             // charData.stats = ownedItems.filter(item => item.type === "stat");
             charData.skills = ownedItems.filter(item => item.type === "skill");
+            // build list of skill names
+            let skillNameList = [];
+                charData.skills.forEach(element => skillNameList.push(element.name));
+            charData.skillNameList = skillNameList;   
             charData.powers = ownedItems.filter(item => item.type === "power");
             charData.weapons = ownedItems.filter(item => item.type === "weapon");
             charData.equipment = ownedItems.filter(item => item.type === "equipment");
@@ -53,6 +57,8 @@ export default class OneRollActorSheet extends ActorSheet {
         console.warn("Main CharData: ", charData);
         console.warn("charData.type", charData.type);
         console.warn("Chardata stats: ", charData.stats);
+        console.warn("Skill Name List: ", charData.skillNameList);
+
 
        
         return charData;
@@ -77,6 +83,7 @@ export default class OneRollActorSheet extends ActorSheet {
         html.find('.addHitBox').click(this._addHitBox.bind(this));
         html.find('.delHitBox').click(this._delHitBox.bind(this));
         html.find('.cycle-hit').click(this._onCycleHitBox.bind(this));
+        html.find('.edit-stat').click(this._onEditStat.bind(this));
 
         // Rolls
         html.find('.stat-roll').click(this._onRollStat.bind(this));
@@ -175,10 +182,19 @@ export default class OneRollActorSheet extends ActorSheet {
 
     _onRollStat(e) {
         e.preventDefault();
+        console.warn("onRollStat fired");
+        let elem = e.currentTarget;
+        let statToRoll = elem.dataset.statToRoll;
+        return this.actor.rollStat(statToRoll);
     }
 
     _onRollSkill(e) {
         e.preventDefault();
+        console.warn("onRollSkill fired");
+        let elem = e.currentTarget;
+        let skillToRoll = elem.dataset.skillToRoll;
+        return this.actor.rollSkill(skillToRoll);
+        
     }
 
     _addHitBox(e) {
@@ -249,5 +265,18 @@ export default class OneRollActorSheet extends ActorSheet {
 
         currBoxArray[position] = newBoxState;
         return this.actor.update({[`system.hitlocs.${hitLocation}.boxstates`]:currBoxArray});
+    }
+
+    _onRollBasic(e) {
+        e.preventDefault();
+        return this.actor.basicRoll();
+    }
+
+    _onEditStat(e){
+        console.warn("editStat fired");
+        e.preventDefault();
+        let elem = e.currentTarget;
+        let statClicked = elem.dataset.stat;
+        return this.actor.editStat(statClicked);
     }
 }

@@ -52,7 +52,146 @@ export default class OneRollActor extends Actor {
 
     basicRoll() {
         console.warn("Basic Roll entered");
-        OneRollDialogHelper.generateRollDialog();
+        OneRollDialogHelper.generateBasicRollDialog();
+    }
+
+    editStat(stat) {
+        console.warn("actor editstat fired");
+        let currBaseDice = this.system.stats[stat].base;
+        let currExpDice = this.system.stats[stat].expert;
+        let currMasDice = this.system.stats[stat].master;
+        let statNameDefault = this.system.stats[stat].defname;
+
+        let dialogContent = `<h2>Editing ${statNameDefault}</h2>`;
+        dialogContent += `<b>Change Display Name</b>: <input type='text' value='${statNameDefault}' data-dtype='String' name='newDefName' id='newDefName'/>`;
+        dialogContent += `<b>Base Dice</b>: <input type='text' value='${currBaseDice}' data-dtype='Number' name='newBaseDice' id='newBaseDice'/>`;
+        dialogContent += `<b>Expert Dice</b>: <input type='text' value='${currExpDice}' data-dtype='Number' name='newExpDice' id='newExpDice'/>`;
+        dialogContent += `<b>Master Dice</b>: <input type='text' value='${currMasDice}' data-dtype='Number' name='newMasDice' id='newMasDice'/>`;
+        dialogContent += `<input name='statNameHidden' id='statNameHidden' type='hidden' value='${stat}'/>`;
+
+        new Dialog({
+            title:`Edit/Update ${stat}`, // figure this out at some point...not localized right
+            content: dialogContent,
+            buttons: {
+                roll: {
+                 icon: '<i class="fas fa-check"></i>',
+                 label: "Continue",
+                 callback: (html) => {
+                  //  console.log("passed html: ", html); 
+
+                    console.warn("in callback");
+                    
+                    let statName = html.find("#statNameHidden").val();
+                    let newBase = Number(html.find("#newBaseDice").val());
+                    let newExpert = Number(html.find("#newExpDice").val());
+                    let newMaster = Number(html.find("#newMasDice").val());
+                    let newDefName = html.find('#newDefName').val();
+                   
+                    let msg = "<b>"+newDefName+"</b> updated to "+newBase+"d + "+newExpert+"ed + " + newMaster + "md";
+
+                    let baseProp = `system.stats.${statName}.base`;
+                    let expProp = `system.stats.${statName}.expert`;
+                    let masProp = `system.stats.${statName}.master`;
+                    let defProp = `system.stats.${statName}.defname`;
+
+                    console.warn("props: ", baseProp, expProp, masProp);
+
+                    this.update({[baseProp]:newBase});
+                    this.update({[expProp]:newExpert});
+                    this.update({[masProp]:newMaster});
+                    this.update({[defProp]:newDefName});
+
+                    ChatMessage.create({
+                        user: game.user._id,
+                       // roll: data.roll,
+                       //  type:CONST.CHAT_MESSAGE_TYPES.ROLL,
+                        speaker: ChatMessage.getSpeaker(),
+                        content: msg
+                    });
+
+                    }
+                },
+                close: {
+                 icon: '<i class="fas fa-times"></i>',
+                 label: "Cancel",
+                 callback: () => { console.log("Clicked Cancel"); return; }
+                }
+               },
+            default: "close"
+        
+        }).render(true);
+
+    }
+
+    rollStat(stat) {
+
+        let selectSkill = "None";
+        let allSkills = this.items.filter(i => i.type == "skill");
+        let allStats = this.system.stats;
+        let defName = this.system.stats[stat].defname;
+        let statBase = this.system.stats[stat].base;
+        let statExp = this.system.stats[stat].base;
+        let statMas = this.system.stats[stat].master;
+
+        let template = "systems/ore/templates/roll/rolltemplate.hbs";
+        let dialogData = {
+            selectStat: stat,
+            allStats: allStats,
+            selectSkill: selectSkill,
+            allSkills: allSkills,
+            statname: defName,
+            base: statBase,
+            expert: statExp,
+            master: statMas
+        }
+
+        renderTemplate(template, dialogData).then((dlg) => {
+            new Dialog({
+                title:"Stat / Skill Roll", // figure this out at some point...not localized right
+                content: dlg,
+                buttons: {
+                    roll: {
+                     icon: '<i class="fas fa-check"></i>',
+                     label: "Continue",
+                     callback: (html) => {
+                      //  console.log("passed html: ", html); 
+
+                      console.warn("in callback");
+                        
+                        let pool = html.find("#poolVal").val();
+                        let dtype = game.settings.get("ore", "coreDieType");
+                        let expr = pool+""+dtype;
+                        let roll = new ORERoll();
+                        roll.roll(pool);
+                        let sets = roll.sets;
+                        let loose = roll.loose;
+                        let all = roll.allDice;
+                        let msg = "<b>Rolling "+pool+"D</b></br>" +
+                                  "<b>Results "+all+"<br/>" +
+                                  "<b>Sets</b>: "+sets+"<br/>" +
+                                  "<b>Loose</b>: "+loose;
+
+                        ChatMessage.create({
+                            user: game.user._id,
+                           // roll: data.roll,
+                           //  type:CONST.CHAT_MESSAGE_TYPES.ROLL,
+                            speaker: ChatMessage.getSpeaker(),
+                            content: msg
+                        });
+
+                        }
+                    },
+                    close: {
+                     icon: '<i class="fas fa-times"></i>',
+                     label: "Cancel",
+                     callback: () => { console.log("Clicked Cancel"); return; }
+                    }
+                   },
+                default: "close"
+            }).render(true);
+        
+        });
+
     }
 
 }

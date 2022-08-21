@@ -1,17 +1,27 @@
 <div class="ore flex-item">
     <h3 class="traitsheet-header">
-        <div>{{localize "ORE.gen.skills"}} {{localize "ORE.gen.diceabbrev"}}</div>
+        <div>{{localize "ORE.gen.skills"}}</div>
         <a class="item-create" title="Add Skill" data-type="skill"><i class="fas fa-plus-square"></i></a>
     </h3>
     <table class="item-table">
         
     {{#each skills as |skill id|}}
          <tr>
+         <td>
+            <a class="skill-roll" data-skill-to-roll="{{skill.id}}"><i class="fa-solid fa-dice-d10"></i></a>
+         </td>
+        </td>
             <td class="item-name item" data-item-id="{{skill.id}}">
               <a class="item-edit" title="Edit"><strong>{{skill.name}}</strong></a>
             </td>
             <td>
-                {{skill.system.dice.base}}d + {{skill.system.dice.expert}}ed + {{skill.system.dice.master}}md
+                {{skill.system.dice.base}}d
+                {{#if (ne skill.system.dice.expert 0)}}
+                    + {{skill.system.dice.expert}}ed
+                {{/if}}
+                {{#if (ne skill.system.dice.master 0)}}
+                    + {{skill.system.dice.master}}md
+                {{/if}}
             </td>
             <td style="right:100%;">
                 <a class="item-delete item" data-item-id="{{skill.id}}"><i class="fas fa-trash"></i></a>

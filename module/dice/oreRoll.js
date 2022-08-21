@@ -43,16 +43,17 @@ export class ORERoll {
         var rollArr = new Array();
         for (i=0; i < count; i++){
 
-            let thisDie = new Roll("1d10").roll().total;
-            rollArr.push(thisDie);
+            let die = new Roll("1d10");
+            let thisDie = die.roll({async:false});
+            rollArr.push(thisDie.total);
         }
-		// console.log("raw roll: " + rollArr);
+		console.log("raw roll: " + rollArr);
         return rollArr.sort();
 
     }
 
     countSets(raw) {
-
+        console.warn("Raw Array: ", raw);
         var setArr = [];
 		var singletons = [];
 
