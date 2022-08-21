@@ -1,0 +1,25 @@
+<div class="ore flex-item">
+    <h3 class="traitsheet-header">
+        <div>{{localize "ORE.gen.equipment"}}</div>
+        <a class="item-create" title="Add Equipment" data-type="equipment"><i class="fas fa-plus-square"></i></a>
+    </h3>
+    <table class="item-table">
+    <th style="text-align:left">Item</th>
+    <th>Description</th>
+    <th>Value</th>
+    {{#each equipment as |eqp id|}}
+    {{log "Stat.id" eqp.id "Stat name" eqp.name}}
+        <tr class="item-name item" data-item-id="{{eqp.id}}">
+            <td >
+              <a class="item-edit" title="Edit"><strong>{{eqp.name}}</strong></a>
+            </td>
+            <td>
+                {{eqp.system.desc}}
+            </td>
+            <td>
+                {{eqp.system.cost}}
+            </td>
+        </tr>
+    {{/each}}
+    </table>
+</div>
