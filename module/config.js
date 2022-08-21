@@ -11,6 +11,17 @@ export const ORE =
         equipment: "ORE.gen.equipment",
         health:"ORE.gen.health"
     },
+    stats: {
+        bod: "ORE.gen.stat.bod",
+        crd: "ORE.gen.stat.crd",
+        sns: "ORE.gen.stat.sns",
+        mnd: "ORE.gen.stats.mnd",
+        cmd: "ORE.gen.stats.cmd",
+        emp: "ORE.gen.stats.emp",
+        ext1: "ORE.gen.stats.ext1",
+        ext2: "ORE.gen.stats.ext2",
+        ext3: "ORE.gen.stats.ext3",
+    },
     dmgtypes: {
         shock:"ORE.dmg.shock",
         killing:"ORE.dmg.killing"

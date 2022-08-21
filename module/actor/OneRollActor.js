@@ -29,6 +29,24 @@ export default class OneRollActor extends Actor {
     _prepareCharacterData(charStats) {
         super.prepareDerivedData();
         
+        let hitlocArray = ["head","torso","vitals","larm","rarm","lleg","rleg"];
+        let finalStateArray = [];
+        hitlocArray.forEach(function(element) {
+            let stateArray = charStats.hitlocs[element].boxstates;
+            let stateCount = charStats.hitlocs[element].box_max;
+            if(stateArray.length == 0) {
+                for(let i = 0; i < stateCount; i++) {
+                    stateArray.push("h");
+                }
+                finalStateArray = stateArray;
+            } else {
+                finalStateArray = stateArray;
+            }
+            // console.warn("Location: ", element, "State Array: ", finalStateArray);
+            setProperty(charStats, `hitlocs.${element}.boxstates`, finalStateArray);
+        });
+
+
 
     }
 

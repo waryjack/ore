@@ -28,14 +28,11 @@ export default class OneRollActorSheet extends ActorSheet {
         charData.type = this.actor.type;
 
         // Assemble item variables
-
-        console.warn("charData.type", charData.type);
-
+       
         let ownedItems = this.actor.items;
 
         if(charData.Type != "squad") {
-            charData.stats = ownedItems.filter(item => item.type === "stat");
-            console.warn("stats list: ", charData.stats);
+            // charData.stats = ownedItems.filter(item => item.type === "stat");
             charData.skills = ownedItems.filter(item => item.type === "skill");
             charData.powers = ownedItems.filter(item => item.type === "power");
             charData.weapons = ownedItems.filter(item => item.type === "weapon");
@@ -43,7 +40,7 @@ export default class OneRollActorSheet extends ActorSheet {
             charData.qualities = ownedItems.filter(item => item.type === "quality");
             charData.armor = ownedItems.filter(item => item.type === "armor");
             charData.pools = ownedItems.filter(item => item.type === "point_pool");
-
+            charData.stats = this.actor.system.stats;
             
         } else {
             charData.weapons = ownedItems.filter(item => item.type === "weapon");
@@ -52,7 +49,12 @@ export default class OneRollActorSheet extends ActorSheet {
             charData.equipment = ownedItems.filter(item => item.type === "equipment");
             charData.qualities = ownedItems.filter(item => item.type === "quality");
         }
+        console.warn("Actor: ", this.actor);
+        console.warn("Main CharData: ", charData);
+        console.warn("charData.type", charData.type);
+        console.warn("Chardata stats: ", charData.stats);
 
+       
         return charData;
 
     }
@@ -72,6 +74,9 @@ export default class OneRollActorSheet extends ActorSheet {
 
         // On-sheet editing of stats and skill values
         html.find('.inline-edit').blur(this._onSheetEditItem.bind(this));
+        html.find('.addHitBox').click(this._addHitBox.bind(this));
+        html.find('.delHitBox').click(this._delHitBox.bind(this));
+        html.find('.cycle-hit').click(this._onCycleHitBox.bind(this));
 
         // Rolls
         html.find('.stat-roll').click(this._onRollStat.bind(this));
@@ -176,6 +181,73 @@ export default class OneRollActorSheet extends ActorSheet {
         e.preventDefault();
     }
 
+    _addHitBox(e) {
+        e.preventDefault();
+        console.warn("adding hit box");
+        let elem = e.currentTarget;
+        let max = elem.dataset.max; // system.hitlocs.head.box_max
+        let currboxmax = getProperty(this.actor, max);
+        let states = elem.dataset.states; // system.hitlocs.head.boxstates
+        let stateArray = getProperty(this.actor, states);
 
+       console.warn("Max Boxes string: ", max);
+       console.warn("States string: ", states);
+       console.warn("State array before: ", stateArray);
+       stateArray.push("h");
+       console.warn("State Array after: ", stateArray);
+       console.warn("Curr Box Before: ", currboxmax);
+       currboxmax++;
+       console.warn("Curr Box After: ", currboxmax);
+       this.actor.update({[max]:currboxmax});
+       this.actor.update({[states]:stateArray});
+    }
 
+    _delHitBox(e) {
+        e.preventDefault();
+        console.warn("adding hit box");
+        let elem = e.currentTarget;
+        let max = elem.dataset.max; // system.hitlocs.head.box_max
+        let currboxmax = getProperty(this.actor, max);
+        let states = elem.dataset.states; // system.hitlocs.head.boxstates
+        let stateArray = getProperty(this.actor, states);
+
+       console.warn("Max Boxes string: ", max);
+       console.warn("States string: ", states);
+       console.warn("State array before: ", stateArray);
+       let removed = stateArray.pop();
+       console.warn("State Array after: ", stateArray);
+       console.warn("Curr Box Before: ", currboxmax);
+       console.warn("REmoved: ", removed);
+       currboxmax--;
+       currboxmax = Math.max(1, currboxmax);
+       console.warn("Curr Box After: ", currboxmax);
+       this.actor.update({[max]:currboxmax});
+       this.actor.update({[states]:stateArray});
+
+    }
+
+    _onCycleHitBox(e) {
+        e.preventDefault();
+        console.warn("cycling hit box");
+        let elem = e.currentTarget;
+        let hitLocation = elem.dataset.loc;
+        let position = elem.dataset.pos;
+
+        console.warn("clicked location: ", hitLocation, "box position: ", position);
+        
+        let currBoxArray = this.actor.system.hitlocs[hitLocation].boxstates;
+        let currBoxState = currBoxArray[position];
+        let newBoxState = "";
+
+        if (currBoxState === "h") {
+            newBoxState = "s";
+        } else if (currBoxState === "s") {
+            newBoxState = "k";
+        } else if (currBoxState === "k") {
+            newBoxState = "h";
+        }
+
+        currBoxArray[position] = newBoxState;
+        return this.actor.update({[`system.hitlocs.${hitLocation}.boxstates`]:currBoxArray});
+    }
 }

@@ -37,6 +37,15 @@
     "ORE.gen.new.point_pool":"New Point Pool",
     "ORE.gen.new.character":"New Character",
     "ORE.gen.new.sqd":"New Squad",
+    "ORE.gen.stat.bod":"Body",
+    "ORE.gen.stat.crd":"Coordination",
+    "ORE.gen.stat.sns":"Sense",
+    "ORE.gen.stat.mnd":"Mind",
+    "ORE.gen.stat.cmd":"Command",
+    "ORE.gen.stat.emp":"Empathy",
+    "ORE.gen.stat.ext1":"Extra 1",
+    "ORE.gen.stat.ext2":"Extra 2",
+    "ORE.gen.stat.ext3":"Extra 3",
 
     "ORE.bio.text":"Biography",
     "ORE.bio.height":"Height",
@@ -51,6 +60,7 @@
     "ORE.bio.prof":"Profession",
     
     "ORE.stat.term":"Stat",
+    
 
     "ORE.character.sqd.term":"Squad",
     "ORE.character.sqd.rabble":"Rabble",

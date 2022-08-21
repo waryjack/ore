@@ -77,66 +77,155 @@
     "Actor":{
         "types": ["major", "minor", "squad"],
         "templates":{
-            "bio":{
-                "char_bio_text": "--",
-                "height":"",
-                "weight":"",
-                "eyes":"",
-                "hair":"",
-                "skin":"",
-                "identifying_marks":"",
-                "other_feature":"",
-                "age":"",
-                "gender":"",
-                "profession":""                
+            "stat_template":{
+                "stats":{
+                    "bod":{
+                        "defname":"Body",
+                        "base":0,
+                        "expert":0,
+                        "master":0,
+                        "active":true,
+                        "init":false
+                    },
+                    "crd":{
+                        "defname":"Coordination",
+                        "base":0,
+                        "expert":0,
+                        "master":0,
+                        "active":true,
+                        "init":false
+                    },
+                    "sns":{
+                        "defname":"Sense",
+                        "base":0,
+                        "expert":0,
+                        "master":0,
+                        "active":true,
+                        "init":true
+                    },
+                    "mnd":{
+                        "defname":"Mind",
+                        "base":0,
+                        "expert":0,
+                        "master":0,
+                        "active":true,
+                        "init":false
+                    },
+                    "cmd":{
+                        "defname":"Command",
+                        "base":0,
+                        "expert":0,
+                        "master":0,
+                        "active":true,
+                        "init":false
+                    },
+                    "emp":{
+                        "defname":"Empathy",
+                        "base":0,
+                        "expert":0,
+                        "master":0,
+                        "active":true,
+                        "init":false
+                    },
+                    "ext1":{
+                        "defname":"Extra Stat 1",
+                        "base":0,
+                        "expert":0,
+                        "master":0,
+                        "active":false,
+                        "init":false
+                    },
+                    "ext2":{
+                        "defname":"Extra Stat 2",
+                        "base":0,
+                        "expert":0,
+                        "master":0,
+                        "active":false,
+                        "init":false
+                    },
+                    "ext3":{
+                        "defname":"Extra Stat 3",
+                        "base":0,
+                        "expert":0,
+                        "master":0,
+                        "active":false,
+                        "init":false
+                    }
+                }
             },
-            "health":{
-                "shock":0,
-                "killing":0
+            "bio_template":{
+                "bio":{
+                    "char_bio_text": "--",
+                    "height":"",
+                    "weight":"",
+                    "eyes":"",
+                    "hair":"",
+                    "skin":"",
+                    "identifying_marks":"",
+                    "other_feature":"",
+                    "age":"",
+                    "gender":"",
+                    "profession":""   
+                }             
             },
-            "hitlocs":{
-                "head":{
-                    "box_max":4,
-                    "shock":0,
-                    "killing":0
-                },
-                "torso":{
-                    "box_max":6,
-                    "shock":0,
-                    "killing":0
-                },
-                "vitals":{
-                    "box_max":4,
-                    "shock":0,
-                    "killing":0
-                },
-                "larm":{
-                    "box_max":5,
-                    "shock":0,
-                    "killing":0
-                },
-                "rarm":{
-                    "box_max":5,
-                    "shock":0,
-                    "killing":0
-                },
-                "lleg":{
-                    "box_max":5,
-                    "shock":0,
-                    "killing":0
-                },
-                "rleg":{
-                    "box_max":5,
+            "minor_health_template":{
+                "health":{
                     "shock":0,
                     "killing":0
                 }
-            }
+            },
+            "hitloc_template":{
+                "hitlocs":{
+                    "head":{
+                        "box_max":4,
+                        "boxstates":[],
+                        "shock":0,
+                        "killing":0
+                    },
+                    "torso":{
+                        "box_max":6,
+                        "boxstates":[],
+                        "shock":0,
+                        "killing":0
+                    },
+                    "vitals":{
+                        "box_max":4,
+                        "boxstates":[],
+                        "shock":0,
+                        "killing":0
+                    },
+                    "larm":{
+                        "box_max":5,
+                        "boxstates":[],
+                        "shock":0,
+                        "killing":0
+                    },
+                    "rarm":{
+                        "box_max":5,
+                        "boxstates":[],
+                        "shock":0,
+                        "killing":0
+                    },
+                    "lleg":{
+                        "box_max":5,
+                        "boxstates":[],
+                        "shock":0,
+                        "killing":0
+                    },
+                    "rleg":{
+                        "box_max":5,
+                        "boxstates":[],
+                        "shock":0,
+                        "killing":0
+                    }
+                }
+         }
         },
         "major": {
-            "templates": ["bio","hitlocs"]
+            "templates":["stat_template","bio_template","hitloc_template"]
         },
         "minor": {
-            "templates": ["bio","health"]
+            "templates": ["stat_template", "bio_template","minor_health_template"]
         },
         "squad": {
            "squad_pool":0,
