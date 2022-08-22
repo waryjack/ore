@@ -5,12 +5,12 @@ import { ORERoll } from "../dice/OreRoll.js";
 
 export class OneRollDialogHelper {
 
-    static generateBasicRollDialog() {
+    static generateBasicRollDialog(inPool = 0) {
 
         console.warn("generate dialog called");
             new Dialog({
                 title:"Basic ORE Roll", // figure this out at some point...not localized right
-                content: "<b>POOL</b>: <input type='text' name='poolVal' id='poolVal'/>",
+                content: `<b>POOL</b>: <input type='text' value='${inPool}' name='poolVal' id='poolVal'/>`,
                 buttons: {
                     roll: {
                      icon: '<i class="fas fa-check"></i>',

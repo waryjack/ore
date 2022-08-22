@@ -89,6 +89,7 @@ export default class OneRollActorSheet extends ActorSheet {
         html.find('.stat-roll').click(this._onRollStat.bind(this));
         html.find('.skill-roll').click(this._onRollSkill.bind(this));
         html.find('.basic-roll').click(this._onRollBasic.bind(this));
+        html.find('.power-roll').click(this._onRollPower.bind(this));
 
         let handler = (ev) => this._onDragStart(ev);
         html.find('.item-name').each((i, item) => {
@@ -219,6 +220,14 @@ export default class OneRollActorSheet extends ActorSheet {
         let skillToRoll = elem.dataset.skillToRoll;
         return this.actor.rollStatOrSkill(skillToRoll, "skill");
         
+    }
+
+    _onRollPower(e) {
+        e.preventDefault();
+        console.warn("onRollPower fired");
+        let elem = e.currentTarget;
+        let powerToRoll = elem.dataset.powerToRoll;
+        return this.actor.rollPower(powerToRoll);
     }
 
     _addHitBox(e) {
