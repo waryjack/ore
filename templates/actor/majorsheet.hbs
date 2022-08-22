@@ -17,12 +17,6 @@
         </div>
 
     </header>
-    <div class="ore flexcol">
-         <div class="ore flexrow" style="color:white; ">
-                {{> 'systems/ore/templates/partials/pools.hbs'}}
-            </div>
-    </div>
-
 {{!-- Sheet Tab Navigation --}}
     <nav class="ore sheet-tabs tabs" data-group="primary">
         <a class="ore item" data-tab="main">Stats and Skills</a>
@@ -34,18 +28,26 @@
         <div class="tab main" data-group="primary" data-tab="main">
             <div class="ore flexcol"> {{!--Outermost Flex Container--}}
                 <div class="ore flexrow">
-                    {{> 'systems/ore/templates/partials/stats.hbs'}}
+                    {{> 'systems/ore/templates/partials/stats-h.hbs'}}
+                </div>
+                
+                <div class="ore flexrow">
+                    
                     {{> 'systems/ore/templates/partials/skills.hbs'}}
+                    {{> 'systems/ore/templates/partials/weapons.hbs'}}
+                    {{!--> 'systems/ore/templates/partials/powers.hbs'--}}
                     {{> 'systems/ore/templates/partials/hitlocs.hbs'}}
+                     
                 </div>
                 <div class="ore flexrow">
                     
+                        
+                        {{> 'systems/ore/templates/partials/armor.hbs'}}
                         {{> 'systems/ore/templates/partials/qualities.hbs'}}
-                        {{> 'systems/ore/templates/partials/powers.hbs'}}
+                        {{> 'systems/ore/templates/partials/pools.hbs'}}
+                        
                     </div>
                 <div class="ore flexrow">
-                        {{> 'systems/ore/templates/partials/weapons.hbs'}}
-                        {{> 'systems/ore/templates/partials/armor.hbs'}}
                 </div>
                 
             </div>

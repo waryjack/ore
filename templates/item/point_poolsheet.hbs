@@ -8,4 +8,31 @@
                 <input style="color:white; display:inline;" name="name" type="text" value="{{name}}"/>
             </div>
     </header>
+    <div class="ore">
+        <table style="color:white;">
+            <tr>
+                <td><b>Type: </b></td><td><em>{{type}}</em></td>
+            </tr>
+            <tr>
+                <td><b>Description:</b></td>
+                <td><input style="color:white" type="text" name="system.desc" value="{{desc}}" data-dtype="String"></td>
+            </tr>
+        </table>
+        <table style="color:white;">
+            <tr>
+                <td><b>Max Points</b></td>
+                <td>
+                    <input class="ore statfield" style="width:2ch;" type="text" value="{{max_points}}" name="system.max_points" data-dtype="Number">
+                </td>
+                <td><b>Min Points</b></td>
+                <td>
+                    <input class="ore statfield" style="width:2ch;" type="text" value="{{min_points}}" name="system.min_points" data-dtype="Number">
+                </td>
+                <td><b>Current Points</b></td>
+                <td>
+                    <input class="ore statfield" style="width:2ch;" type="text" value="{{curr_points}}" name="system.curr_points" data-dtype="Number">
+                </td>
+            </tr>
+        </table>
+    </div>
 </form>

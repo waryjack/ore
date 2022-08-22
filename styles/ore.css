@@ -403,3 +403,33 @@ h3 {
   align-items:flex-end;
   text-align:right;
 }
+
+.healthy-box {
+  content: url('../assets/icons/square-healthy.svg');
+  filter:invert(1);
+  border:none;
+  height:16px;
+  width:16px;
+  margin-left:-1px;
+  margin-right:-1px;
+}
+
+.shock-box {
+  content: url('../assets/icons/square-shock.svg');
+  filter:invert(1);
+  border:none;
+  height:16px;
+  width:16px;
+  margin-left:-1px;
+  margin-right:-1px;
+}
+
+.kill-box {
+  content: url('../assets/icons/square-kill.svg');
+  filter:invert(1);
+  border:none;
+  height:16px;
+  width:16px;
+  margin-left:-1px;
+  margin-right:-1px;
+}

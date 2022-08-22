@@ -104,16 +104,40 @@ export default class OneRollActorSheet extends ActorSheet {
         e.preventDefault();
         var localizeString = "ORE.gen.new.";
 
-        let elem = e.currentTarget;
-        localizeString += elem.dataset.type;
+        let dlg = "<div class='ore' style='color:white;'><h2>Add New...</h2>";
+        dlg += "<select style='color:white;' name='powOrSkill' id='powOrSkill'><option style='background-color:black;' value='skill'>Skill</option><option style='background-color:black' value='power'>Power</option></select></div>";
+        dlg += `<input type='hidden' name='localizer' id='localizer' value='${localizeString}'>`;
 
-        let newItemData = {
-            name: game.i18n.localize(localizeString),
-            type: elem.dataset.type,
-        }
+        let d = new Dialog({
+            title: "Create new...",
+            content: dlg,
+            buttons: {
+             one: {
+              icon: '<i class="fas fa-check"></i>',
+              label: "Yes",
+              callback: (html) => { 
+                let itemType = html.find('#powOrSkill').val();
+                let localizer = html.find('#localizer').val();
 
-        return Item.create(newItemData, {parent:this.actor, renderSheet:true});
+                let newItemData = {
+                    name: game.i18n.localize(localizer),
+                    type: itemType,
+                }
 
+                return Item.create(newItemData, {parent:this.actor, renderSheet:true});
+                }
+             },
+             two: {
+              icon: '<i class="fas fa-times"></i>',
+              label: "Cancel",
+              callback: () => { return; }
+             }
+            },
+            default: "two",
+            render: html => console.log("Register interactivity in the rendered dialog"),
+            close: html => console.log("This always is logged no matter which option is chosen")
+           });
+           d.render(true);
     }
 
     _onDeleteItem(e) {

@@ -3,5 +3,25 @@
         <div>{{localize "ORE.gen.point_pools"}}</div>
         <a class="item-create" title="Add Point Pool" data-type="point_pool"><i class="fas fa-plus-square"></i></a>
     </h3>
-    <p>PLACEHOLDER</p>
+    <table class="item-table">
+    {{#each pools as |pool id|}}
+    {{log "Pool object" pool}}
+         <tr>
+        </td>
+            <td class="item-name item" data-item-id="{{pool.id}}">
+                <a class="item-edit" title="Edit"><strong>{{pool.name}}</strong></a>
+            </td>
+            <td>
+              {{pool.system.curr_points}} / {{pool.system.max_points}}
+            </td>
+            
+            <td>
+                <a class="increment-pool" data-loc="rleg" data-max="system.max_points"><i class="fa-solid fa-square-arrow-up"></i></a>&nbsp;&nbsp;<a class="decrement-pool" data-max="system.max_points"><i class="fa-solid fa-square-arrow-down"></i></a>
+            </td>
+            <td style="right:100%;">
+                <a class="item-delete item" data-item-id="{{pool.id}}"><i class="fas fa-trash"></i></a>
+            </td>
+        </tr>
+    {{/each}}
+    </table>
 </div>

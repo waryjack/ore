@@ -2,6 +2,7 @@ export const preloadHandlebarsTemplates = async function() {
     return loadTemplates([
       // Actor Sheet Partials
       "systems/ore/templates/partials/stats.hbs",
+      "systems/ore/templates/partials/stats-h.hbs",
       "systems/ore/templates/partials/skills.hbs",
       "systems/ore/templates/partials/armor.hbs",
       "systems/ore/templates/partials/equipment.hbs",
