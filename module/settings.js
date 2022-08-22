@@ -2,8 +2,8 @@ export const registerSettings = function() {
     
     // Register core die type
     game.settings.register("ore", "coreDieType", {
-        name: 'Core Die Type',
-        hint: 'Set the core die type for the system. This has significant effects on success rates!',
+        name: 'ORE.settings.dice.setType',
+        hint: 'ORE.settings.dice.setType.hint',
         scope: 'world',
         config: true,
         type: String,
@@ -20,4 +20,97 @@ export const registerSettings = function() {
         }
 
     });
+
+    game.settings.register("ore", "bod", {
+        name: "ORE.settings.displayName.body",
+        hint: "ORE.settings.displayName.body.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        default: "Body"
+    });
+
+    game.settings.register("ore", "crd", {
+        name: "ORE.settings.displayName.coordination",
+        hint: "ORE.settings.displayName.coordination.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        default: "Coordination"
+    });
+
+    game.settings.register("ore", "sns", {
+        name: "ORE.settings.displayName.sense",
+        hint: "ORE.settings.displayName.sense.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        default: "Sense"
+    });
+
+    game.settings.register("ore", "mnd", {
+        name: "ORE.settings.displayName.mind",
+        hint: "ORE.settings.displayName.mind.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        default: "Mind"
+    });
+
+    game.settings.register("ore", "cmd", {
+        name: "ORE.settings.displayName.command",
+        hint: "ORE.settings.displayName.command.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        default: "Command"
+    });
+
+    game.settings.register("ore", "emp", {
+        name: "ORE.settings.displayName.empathy",
+        hint: "ORE.settings.displayName.empathy.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        default: "Empathy"
+    });
+
+    game.settings.register("ore", 'ext1Enable', {
+        name: 'ORE.settings.extra1.enable',
+        hint: 'ORE.settings.extra1.enable.hint',
+        scope: 'world',
+        config: true,
+        type: Boolean,
+        default: false,
+    });
+
+    game.settings.register("ore", 'ext2Enable', {
+        name: 'ORE.settings.extra2.enable',
+        hint: 'ORE.settings.extra2.enable.hint',
+        scope: 'world',
+        config: true,
+        type: Boolean,
+        default: false,
+    });
+
+    game.settings.register("ore", "ext1", {
+        name: "ORE.settings.displayName.extra1",
+        hint: "ORE.settings.displayName.extra1.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        default: "Empathy"
+    });
+
+    game.settings.register("ore", "ext2", {
+        name: "ORE.settings.displayName.extra2",
+        hint: "ORE.settings.displayName.extra2.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        default: "Empathy"
+    });
+
+
+    
 }

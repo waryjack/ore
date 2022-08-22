@@ -142,14 +142,6 @@
                         "master":0,
                         "active":false,
                         "init":false
-                    },
-                    "ext3":{
-                        "defname":"Extra Stat 3",
-                        "base":0,
-                        "expert":0,
-                        "master":0,
-                        "active":false,
-                        "init":false
                     }
                 }
             },

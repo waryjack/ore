@@ -10,7 +10,7 @@ export class OneRollDialogHelper {
         console.warn("generate dialog called");
             new Dialog({
                 title:"Basic ORE Roll", // figure this out at some point...not localized right
-                content: `<b>POOL</b>: <input type='text' value='${inPool}' name='poolVal' id='poolVal'/>`,
+                content: `<form class="ore roll-dialog"><header class='roll-header'><h1 class='ore roll-name'>Basic Dice Roll</h1><div class='ore roll-dialog'><div class='form-group'><b>Pool</b>: <input type='text' value='${inPool}' name='poolVal' id='poolVal'/></div></div></form>`,
                 buttons: {
                     roll: {
                      icon: '<i class="fas fa-check"></i>',

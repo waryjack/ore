@@ -145,8 +145,40 @@
     "ORE.atk.creature": "Creature",
 
     "ORE.dmg.shock": "Shock Damage",
-    "ORE.dmg.killing": "Killing Damage"
+    "ORE.dmg.killing": "Killing Damage",
 
+    "ORE.settings.displayName.body": "Body Stat - Display Name",
+    "ORE.settings.displayName.body.hint": "Set a custom display name for the Body stat",
 
+    "ORE.settings.displayName.coordination": "Coordination Stat - Display Name",
+    "ORE.settings.displayName.coordination.hint": "Set a custom display name for the Coordination stat",
 
+    "ORE.settings.displayName.sense": "Sense Stat - Display Name",
+    "ORE.settings.displayName.sense.hint": "Set a custom display name for the Sense stat",
+
+    "ORE.settings.displayName.mind": "Mind Stat - Display Name",
+    "ORE.settings.displayName.mind.hint": "Set a custom display name for the Mind stat",
+
+    "ORE.settings.displayName.command": "Command Stat - Display Name",
+    "ORE.settings.displayName.command.hint": "Set a custom display name for the Command stat",
+
+    "ORE.settings.displayName.empathy": "Empathy Stat - Display Name",
+    "ORE.settings.displayName.empathy.hint": "Set a custom display name for the Empathy stat",
+
+    "ORE.settings.displayName.extra1": "Extra Stat 1 - Display Name",
+    "ORE.settings.displayName.extra1.hint": "Set a custom display name for the first Extra stat",
+    
+    "ORE.settings.displayName.extra2": "Extra Stat 2 - Display Name",
+    "ORE.settings.displayName.extra2.hint": "Set a custom display name for the second Extra stat",
+
+    "ORE.settings.dice.setType.hint":"Set the core die type for the system. This has significant effects on success rates!",
+    "ORE.settings.dice.setType":"Core Die Type",
+
+    "ORE.settings.extra1.enable": "Enable Extra Stat 1",
+    "ORE.settings.extra1.enable.hint": "Enable an additional stat for your game.",
+
+    "ORE.settings.extra2.enable": "Enable Extra Stat 2",
+    "ORE.settings.extra2.enable.hint": "Enable an additional stat for your game."
+
+    
 }

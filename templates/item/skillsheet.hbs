@@ -22,12 +22,12 @@
                 <td>
                 <select style="color:white" id="linkStat" style="width:100%;" name="system.linked_stat" data-main-att="link">
                 {{#select system.linked_stat}}
-                <option class="ore" style="background-color:black" value="bod" {{#if (eq linked_stat "bod")}}selected{{/if}}>Body</option>
-                <option class="ore" style="background-color:black" value="crd" {{#if (eq linked_stat "crd")}}selected{{/if}}>Coordination</option>
-                <option class="ore" style="background-color:black" value="sns" {{#if (eq linked_stat "sns")}}selected{{/if}}>Sense</option>
-                <option class="ore" style="background-color:black" value="mnd" {{#if (eq linked_stat "mnd")}}selected{{/if}}>Mind</option>
-                <option class="ore" style="background-color:black" value="cmd" {{#if (eq linked_stat "cmd")}}selected{{/if}}>Command</option>
-                <option class="ore" style="background-color:black" value="emp" {{#if (eq linked_stat "emp")}}selected{{/if}}>Empathy</option>
+                <option class="ore" style="background-color:black" value="bod" {{#if (eq linked_stat "bod")}}selected{{/if}}>{{getSetting "bod"}}</option>
+                <option class="ore" style="background-color:black" value="crd" {{#if (eq linked_stat "crd")}}selected{{/if}}>{{getSetting "crd"}}</option>
+                <option class="ore" style="background-color:black" value="sns" {{#if (eq linked_stat "sns")}}selected{{/if}}>{{getSetting "sns"}}</option>
+                <option class="ore" style="background-color:black" value="mnd" {{#if (eq linked_stat "mnd")}}selected{{/if}}>{{getSetting "mnd"}}</option>
+                <option class="ore" style="background-color:black" value="cmd" {{#if (eq linked_stat "cmd")}}selected{{/if}}>{{getSetting "cmd"}}</option>
+                <option class="ore" style="background-color:black" value="emp" {{#if (eq linked_stat "emp")}}selected{{/if}}>{{getSetting "emp"}}</option>
                 {{/select}}
          </select>
          </td>

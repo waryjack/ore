@@ -82,7 +82,7 @@ Hooks.once("init", () => {
     });
 
     // Checks whether a game setting is active
-    Handlebars.registerHelper("setting", function(arg){
+    Handlebars.registerHelper("getSetting", function(arg){
         // console.warn("Passed Setting Name: ", arg);
         if (arg == "" || arg == "non" || arg == undefined) { return ; }
         return game.settings.get('ewhen', arg);
@@ -151,3 +151,13 @@ Hooks.once("init", () => {
      });
 
 });
+
+
+/**
+ * Utility setting getter
+ */
+
+function getSetting(setting) {
+    if (arg === "" || arg === "non" || arg === undefined) { return ; }
+    return game.settings.get("ore", setting);
+}

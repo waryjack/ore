@@ -47,7 +47,9 @@ export default class OneRollActor extends Actor {
             setProperty(charStats, `hitlocs.${element}.boxstates`, finalStateArray);
         });
 
-
+        // Check for extra stats being active
+        setProperty(charStats, "stats.ext1.active", game.settings.get("ore", "ext1Enable"));
+        setProperty(charStats, "stats.ext2.active", game.settings.get("ore", "ext2Enable"));
 
     }
 
@@ -61,10 +63,9 @@ export default class OneRollActor extends Actor {
         let currBaseDice = this.system.stats[stat].base;
         let currExpDice = this.system.stats[stat].expert;
         let currMasDice = this.system.stats[stat].master;
-        let statNameDefault = this.system.stats[stat].defname;
+        let statNameDefault = game.settings.get("ore", stat);
 
         let dialogContent = `<h2>Editing ${statNameDefault}</h2>`;
-        dialogContent += `<b>Change Display Name</b>: <input type='text' value='${statNameDefault}' data-dtype='String' name='newDefName' id='newDefName'/>`;
         dialogContent += `<b>Base Dice</b>: <input type='text' value='${currBaseDice}' data-dtype='Number' name='newBaseDice' id='newBaseDice'/>`;
         dialogContent += `<b>Expert Dice</b>: <input type='text' value='${currExpDice}' data-dtype='Number' name='newExpDice' id='newExpDice'/>`;
         dialogContent += `<b>Master Dice</b>: <input type='text' value='${currMasDice}' data-dtype='Number' name='newMasDice' id='newMasDice'/>`;
@@ -86,9 +87,8 @@ export default class OneRollActor extends Actor {
                     let newBase = Number(html.find("#newBaseDice").val());
                     let newExpert = Number(html.find("#newExpDice").val());
                     let newMaster = Number(html.find("#newMasDice").val());
-                    let newDefName = html.find('#newDefName').val();
                    
-                    let msg = "<b>"+newDefName+"</b> updated to "+newBase+"d + "+newExpert+"ed + " + newMaster + "md";
+                    let msg = "<b>"+statNameDefault+"</b> updated to "+newBase+"d + "+newExpert+"ed + " + newMaster + "md";
 
                     let baseProp = `system.stats.${statName}.base`;
                     let expProp = `system.stats.${statName}.expert`;
