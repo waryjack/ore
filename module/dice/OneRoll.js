@@ -20,12 +20,16 @@ export class OneRoll {
     roll() {
         
         var rawRoll = this.buildArray(this.pool);
+        var rollImgs = [];
+        rawRoll.foreach(i => {
+            rollImgs.push(`<img src="systems/ore/assets/dice_img/d10/d10-${i}.png" height="24" width="24">`);
+        });
         var parsedRoll = this.countSets(rawRoll);
 
         this.allDice = rawRoll;
         this.sets = parsedRoll.sets.toString();
         this.loose = parsedRoll.loose.toString();
-  
+        this.diceImgs = rollImgs;
     }
 
    
@@ -102,6 +106,14 @@ export class OneRoll {
         return this._raw;
     }
 
+    get diceImgs() {
+        return this._diceImgs;
+    }
+
+    set diceImgs(imgArray) {
+        this._diceImgs = imgArray;
+    }
+    
     set allRolls(allDice) {
         this._allRolls = allDice;
     }
