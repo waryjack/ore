@@ -197,7 +197,7 @@ export default class OneRollActor extends Actor {
                             */
                                                     
                             let rollData = {
-                                rollPoll: pool,
+                                rollPool: pool,
                                 actor:this._id,
                                 dieType: dtype,
                                 displayText: statSkillText

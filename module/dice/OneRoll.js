@@ -10,6 +10,7 @@ export class OneRoll {
      */
 
     constructor(data) {
+        console.warn("OneRoll received data: ", data);
         this.pool = data.rollPool;
         this.actor = data.actor;
         this.dieType = data.dieType;
