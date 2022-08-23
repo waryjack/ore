@@ -7,6 +7,7 @@ export class OneRollDialogHelper {
     static generateBasicRollDialog(inPool = 0, inName="Basic", actor="") {
 
         console.warn("generate dialog called");
+        console.warn("inName: ", inName);
 
         let cont = `<form class="ore roll-dialog"><header class='roll-header'><h1 class='ore roll-name'>${inName} Roll</h1>`
         cont += `<div class='ore roll-dialog'><div class='form-group'><b>Pool</b><input style='color:white;' type='text' value='${inPool}' name='poolVal' id='poolVal'/></div></div>`
@@ -27,7 +28,8 @@ export class OneRollDialogHelper {
                         let pool = html.find("#poolVal").val();
                         let dtype = game.settings.get("ore", "coreDieType");
                         let displayText = "";
-                        if(inName !== "Basic") {
+                       
+                        if(inName != "Basic") {
                             displayText = inName;
                         }
 
