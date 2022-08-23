@@ -1,15 +1,24 @@
-export class ORERoll {
+export class OneRoll {
 
-    
-    roll(pool) {
+    /**
+     * let rollData = {
+            rollPoll: pool,
+            actorId:dialogData.actor,
+        }
+     */
+    roll(rollData) {
 
-        var rawRoll = this.buildArray(pool);
+        this.pool = rollData.pool;
+        this.actorId = rollData.actorId;
+        this.dieType = rollData.dieType;
+        
+        var rawRoll = this.buildArray(this.pool);
         var parsedRoll = this.countSets(rawRoll);
 
         this.allDice = rawRoll;
         this.sets = parsedRoll.sets.toString();
         this.loose = parsedRoll.loose.toString();
-      
+  
     }
 
     // Get only the sets rolled from the dice pool
@@ -41,9 +50,10 @@ export class ORERoll {
     buildArray(count) {
         var i;
         var rollArr = new Array();
+        let expr = "1" + this.dieType;
         for (i=0; i < count; i++){
 
-            let die = new Roll("1d10");
+            let die = new Roll(expr);
             let thisDie = die.roll({async:false});
             rollArr.push(thisDie.total);
         }

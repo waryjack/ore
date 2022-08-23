@@ -2,7 +2,7 @@
 
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { ORE } from "./config.js";
-import { OneRoller } from "./dice/OneRoller.js";
+import { OneRoll } from "./dice/OneRoll.js";
 import OneRollItemSheet from "./sheets/item/OneRollItemSheet.js";
 import OneRollActorSheet from "./sheets/actor/OneRollActorSheet.js";
 import OneRollActor from "./actor/OneRollActor.js";
@@ -22,7 +22,7 @@ Hooks.once("init", () => {
 
     game.ore = {
         OneRollActor,
-        OneRoller,
+        OneRoll,
         OneRollActorSheet,
         OneRollItemSheet,
         OneRollItem,

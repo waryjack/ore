@@ -1,5 +1,5 @@
 import { OneRollDialogHelper } from "../utility/OREDialogHelper.js";
-import { ORERoll } from "../dice/OreRoll.js";
+import { OneRoll } from "../dice/OneRoll.js";
 
 export default class OneRollActor extends Actor {
  
@@ -184,7 +184,7 @@ export default class OneRollActor extends Actor {
                       chosenStatVal = this.system.stats[chosenStat].base;
                        
                       let pool = Math.min(10, chosenStatVal + chosenSkillVal);
-
+                      let dtype = game.settings.get("ore", "coreDieType");
 
                       // get dice values
                       /*
@@ -195,16 +195,17 @@ export default class OneRollActor extends Actor {
                       console.warn("chosen stat val: ", chosenStatVal);
                       console.warn("chosen skill val: ", chosenSkillVal);
                       */
-                      
-                      let roll = new ORERoll();
-                        roll.roll(pool);
-                        let sets = roll.sets;
-                        let loose = roll.loose;
-                        let all = roll.allDice;
-                        let msg = "<b>Rolling "+pool+"D</b></br>" +
-                                    "<b>Results "+all+"<br/>" +
-                                    "<b>Sets</b>: "+sets+"<br/>" +
-                                    "<b>Loose</b>: "+loose;
+                                             
+                      let rollData = {
+                          rollPoll: pool,
+                          actor:this._id,
+                          dieType: dtype
+                      }
+                      let roll = new OneRoll(rollData);
+                        let msg = "<b>Rolling "+roll.pool+"D</b></br>" +
+                                    "<b>Results "+roll.allDice+"<br/>" +
+                                    "<b>Sets</b>: "+roll.sets+"<br/>" +
+                                    "<b>Loose</b>: "+roll.loose;
 
                         ChatMessage.create({
                             user: game.user._id,

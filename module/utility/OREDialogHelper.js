@@ -1,5 +1,5 @@
 import { OneRoller } from "../dice/OneRoller.js";
-import { ORERoll } from "../dice/OreRoll.js"; 
+import { OneRoll } from "../dice/OneRoll.js"; 
 
 // import { OneRollActor } from "../actor/OneRollActor.js";
 
@@ -78,23 +78,18 @@ export class OneRollDialogHelper {
                         
                         let pool = html.find("#poolVal").val();
                         let dtype = game.settings.get("ore", "coreDieType");
-                        let expr = pool+""+dtype;
-                        let roll = new ORERoll();
-                        roll.roll(pool);
-                        let sets = roll.sets;
-                        let loose = roll.loose;
-                        let all = roll.allDice;
+                        
                         let rollData = {
                             rollPoll: pool,
-                            all: all,
-                            sets: sets,
-                            loose: loose,
-                            actor:dialogData.actor
+                            actor:dialogData.actor,
+                            dieType: dtype
                         }
-                        let msg = "<b>Rolling "+pool+"D</b></br>" +
-                                  "<b>Results "+all+"<br/>" +
-                                  "<b>Sets</b>: "+sets+"<br/>" +
-                                  "<b>Loose</b>: "+loose;
+                        let oneRoll = new OneRoll(rollData);
+                        
+                        let msg = "<b>Rolling "+oneRoll.pool+"D</b></br>" +
+                                  "<b>Results "+oneRoll.allDice+"<br/>" +
+                                  "<b>Sets</b>: "+oneRoll.sets+"<br/>" +
+                                  "<b>Loose</b>: "+oneRoll.loose;
 
                         ChatMessage.create({
                             user: game.user._id,
