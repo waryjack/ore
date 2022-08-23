@@ -165,57 +165,58 @@ export default class OneRollActor extends Actor {
                      icon: '<i class="fas fa-check"></i>',
                      label: "Continue",
                      callback: (html) => {
-                      //  console.log("passed html: ", html); 
+                            //  console.log("passed html: ", html); 
 
-                      // console.warn("in stat roll callback");
-                      
-                      let chosenStat = html.find("#selStat").val();
-                      let chosenSkill = html.find("#selSkill").val();
-                      let chosenStatVal = 0;
-                      let chosenSkillVal = 0;
-                      let chosenSkillObj = {};
+                            // console.warn("in stat roll callback");
+                            
+                            let chosenStat = html.find("#selStat").val();
+                            let chosenSkill = html.find("#selSkill").val();
+                            let chosenStatVal = 0;
+                            let chosenSkillVal = 0;
+                            let chosenSkillObj = {};
 
-                      if(selSkill != "none") {
-                        chosenSkillObj = this.items.filter(i => i.name === chosenSkill);
-                        console.warn("skill obj ", chosenSkillObj);
-                        chosenSkillVal = chosenSkillObj[0].system.dice.base;
-                      }
-                      
-                      chosenStatVal = this.system.stats[chosenStat].base;
-                       
-                      let pool = Math.min(10, chosenStatVal + chosenSkillVal);
-                      let dtype = game.settings.get("ore", "coreDieType");
+                            if(selSkill != "none") {
+                                chosenSkillObj = this.items.filter(i => i.name === chosenSkill);
+                                console.warn("skill obj ", chosenSkillObj);
+                                chosenSkillVal = chosenSkillObj[0].system.dice.base;
+                            }
+                            
+                            chosenStatVal = this.system.stats[chosenStat].base;
+                            
+                            let pool = Math.min(10, chosenStatVal + chosenSkillVal);
+                            let dtype = game.settings.get("ore", "coreDieType");
+                            let statSkillText = game.settings.get("ore", chosenStat)+" + "+chosenSkill;
+                            // get dice values
+                            /*
+                            console.warn("What is this? ", this);
+                            console.warn("Roll selStat: ", chosenStat);
+                            console.warn("Roll selSkill: ", chosenSkill);
+                            console.warn("Chosen Skill Object: ", chosenSkillObj);
+                            console.warn("chosen stat val: ", chosenStatVal);
+                            console.warn("chosen skill val: ", chosenSkillVal);
+                            */
+                                                    
+                            let rollData = {
+                                rollPoll: pool,
+                                actor:this._id,
+                                dieType: dtype,
+                                displayText: statSkillText
+                            }
 
-                      // get dice values
-                      /*
-                      console.warn("What is this? ", this);
-                      console.warn("Roll selStat: ", chosenStat);
-                      console.warn("Roll selSkill: ", chosenSkill);
-                      console.warn("Chosen Skill Object: ", chosenSkillObj);
-                      console.warn("chosen stat val: ", chosenStatVal);
-                      console.warn("chosen skill val: ", chosenSkillVal);
-                      */
-                                             
-                      let rollData = {
-                          rollPoll: pool,
-                          actor:this._id,
-                          dieType: dtype
-                      }
-                      let roll = new OneRoll(rollData);
-                        let msg = "<b>Rolling "+roll.pool+"D</b></br>" +
-                                    "<b>Results "+roll.allDice+"<br/>" +
-                                    "<b>Sets</b>: "+roll.sets+"<br/>" +
-                                    "<b>Loose</b>: "+roll.loose;
-
-                        ChatMessage.create({
-                            user: game.user._id,
-                            // roll: data.roll,
-                            //  type:CONST.CHAT_MESSAGE_TYPES.ROLL,
-                            speaker: ChatMessage.getSpeaker(),
-                            content: msg
-                        });    
-
+                            let roll = new OneRoll(rollData);
+                            let msgTemplate = "systems/ore/templates/message/chatmessage.hbs";
+                            
+                            renderTemplate(msgTemplate, roll).then((dlg) => {
+                                ChatMessage.create({
+                                    user: game.user._id,
+                                    // roll: data.roll,
+                                    //  type:CONST.CHAT_MESSAGE_TYPES.ROLL,
+                                    speaker: ChatMessage.getSpeaker(),
+                                    content: dlg
+                                });
+                            });
                         }
+
                     },
                     close: {
                      icon: '<i class="fas fa-times"></i>',

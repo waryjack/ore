@@ -8,7 +8,6 @@ import OneRollActorSheet from "./sheets/actor/OneRollActorSheet.js";
 import OneRollActor from "./actor/OneRollActor.js";
 import OneRollCombat from "./combat/OneRollCombat.js";
 import OneRollItem from "./item/OneRollItem.js";
-import OneRollDialog from "./utility/OREDialog.js";
 import { registerSettings } from "./settings.js"; 
 
 // Initialize system
@@ -27,7 +26,6 @@ Hooks.once("init", () => {
         OneRollItemSheet,
         OneRollItem,
         OneRollCombat,
-        OneRollDialog,
         registerSettings,
     }; 
 

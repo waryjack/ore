@@ -2,15 +2,19 @@ export class OneRoll {
 
     /**
      * let rollData = {
-            rollPoll: pool,
-            actorId:dialogData.actor,
-        }
+                          rollPoll: pool,
+                          actor:this._id,
+                          dieType: dtype,
+                          whichStat:game.settings.get("ore", chosenStat),
+                          whichSkill:chosenSkill
+                      }
      */
     roll(rollData) {
 
         this.pool = rollData.pool;
         this.actorId = rollData.actorId;
         this.dieType = rollData.dieType;
+        this.displayText = rollData.displayText;
         
         var rawRoll = this.buildArray(this.pool);
         var parsedRoll = this.countSets(rawRoll);
@@ -24,6 +28,22 @@ export class OneRoll {
     // Get only the sets rolled from the dice pool
     get sets() {
         return this._sets;
+    }
+
+    get pool() {
+        return this._pool;
+    }
+
+    get dieType() {
+        return this._dieType;
+    }
+
+    get displayText() {
+        return this._displayText;
+    }
+
+    get actor() {
+        return this._actorId;
     }
 
     set sets(setInfo) {
