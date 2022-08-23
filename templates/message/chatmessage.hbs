@@ -3,9 +3,7 @@
         <h2 class="roll-name">Rolling {{displayText}} {{pool}}D</h2>
 </header>
 <div class="taskroll-msg">
-    <p> <strong>Results: </strong>{{allDice}}</p>
-    <p> <strong>Results: </strong>{{diceImgs}}</p>
-    <p> <strong>Sets: </strong>{{#if (eq sets "")}}None{{else}}{{sets}}{{/if}}</p>
-    <p> <strong>Loose Dice: </strong>{{loose}}</p>
+    <p style="text-align:center">{{render diceImgs}}</p>
+    <p> <strong>Sets: </strong>{{#if (eq sets "")}}None{{else}}{{sets}}{{/if}} | <strong>Loose Dice: </strong>{{loose}}</p>
 </div>
 </form>
