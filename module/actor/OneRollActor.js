@@ -203,7 +203,8 @@ export default class OneRollActor extends Actor {
                                 displayText: statSkillText
                             }
 
-                            let roll = new OneRoll(rollData).roll();
+                            let roll = new OneRoll(rollData);
+                            roll.roll();
                             
                             let msgTemplate = "systems/ore/templates/message/chatmessage.hbs";
                             console.warn("Roll: ", roll);
