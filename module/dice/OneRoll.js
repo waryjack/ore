@@ -11,7 +11,7 @@ export class OneRoll {
 
     constructor(data) {
         this.pool = data.pool;
-        this.actorId = data.actorId;
+        this.actor = data.actorId;
         this.dieType = data.dieType;
         this.displayText = data.displayText;
     }
@@ -27,47 +27,7 @@ export class OneRoll {
   
     }
 
-    // Get only the sets rolled from the dice pool
-    get sets() {
-        return this._sets;
-    }
-
-    get pool() {
-        return this._pool;
-    }
-
-    get dieType() {
-        return this._dieType;
-    }
-
-    get displayText() {
-        return this._displayText;
-    }
-
-    get actor() {
-        return this._actorId;
-    }
-
-    set sets(setInfo) {
-        this._sets = setInfo;
-    }
-
-    // Get only the loose (unmatched) dice in the array
-    get loose() {
-        return this._loose;
-    }
-
-    set loose(looseDice) {
-        this._loose = looseDice;
-    }
-    // Get the full roll array
-    get allRolls() {
-        return this._raw;
-    }
-
-    set allRolls(allDice) {
-        this._allRolls = allDice;
-    }
+   
 
     buildArray(count) {
         var i;
@@ -108,5 +68,66 @@ export class OneRoll {
 		
 
     }
+
+     // Get only the sets rolled from the dice pool
+     get sets() {
+        return this._sets;
+    }
+
+    get pool() {
+        return this._pool;
+    }
+
+    get dieType() {
+        return this._dieType;
+    }
+
+    get displayText() {
+        return this._displayText;
+    }
+
+    get actor() {
+        return this._actor;
+    }
+
+    // Get only the loose (unmatched) dice in the array
+    get loose() {
+        return this._loose;
+    }
+
+   
+    // Get the full roll array
+    get allRolls() {
+        return this._raw;
+    }
+
+    set allRolls(allDice) {
+        this._allRolls = allDice;
+    }
+
+    set sets(setInfo) {
+        this._sets = setInfo;
+    }
+
+    set pool(pool) {
+        this._pool = pool;
+    }
+
+    set loose(looseDice) {
+        this._loose = looseDice;
+    }
+
+    set actor(actor) {
+        this._actor = actor;
+    }
+
+    set dieType(dieType) {
+        this._dieType = dieType;
+    }
+
+    set displayText(text) {
+        this._displayText = text;
+    }
+
 
 }
