@@ -238,7 +238,7 @@ export default class OneRollActor extends Actor {
         let thisPower = this.items.get(power);
         let thisPowerName = thisPower.name;
         let thisPowerPool = thisPower.system.dice.base; // expert and master dice later
-        OneRollDialogHelper.generateBasicRollDialog(thisPowerPool, thisPowerName);
+        OneRollDialogHelper.generateBasicRollDialog(thisPowerPool, thisPowerName, this._id);
     }
 
     adjustPool(pool, dir) {

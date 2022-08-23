@@ -4,7 +4,7 @@ import { OneRoll } from "../dice/OneRoll.js";
 
 export class OneRollDialogHelper {
 
-    static generateBasicRollDialog(inPool = 0, inName="Basic") {
+    static generateBasicRollDialog(inPool = 0, inName="Basic", actor="") {
 
         console.warn("generate dialog called");
 
@@ -26,23 +26,27 @@ export class OneRollDialogHelper {
                         
                         let pool = html.find("#poolVal").val();
                         let dtype = game.settings.get("ore", "coreDieType");
-                        let expr = pool+""+dtype;
-                        let roll = new ORERoll();
-                        roll.roll(pool);
-                        let sets = roll.sets;
-                        let loose = roll.loose;
-                        let all = roll.allDice;
-                        let msg = "<b>Rolling "+pool+"D</b></br>" +
-                                  "<b>Results "+all+"<br/>" +
-                                  "<b>Sets</b>: "+sets+"<br/>" +
-                                  "<b>Loose</b>: "+loose;
 
-                        ChatMessage.create({
-                            user: game.user._id,
-                           // roll: data.roll,
-                           //  type:CONST.CHAT_MESSAGE_TYPES.ROLL,
-                            speaker: ChatMessage.getSpeaker(),
-                            content: msg
+                        let rollData = {
+                            rollPool: pool,
+                            actor:actor,
+                            dieType: dtype,
+                            displayText: ""
+                        }
+
+                        let roll = new OneRoll(rollData);
+                        roll.roll();
+                        
+                        let msgTemplate = "systems/ore/templates/message/chatmessage.hbs";
+
+                        renderTemplate(msgTemplate, roll).then((dlg)=>{
+                            ChatMessage.create({
+                                user: game.user._id,
+                            // roll: data.roll,
+                            //  type:CONST.CHAT_MESSAGE_TYPES.ROLL,
+                                speaker: ChatMessage.getSpeaker(),
+                                content: dlg
+                            });
                         });
 
                         }
