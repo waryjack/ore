@@ -1,28 +1,39 @@
-<div class="ore flex-item">
+<div class="ore flex-item" style="flex-grow:3">
     <h3 class="traitsheet-header">
         <div>{{localize "ORE.gen.weapons"}} <a class="item-create" title="Add Weapon" data-type="weapon"><i class="fas fa-plus-square"></i></a> / 
         {{localize "ORE.gen.armors"}} <a class="item-create" title="Add Armor" data-type="armor"><i class="fas fa-plus-square"></i></a></div>
         
     </h3>
     <table class="item-table">
-        
+        <tr>
+            
+            <th style="text-align:left">Weapon</th>
+            <th>Damage</th>
+            <th>Qualities</th>
+            <th>Ammo</th>
+            <th></th>
+        </tr>
     {{#each weapons as |weapon id|}}
          <tr>
-         <td>
-            <a class="weapon-roll" data-weapon-to-roll="{{weapon.id}}"><i class="fa-solid fa-dice-d10"></i></a>
-         </td>
-        </td>
             <td class="item-name item" data-item-id="{{weapon.id}}">
               <a class="item-edit" title="Edit"><strong>{{weapon.name}}</strong></a>
+              {{#ife weapon.system.weapontype "melee"}}<i class="fa-solid fa-hand-fist"></i>{{/ife}}
+              {{#ife weapon.system.weapontype "ranged"}}<i class="fa-solid fa-gun"></i>{{/ife}}
             </td>
-            <td>
-                {{weapon.system.dice.base}}d
-                {{#if (ne weapon.system.dice.expert 0)}}
-                    + {{weapon.system.dice.expert}}ed
-                {{/if}}
-                {{#if (ne weapon.system.dice.master 0)}}
-                    + {{weapon.system.dice.master}}md
-                {{/if}}
+            <td style="text-align:center">
+               {{weapon.system.damage.text}}
+            </td>
+            <td style="text-align:center;">
+                <em>{{weapon.system.wepquals}}{{#if (ne weapon.system.wepquals "")}}, {{/if}}range {{weapon.system.min_range}}/{{weapon.system.max_range}}</em>
+            </td>
+            <!--td style="text-align:center">
+                {{weapon.system.spray}}d / {{weapon.system.area}}d / {{weapon.system.pen}}d
+            </td-->
+            <!--td style="text-align:center">
+                {{weapon.system.min_range}}/{{weapon.system.max_range}}
+            </td-->
+            <td style="text-align:center">
+                {{weapon.system.ammo_curr}}/{{weapon.system.ammo_max}}
             </td>
             <td style="right:100%;">
                 <a class="item-delete item" data-item-id="{{weapon.id}}"><i class="fas fa-trash"></i></a>

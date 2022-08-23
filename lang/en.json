@@ -89,8 +89,15 @@
     "ORE.weapon.term":"Weapon",
     "ORE.weapon.type.melee":"Melee",
     "ORE.weapon.type.ranged":"Ranged",
+    "ORE.weapon.type.na":"N/A",
     "ORE.weapon.damage":"Damage",
     "ORE.weapon.link":"Linked Ability",
+
+    "ORE.weapon.hands.one":"One-handed",
+    "ORE.weapon.hands.two":"Two-handed",
+    "ORE.weapon.hands.crew":"Crew-served",
+    "ORE.weapon.hands.mounted":"Mounted",
+    "ORE.weapon.hands.na":"N/A",
 
     "ORE.equipment.term":"Equipment",
     

@@ -4,9 +4,11 @@
         <a class="item-create" title="Add Equipment" data-type="equipment"><i class="fas fa-plus-square"></i></a>
     </h3>
     <table class="item-table">
+    <tr>
     <th style="text-align:left">Item</th>
-    <th>Description</th>
-    <th>Value</th>
+    <th style="text-align:left">Description</th>
+    <th style="text-align:center">Value</th>
+    </tr>
     {{#each equipment as |eqp id|}}
     {{log "Stat.id" eqp.id "Stat name" eqp.name}}
         <tr class="item-name item" data-item-id="{{eqp.id}}">

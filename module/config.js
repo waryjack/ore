@@ -59,6 +59,11 @@ export const ORE =
         width: "ORE.roll.width",
         loose: "ORE.roll.loose",
         set: "ORE.roll.set"
+    },
+    weaponhands: {
+        one: "ORE.weapon.hands.one",
+        two: "ORE.weapon.hands.two",
+        crew: "ORE.weapon.hands.crew"
     }
 
 };

@@ -31,9 +31,10 @@
         },
         "weapon": {
             "templates":["common"],
-            "type": "melee",
+            "weapontype": "melee",
             "hands": "one",
             "damage":{
+                "text":"",
                 "shock":0,
                 "killing":0
             },
@@ -43,7 +44,14 @@
             "ammo_in":"magazine",
             "ammo_max":0,
             "ammo_curr":0,
-            "rof":1
+            "rof":1,
+            "spray":0,
+            "area":0,
+            "pen":0,
+            "burn":0,
+            "slow":0,
+            "wepquals":"",
+            "tags":""
         },
         "equipment": {
             "templates":["common"],
