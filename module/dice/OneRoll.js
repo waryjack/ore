@@ -1,20 +1,22 @@
 export class OneRoll {
 
     /**
-     * let rollData = {
-                          rollPoll: pool,
-                          actor:this._id,
-                          dieType: dtype,
-                          whichStat:game.settings.get("ore", chosenStat),
-                          whichSkill:chosenSkill
-                      }
+     *  let rollData = {
+                                rollPoll: pool,
+                                actor:this._id,
+                                dieType: dtype,
+                                displayText: statSkillText
+                            }
      */
-    roll(rollData) {
 
+    constructor(data) {
         this.pool = rollData.pool;
         this.actorId = rollData.actorId;
         this.dieType = rollData.dieType;
         this.displayText = rollData.displayText;
+    }
+
+    roll() {
         
         var rawRoll = this.buildArray(this.pool);
         var parsedRoll = this.countSets(rawRoll);
