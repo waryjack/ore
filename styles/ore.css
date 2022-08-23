@@ -1,6 +1,7 @@
 /* This is an absolute dumpster fire. I'm so bad at CSS. */
 
 @import url('https://fonts.googleapis.com/css2?family=Cuprum:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Source+Sans+Pro:wght@300;600&display=swap');
 
 * {
   -webkit-box-sizing: border-box;
@@ -19,7 +20,8 @@ h3 {
 
 .ore .window-content {
   /* background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAKElEQVQYV2NUU1P7//PnTwYQYGdnZ2CUl5f/D+OAJMACIBmYKkZ0LQBtSRGf2hu8MAAAAABJRU5ErkJggg==);*/
-  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAAXNSR0IArs4c6QAAADFJREFUGFdj1DVt+H/t4jIGGNDSj2KA8RmZ2dT+IwuAFMH4YElkAWQT4JLYFDDSxk4AryUqsBCAMYcAAAAASUVORK5CYII=);
+  /* background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAAXNSR0IArs4c6QAAADFJREFUGFdj1DVt+H/t4jIGGNDSj2KA8RmZ2dT+IwuAFMH4YElkAWQT4JLYFDDSxk4AryUqsBCAMYcAAAAASUVORK5CYII=); */
+  background:#6e6a60;
   
   /* background: rgb(14, 14, 14);
   background-color: rgb(32, 32, 32);
@@ -99,16 +101,19 @@ h3 {
   flex: 0 0 32px;
   margin: 4px 0;
   line-height: 32px;
- border: none;
+  border: none;
   color:white;
-  font-family:"Cuprum", sans-serif;
+  font-family:"Aboreto", sans-serif;
   text-transform:uppercase;
   font-weight: 700;
-  font-size:1.25em;
+  font-size:1.15em;
 }
 
 .ore .sheet nav.sheet-tabs .item {
   border: 1px solid #b5b3a4;
+  font-family:"Aboreto", sans-serif;
+  font-weight:700;
+  font-size:1.15em;
   margin-left:6px;
   margin-right:6px;
 
@@ -116,7 +121,10 @@ h3 {
 
 .tabs .ore.item.active {
   text-shadow:none !important;
-  background:rgb(252, 252, 252);
+  font-family:"Aboreto", sans-serif;
+  font-weight:700;
+  font-size:1.15em;
+  background:#f1e9db;
   color:black;
 }
 
@@ -149,10 +157,11 @@ h3 {
   /* height:128px;
   max-height:128px;
   line-height:128px; */
+  color:#f1e9db;
   padding-left:12px;
   padding-right:12px;
-  background: none;
-  border-left:3px solid white;
+  background:none;
+  border:none;
 }
 
 .roll-icon i {
@@ -197,12 +206,13 @@ h3 {
 }*/
 
 .ore .flex-item {
-  border:4px solid rgb(255, 255, 255);
+  border:2px solid #f1e9db;
+  font-family:'Source Sans Pro', sans-serif;
   /* -webkit-border-radius: 8px; */
   /* -moz-border-radius: 8px;*/
   /* border-radius: 8px; */
-  background: #1f1c2b;
-  color:rgb(255, 255, 255);
+  background:#312f29;
+  color:black;
   font-size:1em;
   margin-top:8px;
   margin-left:6px;
@@ -264,22 +274,28 @@ h3 {
   padding:3px;
 }
 
+.item-table > td {
+  font-family:'Source Sans Pro', sans-serif;
+  font-weight:600 !important;
+  font-size:1em;
+}
+
 .ore .trait-desc {
   resize:none;
 }
 
 .traitsheet-header {
-  font-family:"Cuprum", sans-serif;
+  font-family:"Aboreto", sans-serif;
   text-transform:uppercase;
   font-weight: 700;
   display:flex;
   flex-direction:row;
-  background:rgb(255, 255, 255);
+  background:#f1e9db;
   color:rgb(0, 0, 0);
 }
 
 .ore .roll-name {
-  font-family:"Cuprum", sans-serif;
+  font-family:"Aboreto", sans-serif;
   font-weight:700;
   display:flex;
   flex-direction:row;
@@ -376,7 +392,7 @@ h3 {
 }
 
 .dmgroll-msg {
-  font-size: 1.25em;
+  font-size: 1.15em;
 }
 
 .ore .charimg {

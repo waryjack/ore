@@ -100,7 +100,7 @@ export default class OneRollActor extends Actor {
                     this.update({[baseProp]:newBase});
                     this.update({[expProp]:newExpert});
                     this.update({[masProp]:newMaster});
-                    this.update({[defProp]:newDefName});
+                    
 
                     ChatMessage.create({
                         user: game.user._id,
@@ -174,18 +174,20 @@ export default class OneRollActor extends Actor {
                             let chosenStatVal = 0;
                             let chosenSkillVal = 0;
                             let chosenSkillObj = {};
+                            let chosenSkillText = "";
 
-                            if(selSkill != "none") {
+                            if(chosenSkill != "none") {
                                 chosenSkillObj = this.items.filter(i => i.name === chosenSkill);
                                 console.warn("skill obj ", chosenSkillObj);
                                 chosenSkillVal = chosenSkillObj[0].system.dice.base;
+                                chosenSkillText = " + " + chosenSkill;
                             }
-                            
+                             console.warn("chosen skill val: ", chosenSkillVal);
                             chosenStatVal = this.system.stats[chosenStat].base;
                             
                             let pool = Math.min(10, chosenStatVal + chosenSkillVal);
                             let dtype = game.settings.get("ore", "coreDieType");
-                            let statSkillText = game.settings.get("ore", chosenStat)+" + "+chosenSkill;
+                            let statSkillText = game.settings.get("ore", chosenStat) + chosenSkillText;
                             // get dice values
                             /*
                             console.warn("What is this? ", this);
@@ -193,7 +195,7 @@ export default class OneRollActor extends Actor {
                             console.warn("Roll selSkill: ", chosenSkill);
                             console.warn("Chosen Skill Object: ", chosenSkillObj);
                             console.warn("chosen stat val: ", chosenStatVal);
-                            console.warn("chosen skill val: ", chosenSkillVal);
+                           
                             */
                                                     
                             let rollData = {

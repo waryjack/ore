@@ -7,7 +7,7 @@
     <table class="item-table">
         <tr>
             
-            <th style="text-align:left">Weapon</th>
+            <th>Weapon</th>
             <th>Damage</th>
             <th>Qualities</th>
             <th>Ammo</th>
@@ -16,9 +16,10 @@
     {{#each weapons as |weapon id|}}
          <tr>
             <td class="item-name item" data-item-id="{{weapon.id}}">
-              <a class="item-edit" title="Edit"><strong>{{weapon.name}}</strong></a>
-              {{#ife weapon.system.weapontype "melee"}}<i class="fa-solid fa-hand-fist"></i>{{/ife}}
+                 {{#ife weapon.system.weapontype "melee"}}<i class="fa-solid fa-hand-fist"></i>{{/ife}}
               {{#ife weapon.system.weapontype "ranged"}}<i class="fa-solid fa-gun"></i>{{/ife}}
+              <a class="item-edit" title="Edit"><strong>{{weapon.name}}</strong></a>
+             
             </td>
             <td style="text-align:center">
                {{weapon.system.damage.text}}

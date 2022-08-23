@@ -26,13 +26,14 @@
                     </td-->
                 <td style="text-align:center; font-size:1.25em;">
                     <a class="stat-roll" data-stat-to-roll="{{name}}"><i class="fa-solid fa-dice-d20"></i></a>&nbsp;&nbsp;&nbsp;
-                    {{stat.base}}d
+                    <strong>{{stat.base}}d
                     {{#if (ne stat.expert 0)}}
                         + {{stat.expert}}ed
                     {{/if}}
                     {{#if (ne stat.master 0)}}
                         + {{stat.master}}md
                     {{/if}}
+                    </strong>
                 </td>
             </tr>
             </table>

@@ -22,7 +22,7 @@ export class OneRoll {
         var rawRoll = this.buildArray(this.pool);
         var rollImgs = [];
         rawRoll.forEach(i => {
-            rollImgs.push(`<img src="systems/ore/assets/dice_img/d10/d10-${i}.png" style="border:none;" height="48" width="48">`);
+            rollImgs.push(`<img src="systems/ore/assets/dice_img/${this.dieType}/${this.dieType}-${i}.png" style="border:none;" height="48" width="48">`);
         });
         var parsedRoll = this.countSets(rawRoll);
 
@@ -35,11 +35,18 @@ export class OneRoll {
    
 
     buildArray(count) {
+        const diceMaxes = {
+            "d4": 4,
+            "d6": 6,
+            "d8": 8,
+            "d10": 10,
+            "d12": 12,
+            "d20": 20
+        }
         var i;
         var rollArr = new Array();
         let expr = "1" + this.dieType;
         for (i=0; i < count; i++){
-
             let die = new Roll(expr);
             let thisDie = die.roll({async:false});
             rollArr.push(thisDie.total);
@@ -51,10 +58,20 @@ export class OneRoll {
 
     countSets(raw) {
         console.warn("Raw Array: ", raw);
+
+        const diceFaces = {
+            "d6": 6,
+            "d8": 8,
+            "d10": 10,
+            "d12": 12,
+            "d20": 20
+        }
+
         var setArr = [];
 		var singletons = [];
+        let maxFace = diceFaces[this.dieType];
 
-        for(let i = 1; i <= 10; i++) {
+        for(let i = 1; i <= maxFace; i++) {
             let matches = raw.filter(roll => roll == i).length;
 			// console.log("matches: " + matches);
             if(matches > 1) {

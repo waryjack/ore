@@ -5,22 +5,22 @@
         </div>
         <div class="ore header-flexitem name-block">
             <div class="charname">
-                <input class="ore charname" style="width:50%; vertical-align:top; background:lightgray;" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
+                <input class="ore charname" style="width:50%; vertical-align:top; background:#f1e9db;" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
                 <div class="form-group" style="float:right; color:white;">
                 </div>
             </div>
 
         </div>
        <div class="ore flexcol">
-        <div style="align-items:flex-start;"><a class="basic-roll roll-icon" style="margin:0px !important;"><i class="fa-solid fa-dice-d10"></i></a></div>
+        <div style="align-items:flex-start;"><a class="basic-roll roll-icon" style="margin:0px !important; color:#f1e9db; !important;"><i class="fa-solid fa-dice-d20"></i></a></div>
 
         </div>
 
     </header>
 {{!-- Sheet Tab Navigation --}}
     <nav class="ore sheet-tabs tabs" data-group="primary">
-        <a class="ore item" data-tab="main">{{localize "ORE.gen.charsheet.tabs.essentials"}}</a>
-        <a class="ore item" data-tab="gear">{{localize "ORE.gen.charsheet.tabs.inventory"}}</a>
+        <a class="ore item" style="font-family:'Aboreto', sans-serif; font-weight:700; font-size:1.25em;" data-tab="main">{{localize "ORE.gen.charsheet.tabs.essentials"}}</a>
+        <a class="ore item" style="font-family:'Aboreto', sans-serif; font-weight:700; font-size:1.25em;" data-tab="gear">{{localize "ORE.gen.charsheet.tabs.inventory"}}</a>
         <!--a class="ore item" data-tab="misc">{{localize "ORE.gen.charsheet.tabs.miscellaneous"}}</a-->
     </nav>
 
