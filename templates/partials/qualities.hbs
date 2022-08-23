@@ -1,20 +1,20 @@
-<div class="ore flex-item">
+<div class="ore flex-item" style="flex-grow:3">
     <h3 class="traitsheet-header">
         <div>{{localize "ORE.gen.qualities"}}</div>
-        <a class="item-create" title="Add Quality" data-type="skill"><i class="fas fa-plus-square"></i></a>
+        <a class="item-create" title="Add Quality" data-type="quality"><i class="fas fa-plus-square"></i></a>
     </h3>
     <table class="item-table">
         
     {{#each qualities as |qual id|}}
          <tr>
-         <td>
+         <!--td>
             <a class="qual-roll" data-qual-to-roll="{{qual.id}}"><i class="fa-solid fa-dice-d10"></i></a>
+         </td-->
+         <td class="item-name item" data-item-id="{{qual.id}}">
+              <a class="item-edit" title="Edit"><strong>{{qual.name}}</strong></a><br/>
+              <em>{{qual.system.desc}}</em>
          </td>
-        </td>
-            <td class="item-name item" data-item-id="{{qual.id}}">
-              <a class="item-edit" title="Edit"><strong>{{qual.name}}</strong></a>
-            </td>
-            <td>
+            <!--td>
                 {{qual.system.dice.base}}d
                 {{#if (ne qual.system.dice.expert 0)}}
                     + {{qual.system.dice.expert}}ed
@@ -22,7 +22,7 @@
                 {{#if (ne qual.system.dice.master 0)}}
                     + {{qual.system.dice.master}}md
                 {{/if}}
-            </td>
+            </td-->
             <td style="right:100%;">
                 <a class="item-delete item" data-item-id="{{qual.id}}"><i class="fas fa-trash"></i></a>
             </td>

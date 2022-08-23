@@ -7,6 +7,7 @@ import OneRollItemSheet from "./sheets/item/OneRollItemSheet.js";
 import OneRollActorSheet from "./sheets/actor/OneRollActorSheet.js";
 import OneRollActor from "./actor/OneRollActor.js";
 import OneRollCombat from "./combat/OneRollCombat.js";
+import OneRollItem from "./item/OneRollItem.js";
 import { registerSettings } from "./settings.js"; 
 
 // Initialize system
@@ -23,6 +24,7 @@ Hooks.once("init", () => {
         OneRoller,
         OneRollActorSheet,
         OneRollItemSheet,
+        OneRollItem,
         OneRollCombat,
         registerSettings,
     }; 
@@ -37,6 +39,7 @@ Hooks.once("init", () => {
     
     CONFIG.Actor.documentClass = OneRollActor;
     CONFIG.Combat.documentClass = OneRollCombat;
+    CONFIG.Item.documentClass = OneRollItem;
 
     // Register system settings
     registerSettings();
@@ -85,7 +88,7 @@ Hooks.once("init", () => {
     Handlebars.registerHelper("getSetting", function(arg){
         // console.warn("Passed Setting Name: ", arg);
         if (arg == "" || arg == "non" || arg == undefined) { return ; }
-        return game.settings.get('ewhen', arg);
+        return game.settings.get('ore', arg);
     });
 
     

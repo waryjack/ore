@@ -11,6 +11,7 @@
          <select id="selStat" style="width:100%;" name="stat" data-main-att="stat">
             {{#select stat}}
                 {{#each allStats as |st name|}}
+                {{#if st.active}}
                     <option value="{{name}}"
                     {{#if (eq name ../selectStat)}}
                     selected
@@ -21,6 +22,7 @@
                     {{/if}}>
                     {{getSetting name}}
                     </option>
+                {{/if}}
                 {{/each}}
             {{/select}}
          </select>

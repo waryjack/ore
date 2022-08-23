@@ -84,6 +84,7 @@ export default class OneRollActorSheet extends ActorSheet {
         html.find('.delHitBox').click(this._delHitBox.bind(this));
         html.find('.cycle-hit').click(this._onCycleHitBox.bind(this));
         html.find('.edit-stat').click(this._onEditStat.bind(this));
+        html.find('.adjust-pool').click(this._onAdjustPool.bind(this));
 
         // Rolls
         html.find('.stat-roll').click(this._onRollStat.bind(this));
@@ -103,42 +104,18 @@ export default class OneRollActorSheet extends ActorSheet {
 
     _onAddItem(e) {
         e.preventDefault();
-        var localizeString = "ORE.gen.new.";
+        
+        let elem = e.currentTarget;
+        let itemType = elem.dataset.type;
+        var localizer = "ORE.gen.new."+itemType;
 
-        let dlg = "<div class='ore' style='color:white;'><h2>Add New...</h2>";
-        dlg += "<select style='color:white;' name='powOrSkill' id='powOrSkill'><option style='background-color:black;' value='skill'>Skill</option><option style='background-color:black' value='power'>Power</option></select></div>";
-        dlg += `<input type='hidden' name='localizer' id='localizer' value='${localizeString}'>`;
+        let newItemData = {
+            name: game.i18n.localize(localizer),
+            type: itemType,
+        }
 
-        let d = new Dialog({
-            title: "Create new...",
-            content: dlg,
-            buttons: {
-             one: {
-              icon: '<i class="fas fa-check"></i>',
-              label: "Yes",
-              callback: (html) => { 
-                let itemType = html.find('#powOrSkill').val();
-                let localizer = html.find('#localizer').val();
-
-                let newItemData = {
-                    name: game.i18n.localize(localizer),
-                    type: itemType,
-                }
-
-                return Item.create(newItemData, {parent:this.actor, renderSheet:true});
-                }
-             },
-             two: {
-              icon: '<i class="fas fa-times"></i>',
-              label: "Cancel",
-              callback: () => { return; }
-             }
-            },
-            default: "two",
-            render: html => console.log("Register interactivity in the rendered dialog"),
-            close: html => console.log("This always is logged no matter which option is chosen")
-           });
-           d.render(true);
+        return Item.create(newItemData, {parent:this.actor, renderSheet:true});
+        
     }
 
     _onDeleteItem(e) {
@@ -311,5 +288,16 @@ export default class OneRollActorSheet extends ActorSheet {
         let elem = e.currentTarget;
         let statClicked = elem.dataset.stat;
         return this.actor.editStat(statClicked);
+    }
+
+    _onAdjustPool(e) {
+        console.warn("adjustPool fired");
+        e.preventDefault();
+        let elem = e.currentTarget;
+        let dir = elem.dataset.dir;
+        let poolId = elem.dataset.poolId;
+        let poolObj = this.actor.items.get(poolId);
+        console.warn("Pool selected: ", poolObj);
+        return poolObj.adjustPool(dir);
     }
 }

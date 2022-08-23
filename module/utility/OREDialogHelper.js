@@ -5,12 +5,17 @@ import { ORERoll } from "../dice/OreRoll.js";
 
 export class OneRollDialogHelper {
 
-    static generateBasicRollDialog(inPool = 0) {
+    static generateBasicRollDialog(inPool = 0, inName="Basic") {
 
         console.warn("generate dialog called");
+
+        let cont = `<form class="ore roll-dialog"><header class='roll-header'><h1 class='ore roll-name'>${inName} Roll</h1>`
+        cont += `<div class='ore roll-dialog'><div class='form-group'><b>Pool</b><input type='text' value='${inPool}' name='poolVal' id='poolVal'/></div></div>`
+        cont += "</form>";
+
             new Dialog({
-                title:"Basic ORE Roll", // figure this out at some point...not localized right
-                content: `<form class="ore roll-dialog"><header class='roll-header'><h1 class='ore roll-name'>Basic Dice Roll</h1><div class='ore roll-dialog'><div class='form-group'><b>Pool</b>: <input type='text' value='${inPool}' name='poolVal' id='poolVal'/></div></div></form>`,
+                title: game.i18n.localize("ORE.gen.dialog.diceRoll"), // figure this out at some point...not localized right
+                content: cont,
                 buttons: {
                     roll: {
                      icon: '<i class="fas fa-check"></i>',
@@ -52,7 +57,7 @@ export class OneRollDialogHelper {
                 default: "close"
 
             
-        }).render(true);
+        },{id:"basic-roll-dialog"}).render(true);
     }
 
     static generateStatSkillRollDialog(template, dialogData) {

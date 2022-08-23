@@ -19,9 +19,9 @@
     </header>
 {{!-- Sheet Tab Navigation --}}
     <nav class="ore sheet-tabs tabs" data-group="primary">
-        <a class="ore item" data-tab="main">Stats and Skills</a>
-        <a class="ore item" data-tab="gear">Equipment and Powers</a>
-        <a class="ore item" data-tab="misc">Other Details</a>
+        <a class="ore item" data-tab="main">{{localize "ORE.gen.charsheet.tabs.essentials"}}</a>
+        <a class="ore item" data-tab="gear">{{localize "ORE.gen.charsheet.tabs.inventory"}}</a>
+        <!--a class="ore item" data-tab="misc">{{localize "ORE.gen.charsheet.tabs.miscellaneous"}}</a-->
     </nav>
 
     <section class="sheetbody">
@@ -42,7 +42,7 @@
                 <div class="ore flexrow">
                     
                         
-                        {{> 'systems/ore/templates/partials/armor.hbs'}}
+                        {{!--> 'systems/ore/templates/partials/armor.hbs'--}}
                         {{> 'systems/ore/templates/partials/qualities.hbs'}}
                         {{> 'systems/ore/templates/partials/pools.hbs'}}
                         
@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab misc" data-group="primary" data-tab="misc">
+        <!--div class="tab misc" data-group="primary" data-tab="misc">
             <div class="ore flexcol">
                 <div class="ore flexrow">
                      <div class="ore flex-item">
@@ -77,7 +77,7 @@
                 </div>
 
             </div>
-        </div>
+        </div-->
 
     </section>
 </form>

@@ -19,8 +19,7 @@ export const ORE =
         cmd: "ORE.gen.stats.cmd",
         emp: "ORE.gen.stats.emp",
         ext1: "ORE.gen.stats.ext1",
-        ext2: "ORE.gen.stats.ext2",
-        ext3: "ORE.gen.stats.ext3",
+        ext2: "ORE.gen.stats.ext2"
     },
     dmgtypes: {
         shock:"ORE.dmg.shock",

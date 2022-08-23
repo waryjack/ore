@@ -2,7 +2,7 @@ export const registerSettings = function() {
     
     // Register core die type
     game.settings.register("ore", "coreDieType", {
-        name: 'ORE.settings.dice.setType',
+        name: 'ORE.settings.dice.setType.lbl',
         hint: 'ORE.settings.dice.setType.hint',
         scope: 'world',
         config: true,
@@ -22,7 +22,7 @@ export const registerSettings = function() {
     });
 
     game.settings.register("ore", "bod", {
-        name: "ORE.settings.displayName.body",
+        name: "ORE.settings.displayName.body.lbl",
         hint: "ORE.settings.displayName.body.hint",
         scope: "world",
         config: true,
@@ -31,7 +31,7 @@ export const registerSettings = function() {
     });
 
     game.settings.register("ore", "crd", {
-        name: "ORE.settings.displayName.coordination",
+        name: "ORE.settings.displayName.coordination.lbl",
         hint: "ORE.settings.displayName.coordination.hint",
         scope: "world",
         config: true,
@@ -40,7 +40,7 @@ export const registerSettings = function() {
     });
 
     game.settings.register("ore", "sns", {
-        name: "ORE.settings.displayName.sense",
+        name: "ORE.settings.displayName.sense.lbl",
         hint: "ORE.settings.displayName.sense.hint",
         scope: "world",
         config: true,
@@ -49,7 +49,7 @@ export const registerSettings = function() {
     });
 
     game.settings.register("ore", "mnd", {
-        name: "ORE.settings.displayName.mind",
+        name: "ORE.settings.displayName.mind.lbl",
         hint: "ORE.settings.displayName.mind.hint",
         scope: "world",
         config: true,
@@ -58,7 +58,7 @@ export const registerSettings = function() {
     });
 
     game.settings.register("ore", "cmd", {
-        name: "ORE.settings.displayName.command",
+        name: "ORE.settings.displayName.command.lbl",
         hint: "ORE.settings.displayName.command.hint",
         scope: "world",
         config: true,
@@ -67,7 +67,7 @@ export const registerSettings = function() {
     });
 
     game.settings.register("ore", "emp", {
-        name: "ORE.settings.displayName.empathy",
+        name: "ORE.settings.displayName.empathy.lbl",
         hint: "ORE.settings.displayName.empathy.hint",
         scope: "world",
         config: true,
@@ -76,7 +76,7 @@ export const registerSettings = function() {
     });
 
     game.settings.register("ore", 'ext1Enable', {
-        name: 'ORE.settings.extra1.enable',
+        name: 'ORE.settings.extra1.enable.lbl',
         hint: 'ORE.settings.extra1.enable.hint',
         scope: 'world',
         config: true,
@@ -85,7 +85,7 @@ export const registerSettings = function() {
     });
 
     game.settings.register("ore", 'ext2Enable', {
-        name: 'ORE.settings.extra2.enable',
+        name: 'ORE.settings.extra2.enable.lbl',
         hint: 'ORE.settings.extra2.enable.hint',
         scope: 'world',
         config: true,
@@ -94,7 +94,7 @@ export const registerSettings = function() {
     });
 
     game.settings.register("ore", "ext1", {
-        name: "ORE.settings.displayName.extra1",
+        name: "ORE.settings.displayName.extra1.lbl",
         hint: "ORE.settings.displayName.extra1.hint",
         scope: "world",
         config: true,
@@ -103,7 +103,7 @@ export const registerSettings = function() {
     });
 
     game.settings.register("ore", "ext2", {
-        name: "ORE.settings.displayName.extra2",
+        name: "ORE.settings.displayName.extra2.lbl",
         hint: "ORE.settings.displayName.extra2.hint",
         scope: "world",
         config: true,

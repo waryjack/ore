@@ -230,8 +230,28 @@ export default class OneRollActor extends Actor {
 
     rollPower(power) {
         let thisPower = this.items.get(power);
+        let thisPowerName = thisPower.name;
         let thisPowerPool = thisPower.system.dice.base; // expert and master dice later
-        OneRollDialogHelper.generateBasicRollDialog(thisPowerPool);
+        OneRollDialogHelper.generateBasicRollDialog(thisPowerPool, thisPowerName);
+    }
+
+    adjustPool(pool, dir) {
+        console.warn("adjustPool actor method");
+        let item = this.items.get(pool);
+        let thisPool = item.system;
+        let poolMax = thisPool.max_points;
+        let poolMin = thisPool.min_points;
+        let poolCurr = thisPool.curr_points;
+
+        if(dir === "inc") {
+            thisPool.curr_points = Math.min(poolMax, poolCurr++);
+        } else if (dir === "dec") {
+            thisPool.curr_points = Math.max(poolMin, poolCurr--);
+        } else {
+            return;
+        }
+        return item.update({"system":thisPool});
+
     }
 
 }

@@ -26,12 +26,17 @@
     "ORE.gen.health":"Health",
     "ORE.gen.hitlocs":"Hit Locations",
     "ORE.gen.diceabbrev":"D/ED/MD",
+    "ORE.gen.dialog.diceRoll": "Dice Roll Dialog",
+    "ORE.gen.charsheet.tabs.essentials":"Essential Info",
+    "ORE.gen.charsheet.tabs.inventory":"Equipment/Inventory",
+    "ORE.gen.charsheet.tabs.miscellaneous":"Miscellaneous Info",
     
     "ORE.gen.new.weapon":"New Weapon",
     "ORE.gen.new.stat":"New Stat",
     "ORE.gen.new.skill":"New Skill",
     "ORE.gen.new.power":"New Power",
     "ORE.gen.new.equipment":"New Equipment",
+    "ORE.gen.new.powerOrSkill":"New Power or Skill",
     "ORE.gen.new.quality":"New Quality",
     "ORE.gen.new.armor":"New Armor",
     "ORE.gen.new.point_pool":"New Point Pool",
@@ -45,7 +50,7 @@
     "ORE.gen.stat.emp":"Empathy",
     "ORE.gen.stat.ext1":"Extra 1",
     "ORE.gen.stat.ext2":"Extra 2",
-    "ORE.gen.stat.ext3":"Extra 3",
+
 
     "ORE.bio.text":"Biography",
     "ORE.bio.height":"Height",
@@ -147,37 +152,37 @@
     "ORE.dmg.shock": "Shock Damage",
     "ORE.dmg.killing": "Killing Damage",
 
-    "ORE.settings.displayName.body": "Body Stat - Display Name",
+    "ORE.settings.displayName.body.lbl": "Body Stat - Display Name",
     "ORE.settings.displayName.body.hint": "Set a custom display name for the Body stat",
 
-    "ORE.settings.displayName.coordination": "Coordination Stat - Display Name",
+    "ORE.settings.displayName.coordination.lbl": "Coordination Stat - Display Name",
     "ORE.settings.displayName.coordination.hint": "Set a custom display name for the Coordination stat",
 
-    "ORE.settings.displayName.sense": "Sense Stat - Display Name",
+    "ORE.settings.displayName.sense.lbl": "Sense Stat - Display Name",
     "ORE.settings.displayName.sense.hint": "Set a custom display name for the Sense stat",
 
-    "ORE.settings.displayName.mind": "Mind Stat - Display Name",
+    "ORE.settings.displayName.mind.lbl": "Mind Stat - Display Name",
     "ORE.settings.displayName.mind.hint": "Set a custom display name for the Mind stat",
 
-    "ORE.settings.displayName.command": "Command Stat - Display Name",
+    "ORE.settings.displayName.command.lbl": "Command Stat - Display Name",
     "ORE.settings.displayName.command.hint": "Set a custom display name for the Command stat",
 
-    "ORE.settings.displayName.empathy": "Empathy Stat - Display Name",
+    "ORE.settings.displayName.empathy.lbl": "Empathy Stat - Display Name",
     "ORE.settings.displayName.empathy.hint": "Set a custom display name for the Empathy stat",
 
-    "ORE.settings.displayName.extra1": "Extra Stat 1 - Display Name",
+    "ORE.settings.displayName.extra1.lbl": "Extra Stat 1 - Display Name",
     "ORE.settings.displayName.extra1.hint": "Set a custom display name for the first Extra stat",
     
-    "ORE.settings.displayName.extra2": "Extra Stat 2 - Display Name",
+    "ORE.settings.displayName.extra2.lbl": "Extra Stat 2 - Display Name",
     "ORE.settings.displayName.extra2.hint": "Set a custom display name for the second Extra stat",
 
     "ORE.settings.dice.setType.hint":"Set the core die type for the system. This has significant effects on success rates!",
-    "ORE.settings.dice.setType":"Core Die Type",
+    "ORE.settings.dice.setType.lbl":"Core Die Type",
 
-    "ORE.settings.extra1.enable": "Enable Extra Stat 1",
+    "ORE.settings.extra1.enable.lbl": "Enable Extra Stat 1",
     "ORE.settings.extra1.enable.hint": "Enable an additional stat for your game.",
 
-    "ORE.settings.extra2.enable": "Enable Extra Stat 2",
+    "ORE.settings.extra2.enable.lbl": "Enable Extra Stat 2",
     "ORE.settings.extra2.enable.hint": "Enable an additional stat for your game."
 
     
