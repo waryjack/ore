@@ -26,12 +26,16 @@ export class OneRollDialogHelper {
                         
                         let pool = html.find("#poolVal").val();
                         let dtype = game.settings.get("ore", "coreDieType");
+                        let displayText = "";
+                        if(inName !== "Basic") {
+                            displayText = inName;
+                        }
 
                         let rollData = {
                             rollPool: pool,
                             actor:actor,
                             dieType: dtype,
-                            displayText: ""
+                            displayText: displayText
                         }
 
                         let roll = new OneRoll(rollData);
