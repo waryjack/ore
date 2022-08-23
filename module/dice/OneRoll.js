@@ -10,8 +10,8 @@ export class OneRoll {
      */
 
     constructor(data) {
-        this.pool = data.pool;
-        this.actor = data.actorId;
+        this.pool = data.rollPool;
+        this.actor = data.actor;
         this.dieType = data.dieType;
         this.displayText = data.displayText;
     }
