@@ -84,6 +84,13 @@ export class OneRollDialogHelper {
                         let sets = roll.sets;
                         let loose = roll.loose;
                         let all = roll.allDice;
+                        let rollData = {
+                            rollPoll: pool,
+                            all: all,
+                            sets: sets,
+                            loose: loose,
+                            actor:dialogData.actor
+                        }
                         let msg = "<b>Rolling "+pool+"D</b></br>" +
                                   "<b>Results "+all+"<br/>" +
                                   "<b>Sets</b>: "+sets+"<br/>" +

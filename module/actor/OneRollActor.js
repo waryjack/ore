@@ -148,7 +148,8 @@ export default class OneRollActor extends Actor {
             allStats: allStats,
             selectSkill: selectSkill,
             allSkills: allSkills,
-            linkedStat: selectSkillLinkedStat
+            linkedStat: selectSkillLinkedStat,
+            actor: this._id
         }
 
         
