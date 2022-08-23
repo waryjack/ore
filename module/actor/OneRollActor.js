@@ -205,7 +205,8 @@ export default class OneRollActor extends Actor {
 
                             let roll = new OneRoll(rollData);
                             let msgTemplate = "systems/ore/templates/message/chatmessage.hbs";
-                            
+                            console.warn("Roll: ", roll);
+                            console.warn("Roll Data: ", rollData);
                             renderTemplate(msgTemplate, roll).then((dlg) => {
                                 ChatMessage.create({
                                     user: game.user._id,
