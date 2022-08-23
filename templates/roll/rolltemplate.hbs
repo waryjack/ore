@@ -8,11 +8,11 @@
  <div class="ore roll-dialog">
      <div class="form-group">
          <label for="stats">{{localize "ORE.gen.stats"}}</label>
-         <select id="selStat" style="width:100%;" name="stat" data-main-att="stat">
+         <select id="selStat" style="width:100%; color:white;" name="stat" data-main-att="stat">
             {{#select stat}}
                 {{#each allStats as |st name|}}
                 {{#if st.active}}
-                    <option value="{{name}}"
+                    <option style="color:white; background-color:#202020" value="{{name}}"
                     {{#if (eq name ../selectStat)}}
                     selected
                     {{/if}}
@@ -29,12 +29,12 @@
      </div>
      <div class="form-group">
          <label for="skill">{{localize "ORE.gen.skills"}}</label>
-         <select id="selSkill" style="width:100%;" name="skill" data-main-att="skill">
-             <option value="none">No Skill Selected</option>
+         <select id="selSkill" style="width:100%; color:white;" name="skill" data-main-att="skill">
+             <option style="color:white; background-color:#202020" value="none">No Skill Selected</option>
             {{#select skill}}
                 {{#each allSkills as |sk name|}}
                 
-                    <option value="{{sk.name}}" {{#ife sk.name ../selectSkill}}selected{{/ife}}>{{sk.name}}</option>
+                    <option style="color:white; background-color:#202020" value="{{sk.name}}" {{#ife sk.name ../selectSkill}}selected{{/ife}}>{{sk.name}}</option>
                 {{/each}}
             {{/select}}
          </select>

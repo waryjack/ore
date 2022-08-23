@@ -26,6 +26,16 @@ h3 {
   background-position: 0px 0px, 5px 5px, 0px 0px; */
 }
 
+#basic-roll-dialog > *,
+  #basic-roll-dialog > section > *,
+    #basic-roll-dialog > section > .dialog-buttons > button {
+  color:white !important;
+}
+
+.ore .roll-dialog {
+  color:white !important;
+}
+
 .editor {
   visibility:visible;
   height:210px;
