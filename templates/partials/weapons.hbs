@@ -9,8 +9,8 @@
     <table class="item-table">
         <tr>
             <th style="text-align:left">Item</th>
-            <th>Qualities</th>
-            <th>Effect/Dmg</th>
+            <th style="text-align:left">Qualities</th>
+            <th style="text-align:left">Effect/Dmg</th>
             <th></th>
         </tr>
     {{#each weapons as |weapon id|}}
@@ -21,10 +21,10 @@
               <a class="item-edit" title="Edit {{weapon.name}}"><strong>{{weapon.name}}</strong></a>
              
             </td>
-            <td style="text-align:center;">
+            <td style="text-align:left;">
                 {{weapon.system.wepquals}}{{#if (ne weapon.system.wepquals "")}}, {{/if}}range {{weapon.system.min_range}}/{{weapon.system.max_range}}, ammo {{weapon.system.ammo_curr}}/{{weapon.system.ammo_max}}
             </td>
-            <td style="text-align:center">
+            <td style="text-align:left">
                {{weapon.system.damage.text}}
             </td>
             
@@ -47,7 +47,7 @@
               <a class="item-edit" title="Edit {{power.name}}"><strong>{{power.name}}</strong></a>&nbsp;&nbsp;
               
             </td>
-            <td style="text-align:center;">
+            <td style="text-align:left;">
                 {{power.system.dice.base}}d
                 {{#if (ne power.system.dice.expert 0)}}
                     + {{power.system.dice.expert}}ed
@@ -57,7 +57,7 @@
                 {{/if}}
                 <a title="Roll {{power.name}}" class="power-roll" data-power-to-roll="{{power.id}}"><i class="fa-solid fa-dice-d20"></i></a>, {{power.system.desc}}
             </td>
-            <td style="text-align:center;">
+            <td style="text-align:left">
                 {{power.system.damage.text}}
             </td>
             <td style="text-align:center">

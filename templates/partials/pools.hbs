@@ -1,7 +1,7 @@
 <div class="ore flex-item">
     <h3 class="traitsheet-header">
-        <div>{{localize "ORE.gen.point_pools"}}</div>
-        <a class="item-create" title="Add Point Pool" data-type="point_pool"><i class="fas fa-plus-square"></i></a>
+        <div>{{localize "ORE.gen.point_pools"}}
+        <a class="item-create" title="Add Point Pool" data-type="point_pool"><span style="font-size:0.85em;"><i class="fa fa-plus"></i></a></span></div>
     </h3>
     <table class="item-table">
     {{#each pools as |pool id|}}
@@ -20,7 +20,7 @@
                 &nbsp;&nbsp;<a class="adjust-pool" data-dir="dec" data-pool-id="{{pool.id}}"><i class="fa-solid fa-square-arrow-down"></i></a>
             </td>
             <td style="right:100%;">
-                <a class="item-delete item" data-item-id="{{pool.id}}"><i class="fas fa-trash"></i></a>
+                <a class="item-delete item" data-item-id="{{pool.id}}"><i class="fas fa-xmark"></i></a>
             </td>
         </tr>
     {{/each}}

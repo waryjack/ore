@@ -1,7 +1,9 @@
 <div class="ore flex-item">
     <h3 class="traitsheet-header">
-        <div>{{localize "ORE.gen.qualities"}}</div>
-        <a class="item-create" title="Add Quality" data-type="quality"><i class="fas fa-plus-square"></i></a>
+        <div>{{localize "ORE.gen.qualities"}}
+        <a class="item-create" title="Add Quality" data-type="quality"></a>
+        <span style="font-size:0.85em;"><i class="fa fa-plus"></i></a></span>
+        </div>
     </h3>
     <table class="item-table">
         
@@ -24,7 +26,7 @@
                 {{/if}}
             </td-->
             <td style="right:100%;">
-                <a class="item-delete item" data-item-id="{{qual.id}}"><i class="fas fa-trash"></i></a>
+                <a class="item-delete item" data-item-id="{{qual.id}}"><i class="fas fa-xmark"></i></a>
             </td>
         </tr>
     {{/each}}
