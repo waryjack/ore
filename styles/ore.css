@@ -21,7 +21,7 @@ h3 {
 .ore .window-content {
   /* background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAKElEQVQYV2NUU1P7//PnTwYQYGdnZ2CUl5f/D+OAJMACIBmYKkZ0LQBtSRGf2hu8MAAAAABJRU5ErkJggg==);*/
   /* background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAAXNSR0IArs4c6QAAADFJREFUGFdj1DVt+H/t4jIGGNDSj2KA8RmZ2dT+IwuAFMH4YElkAWQT4JLYFDDSxk4AryUqsBCAMYcAAAAASUVORK5CYII=); */
-  background:#6e6a60;
+  background:#f1e9db;
   
   /* background: rgb(14, 14, 14);
   background-color: rgb(32, 32, 32);
@@ -157,7 +157,7 @@ h3 {
   /* height:128px;
   max-height:128px;
   line-height:128px; */
-  color:#f1e9db;
+  color:#312f29;
   padding-left:12px;
   padding-right:12px;
   background:none;
