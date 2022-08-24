@@ -1,32 +1,33 @@
 <div class="ore flex-item" style="flex-grow:3">
     <h3 class="traitsheet-header">
-        <div>{{localize "ORE.gen.weapons"}} <a class="item-create" title="Add Weapon" data-type="weapon"><i class="fas fa-plus-square"></i></a> / 
-        {{localize "ORE.gen.armors"}} <a class="item-create" title="Add Armor" data-type="armor"><i class="fas fa-plus-square"></i></a></div>
-        
+        <div>{{localize "ORE.gen.weapons"}} <a class="item-create" title="Add Weapon" data-type="weapon">
+            <span style="font-size:0.85em"><i class="fas fa-plus"></i></a></span> / 
+        {{localize "ORE.gen.powers"}}
+        <a class="item-create" title="Add Power" data-type="power"><span style="font-size:0.85em"><i class="fas fa-plus"></i></a></span></a>
+        </div>
     </h3>
     <table class="item-table">
         <tr>
-            
-            <th>Weapon</th>
-            <th>Damage</th>
+            <th style="text-align:left">Item</th>
             <th>Qualities</th>
-            <th>Ammo</th>
+            <th>Effect/Dmg</th>
             <th></th>
         </tr>
     {{#each weapons as |weapon id|}}
          <tr>
             <td class="item-name item" data-item-id="{{weapon.id}}">
-                 {{#ife weapon.system.weapontype "melee"}}<i class="fa-solid fa-hand-fist"></i>{{/ife}}
-              {{#ife weapon.system.weapontype "ranged"}}<i class="fa-solid fa-gun"></i>{{/ife}}
-              <a class="item-edit" title="Edit"><strong>{{weapon.name}}</strong></a>
+                 {{!--#ife weapon.system.weapontype "melee"}}<i class="fa-solid fa-hand-fist"></i>{{/ife}}
+              {{#ife weapon.system.weapontype "ranged"}}<i class="fa-solid fa-gun"></i>{{/ife--}}
+              <a class="item-edit" title="Edit {{weapon.name}}"><strong>{{weapon.name}}</strong></a>
              
+            </td>
+            <td style="text-align:center;">
+                {{weapon.system.wepquals}}{{#if (ne weapon.system.wepquals "")}}, {{/if}}range {{weapon.system.min_range}}/{{weapon.system.max_range}}, ammo {{weapon.system.ammo_curr}}/{{weapon.system.ammo_max}}
             </td>
             <td style="text-align:center">
                {{weapon.system.damage.text}}
             </td>
-            <td style="text-align:center;">
-                <em>{{weapon.system.wepquals}}{{#if (ne weapon.system.wepquals "")}}, {{/if}}range {{weapon.system.min_range}}/{{weapon.system.max_range}}</em>
-            </td>
+            
             <!--td style="text-align:center">
                 {{weapon.system.spray}}d / {{weapon.system.area}}d / {{weapon.system.pen}}d
             </td-->
@@ -34,10 +35,33 @@
                 {{weapon.system.min_range}}/{{weapon.system.max_range}}
             </td-->
             <td style="text-align:center">
-                {{weapon.system.ammo_curr}}/{{weapon.system.ammo_max}}
+                <a class="item-delete item" data-item-id="{{weapon.id}}" title="Delete Item"><i class="fas fa-xmark"></i></a>
             </td>
-            <td style="right:100%;">
-                <a class="item-delete item" data-item-id="{{weapon.id}}"><i class="fas fa-trash"></i></a>
+        </tr>
+    {{/each}}
+    {{#each powers as |power id|}}
+         <tr>
+              
+            <td class="item-name item" data-item-id="{{power.id}}">
+                <!--i class="fa-solid fa-bolt-lightning"></i></a-->
+              <a class="item-edit" title="Edit {{power.name}}"><strong>{{power.name}}</strong></a>&nbsp;&nbsp;
+              
+            </td>
+            <td style="text-align:center;">
+                {{power.system.dice.base}}d
+                {{#if (ne power.system.dice.expert 0)}}
+                    + {{power.system.dice.expert}}ed
+                {{/if}}
+                {{#if (ne power.system.dice.master 0)}}
+                    + {{power.system.dice.master}}md
+                {{/if}}
+                <a title="Roll {{power.name}}" class="power-roll" data-power-to-roll="{{power.id}}"><i class="fa-solid fa-dice-d20"></i></a>, {{power.system.desc}}
+            </td>
+            <td style="text-align:center;">
+                {{power.system.damage.text}}
+            </td>
+            <td style="text-align:center">
+                <a title="Delete Item" class="item-delete item" data-item-id="{{power.id}}"><i class="fa-solid fa-xmark"></i></a>
             </td>
         </tr>
     {{/each}}

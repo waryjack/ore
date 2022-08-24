@@ -5,22 +5,22 @@
         </div>
         <div class="ore header-flexitem name-block">
             <div class="charname">
-                <input style="color:white; display:inline;" name="name" type="text" value="{{name}}"/>
+                <input style="display:inline;" name="name" type="text" value="{{name}}"/>
             </div>
     </header>
      <div class="ore">
-        <h3 style="color:white; border:none">Basics</h3>
-        <table style="color:white;">
+        <h3 style="border:none">Basics</h3>
+        <table >
             <tr>
                 <td>
                     <b>Type: </b>
                 </td>
                 <td>
-                    <select style="color:white" name="system.weapontype" id="system.weapontype">
+                    <select name="system.weapontype" id="system.weapontype">
                         {{#select system.weapontype}}
-                        <option class="ore" style="background-color:black" value="na" {{#ife weapontype "na"}}selected{{/ife}}>{{localize "ORE.weapon.type.na"}}</option>
-                        <option class="ore" style="background-color:black" value="melee" {{#ife weapontype "melee"}}selected{{/ife}}>{{localize "ORE.weapon.type.melee"}}</option>
-                        <option class="ore" style="background-color:black" value="ranged" {{#ife weapontype "ranged"}}selected{{/ife}}>{{localize "ORE.weapon.type.ranged"}}</option>
+                        <option class="ore" value="na" {{#ife weapontype "na"}}selected{{/ife}}>{{localize "ORE.weapon.type.na"}}</option>
+                        <option class="ore" value="melee" {{#ife weapontype "melee"}}selected{{/ife}}>{{localize "ORE.weapon.type.melee"}}</option>
+                        <option class="ore" value="ranged" {{#ife weapontype "ranged"}}selected{{/ife}}>{{localize "ORE.weapon.type.ranged"}}</option>
                         {{/select}}
                     </select>
                 </td>
@@ -28,27 +28,27 @@
                     <b>Hands: </b>
                 </td>
                 <td>
-                    <select style="color:white" name="system.hands" id="system.hands">
+                    <select name="system.hands" id="system.hands">
                         {{#select system.hands}}
-                        <option class="ore" style="background-color:black" value="na" {{#ife hands "na"}}selected{{/ife}}>{{localize "ORE.weapon.hands.na"}}</option>
-                        <option class="ore" style="background-color:black" value="one" {{#ife hands "one"}}selected{{/ife}}>{{localize "ORE.weapon.hands.one"}}</option>
-                        <option class="ore" style="background-color:black" value="two" {{#ife hands "two"}}selected{{/ife}}>{{localize "ORE.weapon.hands.two"}}</option>
-                        <option class="ore" style="background-color:black" value="crew" {{#ife hands "crew"}}selected{{/ife}}>{{localize "ORE.weapon.hands.crew"}}</option>
-                        <option class="ore" style="background-color:black" value="mounted" {{#ife hands "mounted"}}selected{{/ife}}>{{localize "ORE.weapon.hands.mounted"}}</option>
+                        <option class="ore" value="na" {{#ife hands "na"}}selected{{/ife}}>{{localize "ORE.weapon.hands.na"}}</option>
+                        <option class="ore"  value="one" {{#ife hands "one"}}selected{{/ife}}>{{localize "ORE.weapon.hands.one"}}</option>
+                        <option class="ore"  value="two" {{#ife hands "two"}}selected{{/ife}}>{{localize "ORE.weapon.hands.two"}}</option>
+                        <option class="ore" value="crew" {{#ife hands "crew"}}selected{{/ife}}>{{localize "ORE.weapon.hands.crew"}}</option>
+                        <option class="ore" value="mounted" {{#ife hands "mounted"}}selected{{/ife}}>{{localize "ORE.weapon.hands.mounted"}}</option>
                         {{/select}}
                     </select>
                 </td>
             </tr>
             <tr>
                 <td><b>Damage</b></td>
-                <td><input style="color:white;" type="text" value="{{damage.text}}" name="system.damage.text" data-dtype="String"></td>
+                <td><input type="text" value="{{damage.text}}" name="system.damage.text" data-dtype="String"></td>
             </tr>
         </table>
-        <h3 style="color:white; border:none">Qualities</h3>
-        <table style="color:white;">
+        <h3 style="border:none">Qualities</h3>
+        <table >
             <tr>
                 <td><b>Qualities (e.g. "spray 2, area 4")</b></td>
-                <td><input style="color:white;" type="text" value="{{wepquals}}" name="system.wepquals" data-dtype="String"></td>
+                <td><input type="text" value="{{wepquals}}" name="system.wepquals" data-dtype="String"></td>
                 <!--td><b>Spray</b></td>
                 <td><input class="ore statfield" style="width:2ch;" type="text" value="{{spray}}" name="system.spray" data-dtype="Number"></td>
                 <td><b>Area</b></td>
@@ -57,8 +57,8 @@
                 <td><input class="ore statfield" style="width:2ch;" type="text" value="{{pen}}" name="system.pen" data-dtype="Number"></td-->
             </tr>
         </table>
-        <h3 style="color:white; border:none">Range/Ammo</h3>
-        <table style="color:white;">
+        <h3 style="border:none">Range/Ammo</h3>
+        <table >
             <tr>
                 <td><b>Normal Range</b></td>
                 <td><input class="ore statfield" style="width:3ch;" type="text" value="{{min_range}}" name="system.min_range" data-dtype="Number"></td>
@@ -72,7 +72,7 @@
                 <td><b>Max Ammo</b></td>
                 <td><input class="ore statfield" style="width:3ch;" type="text" value="{{ammo_max}}" name="system.ammo_max" data-dtype="Number"></td>
                 <td><b>Reload With</b></td>
-                <td><input class="ore" style="color:white;" type="text" value="{{ammo_in}}" name="system.ammo_in" data-dtype="String"></td>
+                <td><input class="ore" type="text" value="{{ammo_in}}" name="system.ammo_in" data-dtype="String"></td>
 
             </tr>
         </table>

@@ -5,22 +5,22 @@
         </div>
         <div class="ore header-flexitem name-block">
             <div class="charname">
-                <input style="color:white; display:inline;" name="name" type="text" value="{{name}}"/>
+                <input style="display:inline;" name="name" type="text" value="{{name}}"/>
             </div>
     </header>
     <div class="ore">
-        <table style="color:white;">
+        <table>
             <tr>
                 <td><b>Type: </b></td><td><em>{{type}}</em></td>
             </tr>
             <tr>
                 <td><b>Description:</b></td>
-                <td><input style="color:white" type="text" name="system.desc" value="{{desc}}" data-dtype="String"></td>
+                <td><input type="text" name="system.desc" value="{{desc}}" data-dtype="String"></td>
             </tr>
             <tr>
                 <td><b>Linked Stat:</b></td>
                 <td>
-                <select style="color:white" id="linkStat" style="width:100%;" name="system.linked_stat" data-main-att="link">
+                <select id="linkStat" style="width:100%;" name="system.linked_stat" data-main-att="link">
                 {{#select system.linked_stat}}
                 <option class="ore" style="background-color:black" value="bod" {{#if (eq linked_stat "bod")}}selected{{/if}}>{{getSetting "bod"}}</option>
                 <option class="ore" style="background-color:black" value="crd" {{#if (eq linked_stat "crd")}}selected{{/if}}>{{getSetting "crd"}}</option>
@@ -33,7 +33,7 @@
          </td>
             </tr>
         </table>
-        <table style="color:white;">
+        <table>
             <tr>
                 <td><b>Base Dice</b></td><td><input class="ore statfield" style="width:2ch;" type="text" name="system.dice.base" value="{{dice.base}}" data-dtype="Number"/></td></b></td>
                 <td><b>Expert Dice</b></td><td><input class="ore statfield" style="width:2ch;" type="text" name="system.dice.expert" value="{{dice.expert}}" data-dtype="Number"/></td></b></td>
@@ -46,7 +46,7 @@
                 </td>
                 <td><b>Specialty</b></td>
                 <td colspan="3">
-                    <input style="color:white;" type="text" name="system.specialty" value="{{specialty}}" data-dtype="String">
+                    <input type="text" name="system.specialty" value="{{specialty}}" data-dtype="String">
                 </td>
             </tr>
         </table>

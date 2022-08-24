@@ -4,7 +4,7 @@
             {{#if stat.active}}
             <div class="ore flex-item">
             <h3 class="traitsheet-header align-center" style="text-align:center; !important">
-            <div style="margin:auto;"><a class="edit-stat" data-stat="{{name}}">{{getSetting name}}</a></div>
+            <div style="margin:auto;"><a title="Edit {{getSetting name}}" class="edit-stat" data-stat="{{name}}">{{getSetting name}}</a></div>
         <!--a class="item-create" title="Add Stat" data-type="stat"><i class="fas fa-plus-square"></i></a-->
             </h3>
             <table class="item-table">
@@ -25,7 +25,7 @@
                         <input class="attr-name" name="system.stats.{{name}}.master" type="text" value="{{stat.master}}" data-dtype="Number" maxwidth='2' size='3' />
                     </td-->
                 <td style="text-align:center; font-size:1.25em;">
-                    <a class="stat-roll" data-stat-to-roll="{{name}}"><i class="fa-solid fa-dice-d20"></i></a>&nbsp;&nbsp;&nbsp;
+                    <a class="stat-roll" data-stat-to-roll="{{name}}" title="Roll {{getSetting name}}""><i class="fa-solid fa-dice-d20"></i></a>&nbsp;&nbsp;&nbsp;
                     <strong>{{stat.base}}d
                     {{#if (ne stat.expert 0)}}
                         + {{stat.expert}}ed

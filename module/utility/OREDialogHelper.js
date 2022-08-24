@@ -10,7 +10,7 @@ export class OneRollDialogHelper {
         console.warn("inName: ", inName);
 
         let cont = `<form class="ore roll-dialog"><header class='roll-header'><h1 class='ore roll-name'>${inName} Roll</h1>`
-        cont += `<div class='ore roll-dialog'><div class='form-group'><b>Pool</b><input style='color:white;' type='text' value='${inPool}' name='poolVal' id='poolVal'/></div></div>`
+        cont += `<div class='ore roll-dialog'><div class='form-group'><b>Pool</b><input type='text' value='${inPool}' name='poolVal' id='poolVal'/></div></div>`
         cont += "</form>";
 
             new Dialog({

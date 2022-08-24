@@ -1,21 +1,18 @@
 <div class="ore flex-item">
     <h3 class="traitsheet-header">
-        <div>{{localize "ORE.gen.skills"}} <a class="item-create" title="Add Skill" data-type="skill"><i class="fas fa-plus-square"></i></a> / 
-        {{localize "ORE.gen.powers"}} <a class="item-create" title="Add Power" data-type="power"><i class="fas fa-plus-square"></i></a></div>
+        <div>{{localize "ORE.gen.skills"}} <a class="item-create" title="Add Skill" data-type="skill">
+            <span style="font-size:0.85em"><i class="fas fa-plus"></i></a></span></a>
         
     </h3>
     <table class="item-table">
         
     {{#each skills as |skill id|}}
          <tr>
-         <td>
-            <a class="skill-roll" data-skill-to-roll="{{skill.id}}"><i class="fa-solid fa-dice-d20"></i></a>
-         </td>
-        </td>
             <td class="item-name item" data-item-id="{{skill.id}}">
               <a class="item-edit" title="Edit"><strong>{{skill.name}}</strong></a>
             </td>
             <td>
+                
                 {{skill.system.dice.base}}d
                 {{#if (ne skill.system.dice.expert 0)}}
                     + {{skill.system.dice.expert}}ed
@@ -23,36 +20,10 @@
                 {{#if (ne skill.system.dice.master 0)}}
                     + {{skill.system.dice.master}}md
                 {{/if}}
+                &nbsp;&nbsp;<a class="skill-roll" title="Roll {{skill.name}}" data-skill-to-roll="{{skill.id}}"><i class="fa-solid fa-dice-d20"></i></a>
             </td>
             <td style="right:100%;">
-                <a class="item-delete item" data-item-id="{{skill.id}}"><i class="fas fa-trash"></i></a>
-            </td>
-        </tr>
-    {{/each}}
-    </table>
-    <table class="item-table">
-        
-    {{#each powers as |power id|}}
-         <tr>
-         <td>
-            <a class="power-roll" data-power-to-roll="{{power.id}}"><i class="fa-solid fa-dice-d20"></i></a>
-         </td>
-        </td>
-            <td class="item-name item" data-item-id="{{power.id}}">
-              <a class="item-edit" title="Edit"><strong>{{power.name}}</strong></a>&nbsp;&nbsp;
-              <span style="color:gray" title="Power"><i class="fa-solid fa-bolt-lightning"></i></span>
-            </td>
-            <td>
-                {{power.system.dice.base}}d
-                {{#if (ne power.system.dice.expert 0)}}
-                    + {{power.system.dice.expert}}ed
-                {{/if}}
-                {{#if (ne power.system.dice.master 0)}}
-                    + {{power.system.dice.master}}md
-                {{/if}}
-            </td>
-            <td style="right:100%;">
-                <a class="item-delete item" data-item-id="{{power.id}}"><i class="fas fa-trash"></i></a>
+                <a title="Delete Skill" class="item-delete item" data-item-id="{{skill.id}}"><i class="fas fa-xmark"></i></a>
             </td>
         </tr>
     {{/each}}

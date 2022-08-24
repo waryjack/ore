@@ -26,6 +26,12 @@
         },
         "power":{
             "templates":["common"],
+            "quals":"",
+            "damage":{
+                "text":"",
+                "shock":0,
+                "killing":0
+            },
             "restrictions":"",
             "prereqs":""
         },

@@ -66,9 +66,9 @@ export default class OneRollActor extends Actor {
         let statNameDefault = game.settings.get("ore", stat);
 
         let dialogContent = `<h2>Editing ${statNameDefault}</h2>`;
-        dialogContent += `<b>Base Dice</b>: <input style='color:white' type='text' value='${currBaseDice}' data-dtype='Number' name='newBaseDice' id='newBaseDice'/>`;
-        dialogContent += `<b>Expert Dice</b>: <input style='color:white' type='text' value='${currExpDice}' data-dtype='Number' name='newExpDice' id='newExpDice'/>`;
-        dialogContent += `<b>Master Dice</b>: <input style='color:white' type='text' value='${currMasDice}' data-dtype='Number' name='newMasDice' id='newMasDice'/>`;
+        dialogContent += `<b>Base Dice</b>: <input type='text' value='${currBaseDice}' data-dtype='Number' name='newBaseDice' id='newBaseDice'/>`;
+        dialogContent += `<b>Expert Dice</b>: <input type='text' value='${currExpDice}' data-dtype='Number' name='newExpDice' id='newExpDice'/>`;
+        dialogContent += `<b>Master Dice</b>: <input type='text' value='${currMasDice}' data-dtype='Number' name='newMasDice' id='newMasDice'/>`;
         dialogContent += `<input name='statNameHidden' id='statNameHidden' type='hidden' value='${stat}'/>`;
 
         new Dialog({

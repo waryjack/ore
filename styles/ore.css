@@ -30,15 +30,15 @@ h3 {
   background-position: 0px 0px, 5px 5px, 0px 0px; */
 }
 
-#basic-roll-dialog > *,
+/* #basic-roll-dialog > *,
   #basic-roll-dialog > section > *,
     #basic-roll-dialog > section > .dialog-buttons > button {
   color:white !important;
-}
+} */
 
-.ore .roll-dialog {
+/* .ore .roll-dialog {
   color:white !important;
-}
+}*/
 
 .editor {
   visibility:visible;
@@ -102,7 +102,7 @@ h3 {
   margin: 4px 0;
   line-height: 32px;
   border: none;
-  color:white;
+  color:black;
   font-family:"Aboreto", sans-serif;
   text-transform:uppercase;
   font-weight: 700;
@@ -124,12 +124,12 @@ h3 {
   font-family:"Aboreto", sans-serif;
   font-weight:700;
   font-size:1.15em;
-  background:#f1e9db;
+  background:#857f74;
   color:black;
 }
 
 .ore .item {
-  color:white;
+  color:black;
 }
 
 .ore .header-flexitem {
@@ -206,12 +206,12 @@ h3 {
 }*/
 
 .ore .flex-item {
-  border:2px solid #312f29;
+  border:2px solid #f1e9db;
   font-family:'Source Sans Pro', sans-serif;
   /* -webkit-border-radius: 8px; */
   /* -moz-border-radius: 8px;*/
   /* border-radius: 8px; */
-  background:#f1e2db;
+  background:#f1e9db;
   color:black;
   font-size:1em;
   margin-top:8px;
@@ -229,22 +229,22 @@ h3 {
   margin-left:auto;
   right:100%;
   text-align:center;
-  color:white;
+  color:black;
 }
 .ore .money {
   width:6ch !important;
   margin-left:auto;
   right:100%;
   text-align:right;
-  color:white;
+  color:black;
 }
 
 .ore .statfield input {
-  color:white;
+  color:black;
 }
 
 .ore .statfield .long {
-  color:white;
+  color:black;
 }
 
 
@@ -266,7 +266,6 @@ h3 {
 
 .item-table {
   background:none !important;
-  color:white;
   border:none !important;
   height:auto;
   width:100%;
@@ -438,7 +437,7 @@ h3 {
 
 .healthy-box {
   content: url('../assets/icons/square-healthy.svg');
-  filter:invert(1);
+  
   border:none;
   height:16px;
   width:16px;
@@ -448,7 +447,7 @@ h3 {
 
 .shock-box {
   content: url('../assets/icons/square-shock.svg');
-  filter:invert(1);
+  
   border:none;
   height:16px;
   width:16px;
@@ -458,7 +457,7 @@ h3 {
 
 .kill-box {
   content: url('../assets/icons/square-kill.svg');
-  filter:invert(1);
+  
   border:none;
   height:16px;
   width:16px;
