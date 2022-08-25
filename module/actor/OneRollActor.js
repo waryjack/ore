@@ -132,16 +132,17 @@ export default class OneRollActor extends Actor {
         let selectSkillLinkedStat = "None";
         let allSkills = this.items.filter(i => i.type === "skill");
         let allStats = this.system.stats;
-
+    
         if(type === "stat") {
             selectStat = stat;
         } else if (type === "skill") {
             let selectSkillId = stat;
             let selectSkillObject = this.items.get(selectSkillId);
-            selectSkillLinkedStat = selectSkillObject.system.linked_stat;    
+            selectSkillLinkedStat = selectSkillObject.system.linked_stat;  
             selectSkill = selectSkillObject.name;
+            
         }
-
+        
         let template = "systems/ore/templates/roll/rolltemplate.hbs";
         let dialogData = {
             selectStat: stat,
@@ -152,7 +153,6 @@ export default class OneRollActor extends Actor {
             actor: this._id
         }
 
-        
         console.warn("Dialog Data: ", dialogData);
 
 
@@ -171,21 +171,36 @@ export default class OneRollActor extends Actor {
                             
                             let chosenStat = html.find("#selStat").val();
                             let chosenSkill = html.find("#selSkill").val();
+                            let poolMod = Number(html.find("#poolMod").val());
+                            let edValues = html.find("#setEd").val();
                             let chosenStatVal = 0;
                             let chosenSkillVal = 0;
+                            let chosenSkillEd = 0;
+                            let chosenStatEd = 0;
                             let chosenSkillObj = {};
                             let chosenSkillText = "";
+
 
                             if(chosenSkill != "none") {
                                 chosenSkillObj = this.items.filter(i => i.name === chosenSkill);
                                 console.warn("skill obj ", chosenSkillObj);
                                 chosenSkillVal = chosenSkillObj[0].system.dice.base;
+                             
                                 chosenSkillText = " + " + chosenSkill;
                             }
-                             console.warn("chosen skill val: ", chosenSkillVal);
-                            chosenStatVal = this.system.stats[chosenStat].base;
                             
-                            let pool = Math.min(10, chosenStatVal + chosenSkillVal);
+
+                            chosenStatVal = this.system.stats[chosenStat].base;
+                       
+                            
+                            console.warn("chosen stat val: ", chosenStatVal);
+                             console.warn("chosen skill val: ", chosenSkillVal);
+
+                            let finalPool = chosenStatVal + chosenSkillVal + poolMod;
+
+                            let maxPoolSize = Number(game.settings.get("ore", "coreDieType").substring(1));
+                            
+                            let pool = Math.min(maxPoolSize, finalPool);
                             let dtype = game.settings.get("ore", "coreDieType");
                             let statSkillText = game.settings.get("ore", chosenStat) + chosenSkillText;
                             // get dice values
@@ -200,9 +215,12 @@ export default class OneRollActor extends Actor {
                                                     
                             let rollData = {
                                 rollPool: pool,
+                                poolMod: poolMod,
                                 actor:this._id,
                                 dieType: dtype,
-                                displayText: statSkillText
+                                displayText: statSkillText,
+                                expertDice: edValues,
+                                maxPool: maxPoolSize
                             }
 
                             let roll = new OneRoll(rollData);

@@ -4,15 +4,17 @@
             <span style="font-size:0.85em"><i class="fas fa-plus"></i></a></span></a>
         
     </h3>
-    <table class="item-table">
+    <table class="item-table" style="border-collapse:separate">
         
     {{#each skills as |skill id|}}
          <tr>
-            <td class="item-name item" data-item-id="{{skill.id}}">
+            <td style="border-bottom:1px solid rgb(187, 179, 159)" class="item-name item" data-item-id="{{skill.id}}">
               <a class="item-edit" title="Edit"><strong>{{skill.name}}</strong></a>
             </td>
-            <td>
+            <td style="border-bottom:1px solid rgb(187, 179, 159)">
                 
+                <a class="skill-roll" title="Roll {{skill.name}}" data-skill-to-roll="{{skill.id}}">
+
                 {{skill.system.dice.base}}d
                 {{#if (ne skill.system.dice.expert 0)}}
                     + {{skill.system.dice.expert}}ed
@@ -20,7 +22,7 @@
                 {{#if (ne skill.system.dice.master 0)}}
                     + {{skill.system.dice.master}}md
                 {{/if}}
-                &nbsp;&nbsp;<a class="skill-roll" title="Roll {{skill.name}}" data-skill-to-roll="{{skill.id}}"><i class="fa-solid fa-dice-d20"></i></a>
+                </a>
             </td>
             <td style="right:100%;">
                 <a title="Delete Skill" class="item-delete item" data-item-id="{{skill.id}}"><i class="fas fa-xmark"></i></a>

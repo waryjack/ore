@@ -1,11 +1,14 @@
 export class OneRoll {
 
     /**
-     *  let rollData = {
-                                rollPoll: pool,
+     *     let rollData = {
+                                rollPool: pool,
+                                poolMod: poolMod,
                                 actor:this._id,
                                 dieType: dtype,
-                                displayText: statSkillText
+                                displayText: statSkillText,
+                                expertDice: edValues,
+                                maxPool: maxPoolSize
                             }
      */
 
@@ -15,6 +18,7 @@ export class OneRoll {
         this.actor = data.actor;
         this.dieType = data.dieType;
         this.displayText = data.displayText;
+        this.expertDice = data.expertDice;
     }
 
     roll() {
@@ -52,6 +56,25 @@ export class OneRoll {
             rollArr.push(thisDie.total);
         }
 		console.log("raw roll: " + rollArr);
+
+        // add expert dice, if any
+
+        if(this.expertDice != "--" && this.expertDice.length != 0) {
+            let expertDiceArray = this.expertDice.split(",");
+            console.log("expert dice array: ", expertDiceArray);
+            expertDiceArray.forEach(i => {
+                
+                let iVal = Number(i);
+                console.log("expert dice array i: ", i, "iVal: ", iVal);
+                console.log("typeof iVal: ", typeof iVal);
+                if(typeof iVal == "number") {
+                    rollArr.push(iVal);
+                }
+                
+            })
+
+
+        }
         return rollArr.sort();
 
     }
@@ -100,6 +123,10 @@ export class OneRoll {
         return this._pool;
     }
 
+    get expertDice() {
+        return this._expertDice;
+    }
+
     get dieType() {
         return this._dieType;
     }
@@ -141,6 +168,10 @@ export class OneRoll {
 
     set pool(pool) {
         this._pool = pool;
+    }
+
+    set expertDice(ed) {
+        this._expertDice = ed;
     }
 
     set loose(looseDice) {

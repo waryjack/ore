@@ -20,7 +20,7 @@
                     {{#if (eq name ../linkedStat)}}
                         selected
                     {{/if}}>
-                    {{getSetting name}}
+                    {{getSetting name}} {{st.base}}d + {{st.expert}}ed + {{st.master}}md
                     </option>
                 {{/if}}
                 {{/each}}
@@ -34,10 +34,19 @@
             {{#select skill}}
                 {{#each allSkills as |sk name|}}
                 
-                    <option value="{{sk.name}}" {{#ife sk.name ../selectSkill}}selected{{/ife}}>{{sk.name}}</option>
+                    <option value="{{sk.name}}" {{#ife sk.name ../selectSkill}}selected{{/ife}}>{{sk.name}} {{sk.system.dice.base}}d + {{sk.system.dice.expert}}ed + {{sk.system.dice.master}}md</option>
                 {{/each}}
             {{/select}}
          </select>
+     </div>
+     <div class="form-group">
+        <label for="poolMod">{{localize "ORE.gen.bonusOrPenalty"}}</label>
+        <input class="ore statfield" type="text" name="poolMod" id="poolMod" value="0" data-dtype="Number">
+     </div>
+     <div class="form-group">
+        <!--do this very simply right now, just ask to enter numbers as a comma-separated string-->
+        <p>If you have Expert Dice for this roll, enter the values you want each die set to, separated by commas (e.g., "9,7")</p>
+        <input class="ore statfield" type="text" name="setEd" id="setEd" value="" data-dtype="String">
      </div>
  </div>
 

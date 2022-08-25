@@ -11,6 +11,11 @@ export class OneRollDialogHelper {
 
         let cont = `<form class="ore roll-dialog"><header class='roll-header'><h1 class='ore roll-name'>${inName} Roll</h1>`
         cont += `<div class='ore roll-dialog'><div class='form-group'><b>Pool</b><input type='text' value='${inPool}' name='poolVal' id='poolVal'/></div></div>`
+        cont += "<h4>Modifiers</h4>";
+        cont += "<input type='text' name='poolMod' id='poolMod' value='0' data-dtype='Number'>";
+        cont += "<h4>Expert Dice</h4>";
+        cont += "<p>If you have expert dice, enter the value(s) they should be set to, separated by commas (e.g. 9,7)</p>";
+        cont += "<input type='text' name='setEd' id='setEd' value=''>"
         cont += "</form>";
 
             new Dialog({
@@ -25,7 +30,14 @@ export class OneRollDialogHelper {
 
                       console.warn("in callback");
                         
-                        let pool = html.find("#poolVal").val();
+                        let pool = Number(html.find("#poolVal").val());
+                        let expertDice = html.find("#setEd").val();
+                        let poolMod = Number(html.find("#poolMod").val());
+
+                        let maxPoolSize = Number(game.settings.get("ore", "coreDieType").substring(1));
+                        let finalPool = pool + poolMod 
+                        pool = Math.min(maxPoolSize, finalPool);
+
                         let dtype = game.settings.get("ore", "coreDieType");
                         let displayText = "";
                        
@@ -35,9 +47,11 @@ export class OneRollDialogHelper {
 
                         let rollData = {
                             rollPool: pool,
+                            poolMod: poolMod,
                             actor:actor,
                             dieType: dtype,
-                            displayText: displayText
+                            displayText: displayText,
+                            expertDice: expertDice
                         }
 
                         let roll = new OneRoll(rollData);

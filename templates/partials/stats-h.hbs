@@ -25,7 +25,7 @@
                         <input class="attr-name" name="system.stats.{{name}}.master" type="text" value="{{stat.master}}" data-dtype="Number" maxwidth='2' size='3' />
                     </td-->
                 <td style="text-align:center; font-size:1.25em;">
-                    <a class="stat-roll" data-stat-to-roll="{{name}}" title="Roll {{getSetting name}}""><i class="fa-solid fa-dice-d20"></i></a>&nbsp;&nbsp;&nbsp;
+                    <a class="stat-roll" data-stat-to-roll="{{name}}" title="Roll {{getSetting name}}">
                     <strong>{{stat.base}}d
                     {{#if (ne stat.expert 0)}}
                         + {{stat.expert}}ed
@@ -33,7 +33,7 @@
                     {{#if (ne stat.master 0)}}
                         + {{stat.master}}md
                     {{/if}}
-                    </strong>
+                    </strong></a>
                 </td>
             </tr>
             </table>

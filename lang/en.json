@@ -30,6 +30,8 @@
     "ORE.gen.charsheet.tabs.essentials":"Essential Info",
     "ORE.gen.charsheet.tabs.inventory":"Equipment/Inventory",
     "ORE.gen.charsheet.tabs.miscellaneous":"Miscellaneous Info",
+    "ORE.gen.bonusOrPenalty": "Dice Pool Modifier (use negative numbers for penalties)",
+    "ORE.gen.setExpertDice": "Set your Expert Dice",
     
     "ORE.gen.new.weapon":"New Weapon",
     "ORE.gen.new.stat":"New Stat",

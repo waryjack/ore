@@ -6,7 +6,7 @@
         <a class="item-create" title="Add Power" data-type="power"><span style="font-size:0.85em"><i class="fas fa-plus"></i></a></span></a>
         </div>
     </h3>
-    <table class="item-table">
+    <table class="item-table" style="border-collapse:separate;">
         <tr>
             <th style="text-align:left">Item</th>
             <th style="text-align:left">Qualities</th>
@@ -15,16 +15,16 @@
         </tr>
     {{#each weapons as |weapon id|}}
          <tr>
-            <td class="item-name item" data-item-id="{{weapon.id}}">
+            <td class="item-name item" data-item-id="{{weapon.id}}" style="border-bottom:1px solid rgb(187, 179, 159)">
                  {{!--#ife weapon.system.weapontype "melee"}}<i class="fa-solid fa-hand-fist"></i>{{/ife}}
               {{#ife weapon.system.weapontype "ranged"}}<i class="fa-solid fa-gun"></i>{{/ife--}}
               <a class="item-edit" title="Edit {{weapon.name}}"><strong>{{weapon.name}}</strong></a>
              
             </td>
-            <td style="text-align:left;">
+            <td style="border-bottom:1px solid rgb(187, 179, 159); text-align:left;">
                 {{weapon.system.wepquals}}{{#if (ne weapon.system.wepquals "")}}, {{/if}}range {{weapon.system.min_range}}/{{weapon.system.max_range}}, ammo {{weapon.system.ammo_curr}}/{{weapon.system.ammo_max}}
             </td>
-            <td style="text-align:left">
+            <td style="border-bottom:1px solid rgb(187, 179, 159); text-align:left">
                {{weapon.system.damage.text}}
             </td>
             
@@ -42,22 +42,26 @@
     {{#each powers as |power id|}}
          <tr>
               
-            <td class="item-name item" data-item-id="{{power.id}}">
+            <td class="item-name item" data-item-id="{{power.id}}" style="border-bottom:1px solid rgb(187, 179, 159)">
                 <!--i class="fa-solid fa-bolt-lightning"></i></a-->
               <a class="item-edit" title="Edit {{power.name}}"><strong>{{power.name}}</strong></a>&nbsp;&nbsp;
               
             </td>
-            <td style="text-align:left;">
-                {{power.system.dice.base}}d
+            <td style="border-bottom:1px solid rgb(187, 179, 159);text-align:left;">
+                
+                <a title="Roll {{power.name}}" data-power-to-roll="{{power.id}}"><i class="fa-solid fa-bracket-square"></i>
+                <strong>{{power.system.dice.base}}d
                 {{#if (ne power.system.dice.expert 0)}}
                     + {{power.system.dice.expert}}ed
                 {{/if}}
                 {{#if (ne power.system.dice.master 0)}}
                     + {{power.system.dice.master}}md
                 {{/if}}
-                <a title="Roll {{power.name}}" class="power-roll" data-power-to-roll="{{power.id}}"><i class="fa-solid fa-dice-d20"></i></a>, {{power.system.desc}}
+                </strong>
+                <i class="fa-solid fa-bracket-square-right"></i>
+                </a>, {{power.system.desc}}
             </td>
-            <td style="text-align:left">
+            <td style="border-bottom:1px solid rgb(187, 179, 159);text-align:left">
                 {{power.system.damage.text}}
             </td>
             <td style="text-align:center">
