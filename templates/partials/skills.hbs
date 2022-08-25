@@ -9,11 +9,11 @@
     {{#each skills as |skill id|}}
          <tr>
             <td style="border-bottom:1px solid rgb(187, 179, 159)" class="item-name item" data-item-id="{{skill.id}}">
-              <a class="item-edit" title="Edit"><strong>{{skill.name}}</strong></a>
+            <a class="skill-roll" title="Roll {{skill.name}}" data-skill-to-roll="{{skill.id}}"><strong>{{skill.name}}</strong></a>
             </td>
             <td style="border-bottom:1px solid rgb(187, 179, 159)">
                 
-                <a class="skill-roll" title="Roll {{skill.name}}" data-skill-to-roll="{{skill.id}}">
+                
 
                 {{skill.system.dice.base}}d
                 {{#if (ne skill.system.dice.expert 0)}}
@@ -22,10 +22,11 @@
                 {{#if (ne skill.system.dice.master 0)}}
                     + {{skill.system.dice.master}}md
                 {{/if}}
-                </a>
+                
             </td>
-            <td style="right:100%;">
-                <a title="Delete Skill" class="item-delete item" data-item-id="{{skill.id}}"><i class="fas fa-xmark"></i></a>
+            <td style="right:100%;" class="item-name item" data-item-id="{{skill.id}}">
+                <a style="color:rgb(153,147,131)"  title="Edit {{skill.name}}" class="item-edit"><i class="fa-solid fa-pencil"></i></a>&nbsp;&nbsp;
+                <a style="color:rgb(153,147,131)" title="Delete {{skill.name}}" class="item-delete item" data-item-id="{{skill.id}}"><i class="fas fa-xmark"></i></a>
             </td>
         </tr>
     {{/each}}

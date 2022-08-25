@@ -15,10 +15,10 @@
         </tr>
     {{#each weapons as |weapon id|}}
          <tr>
-            <td class="item-name item" data-item-id="{{weapon.id}}" style="border-bottom:1px solid rgb(187, 179, 159)">
+            <td  style="border-bottom:1px solid rgb(187, 179, 159)">
                  {{!--#ife weapon.system.weapontype "melee"}}<i class="fa-solid fa-hand-fist"></i>{{/ife}}
               {{#ife weapon.system.weapontype "ranged"}}<i class="fa-solid fa-gun"></i>{{/ife--}}
-              <a class="item-edit" title="Edit {{weapon.name}}"><strong>{{weapon.name}}</strong></a>
+             <strong>{{weapon.name}}</strong>
              
             </td>
             <td style="border-bottom:1px solid rgb(187, 179, 159); text-align:left;">
@@ -35,16 +35,17 @@
                 {{weapon.system.min_range}}/{{weapon.system.max_range}}
             </td-->
             <td style="text-align:center">
-                <a class="item-delete item" data-item-id="{{weapon.id}}" title="Delete Item"><i class="fas fa-xmark"></i></a>
+                <a style="color:rgb(153,147,131)" class="item-edit item" data-item-id="{{weapon.id}}" title="Edit {{weapon.name}}"><i class="fa-solid fa-pencil"></i></a>&nbsp;&nbsp;
+                <a style="color:rgb(153,147,131)" class="item-delete item" data-item-id="{{weapon.id}}" title="Delete {{weapon.name}}"><i class="fas fa-xmark"></i></a>
             </td>
         </tr>
     {{/each}}
     {{#each powers as |power id|}}
          <tr>
               
-            <td class="item-name item" data-item-id="{{power.id}}" style="border-bottom:1px solid rgb(187, 179, 159)">
+            <td style="border-bottom:1px solid rgb(187, 179, 159)">
                 <!--i class="fa-solid fa-bolt-lightning"></i></a-->
-              <a class="item-edit" title="Edit {{power.name}}"><strong>{{power.name}}</strong></a>&nbsp;&nbsp;
+              <strong>{{power.name}}</strong>
               
             </td>
             <td style="border-bottom:1px solid rgb(187, 179, 159);text-align:left;">
@@ -61,11 +62,12 @@
                 <i class="fa-solid fa-bracket-square-right"></i>
                 </a>, {{power.system.desc}}
             </td>
-            <td style="border-bottom:1px solid rgb(187, 179, 159);text-align:left">
+            <td style="border-bottom:1px solid rgb(153, 147, 131);text-align:left">
                 {{power.system.damage.text}}
             </td>
             <td style="text-align:center">
-                <a title="Delete Item" class="item-delete item" data-item-id="{{power.id}}"><i class="fa-solid fa-xmark"></i></a>
+                <a style="color:rgb(153,147,131)" class="item-edit" title="Edit {{power.name}}" data-item-id="{{power.id}}"><i class="fa-solid fa-pencil"></i></a>
+                <a style="color:rgb(153,147,131)" title="Delete Item" class="item-delete item" data-item-id="{{power.id}}"><i class="fa-solid fa-xmark"></i></a>
             </td>
         </tr>
     {{/each}}

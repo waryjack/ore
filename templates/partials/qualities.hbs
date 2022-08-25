@@ -13,7 +13,7 @@
             <a class="qual-roll" data-qual-to-roll="{{qual.id}}"><i class="fa-solid fa-dice-d10"></i></a>
          </td-->
          <td class="item-name item" data-item-id="{{qual.id}}">
-              <a class="item-edit" title="Edit"><strong>{{qual.name}}</strong></a><br/>
+              <strong>{{qual.name}}</strong></a><br/>
               <em>{{qual.system.desc}}</em>
          </td>
             <!--td>
@@ -26,7 +26,8 @@
                 {{/if}}
             </td-->
             <td style="right:100%;">
-                <a class="item-delete item" data-item-id="{{qual.id}}"><i class="fas fa-xmark"></i></a>
+                <a style="color:rgb(153,147,131)" class="item-edit" title="Edit {{qual.name}}" data-item-id="{{qual.id}}"></a><i class="fa-solid fa-pencil"></i></a>
+                <a style="color:rgb(153,147,131)" class="item-delete item" data-item-id="{{qual.id}}"><i class="fas fa-xmark"></i></a>
             </td>
         </tr>
     {{/each}}

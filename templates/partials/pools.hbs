@@ -20,7 +20,8 @@
                 &nbsp;&nbsp;<a class="adjust-pool" data-dir="dec" data-pool-id="{{pool.id}}"><i class="fa-solid fa-square-arrow-down"></i></a>
             </td>
             <td style="right:100%;">
-                <a class="item-delete item" data-item-id="{{pool.id}}"><i class="fas fa-xmark"></i></a>
+                <a style="color:rgb(153,147,131)" class="item-edit" title="Edit {{pool.name}}" data-item-id="{{pool.id}}"></a><i class="fa-solid fa-pencil"></i></a>
+                <a style="color:rgb(153,147,131)" class="item-delete item" data-item-id="{{pool.id}}"><i class="fas fa-xmark"></i></a>
             </td>
         </tr>
     {{/each}}
