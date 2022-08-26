@@ -32,7 +32,17 @@
     "ORE.gen.charsheet.tabs.miscellaneous":"Miscellaneous Info",
     "ORE.gen.bonusOrPenalty": "Dice Pool Modifier (use negative numbers for penalties)",
     "ORE.gen.setExpertDice": "Set your Expert Dice",
-    
+
+    "ORE.dialog.traitRollDialogTitle": "Stat / Skill Roll",
+    "ORE.dialog.powerRollDialogTitle": "Power Roll",
+    "ORE.dialog.basicRollDialogTitle": "Basic Roll",
+
+    "ORE.ui.buttons.continue":"Continue",
+    "ORE.ui.buttons.cancel":"Cancel",
+    "ORE.ui.buttons.roll":"Roll",
+    "ORE.ui.buttons.yes":"Yes",
+    "ORE.ui.buttons.no":"No",
+
     "ORE.gen.new.weapon":"New Weapon",
     "ORE.gen.new.stat":"New Stat",
     "ORE.gen.new.skill":"New Skill",

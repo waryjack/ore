@@ -1,0 +1,56 @@
+<form class="ore roll-dialog">
+ <header class="roll-header">
+        <h1 class="ore roll-name">ROLL DIALOG</h1>
+    </header>
+{{log "allSkills" allSkills}}
+{{log "selectStat" selectStat}}
+{{log "selectSkill" selectSkill}}
+ <div class="ore roll-dialog">
+     <div class="form-group">
+         <label for="stats">{{localize "ORE.gen.stats"}}</label>
+         <select id="selStat" style="width:100%" name="stat" data-main-att="stat">
+            {{#select stat}}
+                {{#each allStats as |st name|}}
+                {{#if st.active}}
+                    <option value="{{name}}"
+                    {{#if (eq name ../selectStat)}}
+                    selected
+                    {{/if}}
+                    
+                    {{#if (eq name ../linkedStat)}}
+                        selected
+                    {{/if}}>
+                    {{getSetting name}} {{st.base}}d + {{st.expert}}ed + {{st.master}}md
+                    </option>
+                {{/if}}
+                {{/each}}
+            {{/select}}
+         </select>
+     </div>
+     <div class="form-group">
+         <label for="skill">{{localize "ORE.gen.skills"}}</label>
+         <select id="selSkill" style="width:100%" name="skill" data-main-att="skill">
+             <option value="none">No Skill Selected</option>
+            {{#select skill}}
+                {{#each allSkills as |sk name|}}
+                
+                    <option value="{{sk.name}}" {{#ife sk.name ../selectSkill}}selected{{/ife}}>{{sk.name}} {{sk.system.dice.base}}d + {{sk.system.dice.expert}}ed + {{sk.system.dice.master}}md</option>
+                {{/each}}
+            {{/select}}
+         </select>
+     </div>
+     <div class="form-group">
+        <label for="poolMod">{{localize "ORE.gen.bonusOrPenalty"}}</label>
+        <input class="ore statfield" type="text" name="poolMod" id="poolMod" value="0" data-dtype="Number">
+     </div>
+     
+     <div id="expertDiceDiv" style="display:hidden;">
+        <!--do this very simply right now, just ask to enter numbers as a comma-separated string-->
+        <p>Enter desired Expert Dice values separated by commas (e.g., "9,7")</p>
+        <input class="ore" type="text" name="setEd" id="setEd" value="" data-dtype="String">
+     </div>
+     
+ </div>
+
+
+</form>

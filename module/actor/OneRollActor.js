@@ -65,6 +65,7 @@ export default class OneRollActor extends Actor {
         let currMasDice = this.system.stats[stat].master;
         let statNameDefault = game.settings.get("ore", stat);
 
+        //TODO: make into a template, move to dialog helper
         let dialogContent = `<h2>Editing ${statNameDefault}</h2>`;
         dialogContent += `<b>Base Dice</b>: <input type='text' value='${currBaseDice}' data-dtype='Number' name='newBaseDice' id='newBaseDice'/>`;
         dialogContent += `<b>Expert Dice</b>: <input type='text' value='${currExpDice}' data-dtype='Number' name='newExpDice' id='newExpDice'/>`;
@@ -124,10 +125,60 @@ export default class OneRollActor extends Actor {
 
     }
 
+    oneRoll(type, trait) {
+        let template = "";
+
+        let dialogData = {
+            actor: this._id,
+            template: template,
+            allSkills: this.item.filter(i => i.type === "skill"),
+            allStats: this.system.stats,
+            selectStat: "None",
+            selectSkill: "None",
+            selectedPower: "None",
+            linkedStat: "None",
+            rollType
+        }
+
+
+        switch(type){
+            case "basic" : {
+                dialogData.template = "systems/ore/templates/roll/basicroll.hbs";
+                dialogData.rollType = 0;
+            }
+            case "stat":{
+                dialogData.template = "systems/ore/templates/roll/statskillroll.hbs"
+                dialogData.selectStat = trait;
+                dialogData.rollType = 1;
+            } 
+            break;
+            case "skill": {
+                dialogData.template = "systems/ore/templates/roll/statskill.hbs"
+                dialogData.selectSkill = trait;
+                let selectSkillObject = this.items.get(selectSkillId);
+                dialogData.linkedStat = selectSkillObject.system.linked_stat;  
+                dialogData.selectSkill = selectSkillObject.name;  
+                dialogData.rollType = 2;
+            }
+            break;
+            case "power": {
+                dialogData.template = "systems/ore/templates/roll/basicroll.hbs";
+                dialogData.selectedPower = trait;
+                dialogData.rollType = 3;
+            }
+            break;
+            default:{
+                return "Error: unknown roll type";
+            }
+        }
+
+        OREDialogHelper.generateOneRollDialog(dialogData);
+    }
+
     rollStatOrSkill(stat,type) { // need to refactor this to DialogHelper I think; it's very ugly here
                                  // maybe a dialogData builder function too?
 
-
+        let actor = this._id;
         let selectStat = "None";
         let selectSkill = "None";
         let selectSkillLinkedStat = "None";
@@ -155,190 +206,7 @@ export default class OneRollActor extends Actor {
         }
 
         console.warn("Dialog Data: ", dialogData);
-
-
-        renderTemplate(template, dialogData).then((dlg) => {
-            new Dialog({
-                title:"Stat / Skill Roll", // figure this out at some point...not localized right
-                content: dlg,
-                buttons: {
-                    roll: {
-                     icon: '<i class="fas fa-check"></i>',
-                     label: "Continue",
-                     callback: (html) => {
-                            //  console.log("passed html: ", html); 
-
-                            // console.warn("in stat roll callback");
-                            
-                            let chosenStat = html.find("#selStat").val();
-                            let chosenSkill = html.find("#selSkill").val();
-                            let poolMod = Number(html.find("#poolMod").val());
-                            let edValues = html.find("#setEd").val();
-                            let chosenStatVal = 0;
-                            let chosenSkillVal = 0;
-                            let chosenSkillEd = 0;
-                            let chosenStatEd = 0;
-                            let chosenSkillObj = {};
-                            let chosenSkillText = "";
-
-
-                            if(chosenSkill != "none") {
-                                chosenSkillObj = this.items.filter(i => i.name === chosenSkill);
-                                console.warn("skill obj ", chosenSkillObj);
-                                chosenSkillVal = chosenSkillObj[0].system.dice.base;
-                                chosenSkillEd = chosenSkillObj[0].system.dice.expert;
-                                chosenSkillText = " + " + chosenSkill;
-                            }
-                            
-                            chosenStatVal = this.system.stats[chosenStat].base;
-                            chosenStatEd = this.system.stats[chosenStat].expert;
-
-                            let expDiceSum = chosenStatEd + chosenSkillEd;
-
-                            if (expDiceSum > 0)
-                       
-                            
-                            console.warn("chosen stat val: ", chosenStatVal);
-                             console.warn("chosen skill val: ", chosenSkillVal);
-
-                            let finalPool = chosenStatVal + chosenSkillVal + poolMod;
-
-                            let maxPoolSize = Number(game.settings.get("ore", "coreDieType").substring(1));
-                            
-                            let pool = Math.min(maxPoolSize, finalPool);
-                            let dtype = game.settings.get("ore", "coreDieType");
-                            let statSkillText = game.settings.get("ore", chosenStat) + chosenSkillText;
-                            // get dice values
-                            /*
-                            console.warn("What is this? ", this);
-                            console.warn("Roll selStat: ", chosenStat);
-                            console.warn("Roll selSkill: ", chosenSkill);
-                            console.warn("Chosen Skill Object: ", chosenSkillObj);
-                            console.warn("chosen stat val: ", chosenStatVal);
-                           
-                            */
-                                                    
-                            let rollData = {
-                                rollPool: pool,
-                                poolMod: poolMod,
-                                actor:this._id,
-                                dieType: dtype,
-                                displayText: statSkillText,
-                                expertDice: edValues,
-                                maxPool: maxPoolSize
-                            }
-
-                            let roll = new OneRoll(rollData);
-                            roll.roll();
-                            
-                            let msgTemplate = "systems/ore/templates/message/chatmessage.hbs";
-                            console.warn("Roll: ", roll);
-                            console.warn("Roll Data: ", rollData);
-                            renderTemplate(msgTemplate, roll).then((dlg) => {
-                                ChatMessage.create({
-                                    user: game.user._id,
-                                    // roll: data.roll,
-                                    //  type:CONST.CHAT_MESSAGE_TYPES.ROLL,
-                                    speaker: ChatMessage.getSpeaker(),
-                                    content: dlg
-                                });
-                            });
-                        }
-
-                    },
-                    close: {
-                     icon: '<i class="fas fa-times"></i>',
-                     label: "Cancel",
-                     callback: () => { console.log("Clicked Cancel"); return; }
-                    }
-                   },
-                render: (html) => {
-                    const statSelector = html[0].querySelector("#selStat");
-                    const skillSelector = html[0].querySelector("#selSkill");
-
-                    // Get initial state for the expert dice div 
-
-                    let chosenStat = html.find("#selStat").val();
-                    let chosenSkill = html.find("#selSkill").val();
-                    let chosenSkillEd = 0;
-                    
-                    if(chosenSkill != "none") {
-                        let chosenSkillObj = this.items.filter(i => i.name === chosenSkill);
-                        chosenSkillEd = chosenSkillObj[0].system.dice.expert;
-                    } else {
-                        chosenSkillEd = 0;
-                    }
-
-                    let chosenStatEd = this.system.stats[chosenStat].expert;
-
-                    let totalEd = chosenStatEd + chosenSkillEd;
-
-                    if(totalEd > 0) {
-                        $("#expertDiceDiv").css({'display':'block'});
-                    } else {
-                        $("#expertDiceDiv").css({'display':'none'});
-                    }
-
-                    // listen for changes to selected stats and such
-                    
-                    statSelector.addEventListener("change", () => {
-                        console.log("Changed Selection Listener");
-                        let chosenStat = html.find("#selStat").val();
-                    let chosenSkill = html.find("#selSkill").val();
-                    let chosenSkillEd = 0;
-                    
-                    if(chosenSkill != "none") {
-                        let chosenSkillObj = this.items.filter(i => i.name === chosenSkill);
-                        chosenSkillEd = chosenSkillObj[0].system.dice.expert;
-                    } else {
-                        chosenSkillEd = 0;
-                    }
-
-                    let chosenStatEd = this.system.stats[chosenStat].expert;
-
-                    let totalEd = chosenStatEd + chosenSkillEd;
-
-                    if(totalEd > 0) {
-                        $("#expertDiceDiv").css({'display':'block'});
-                    } else {
-                        $("#expertDiceDiv").css({'display':'none'});
-                    }
-                    
-                        
-                        // get ExpertDiceTotal from stat and skill
-                        // if expert dice total more than 0
-                        // $('#expertDiceDiv').css({'display':'block'});
-                        // else
-                        // $('#expertDiceDiv').css({'display':'none'});
-                    });
-                    skillSelector.addEventListener("change", () =>{
-                        console.log("Changed Skill Selection Listener");
-                        let chosenStat = html.find("#selStat").val();
-                    let chosenSkill = html.find("#selSkill").val();
-                    let chosenSkillEd = 0;
-                    
-                    if(chosenSkill != "none") {
-                        let chosenSkillObj = this.items.filter(i => i.name === chosenSkill);
-                        chosenSkillEd = chosenSkillObj[0].system.dice.expert;
-                    } else {
-                        chosenSkillEd = 0;
-                    }
-
-                    let chosenStatEd = this.system.stats[chosenStat].expert;
-
-                    let totalEd = chosenStatEd + chosenSkillEd;
-
-                    if(totalEd > 0) {
-                        $("#expertDiceDiv").css({'display':'block'});
-                    } else {
-                        $("#expertDiceDiv").css({'display':'none'});
-                    }
-                    });
-                },   
-                default: "close"
-            },{id:'basic-roll-dialog', classes:['ore','dialog']}).render(true);
-        
-        });
+        OREDialogHelper.generateAbilityRollDialog(template, dialogData, actor);
 
     }
 

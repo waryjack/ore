@@ -91,6 +91,7 @@ export default class OneRollActorSheet extends ActorSheet {
         html.find('.skill-roll').click(this._onRollSkill.bind(this));
         html.find('.basic-roll').click(this._onRollBasic.bind(this));
         html.find('.power-roll').click(this._onRollPower.bind(this));
+        html.find('.one-roll').click(this._onOneRoll.bind(this));
 
         let handler = (ev) => this._onDragStart(ev);
         html.find('.item-name').each((i, item) => {
@@ -174,6 +175,13 @@ export default class OneRollActorSheet extends ActorSheet {
     }
 
     // Roll Methods
+    _onOneRoll(e) {
+        e.preventDefault();
+        let elem = e.currentTarget;
+        let type = elem.dataset.roll-type;
+        let trait = elem.dataset.roll-trait;
+        return this.actor.oneRoll(type,trait);
+    }
 
     // trigger the basic, non-pre-populated roll dialog
     _onRollBasic(e) {
