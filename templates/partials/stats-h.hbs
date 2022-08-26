@@ -25,7 +25,7 @@
                         <input class="attr-name" name="system.stats.{{name}}.master" type="text" value="{{stat.master}}" data-dtype="Number" maxwidth='2' size='3' />
                     </td-->
                 <td style="text-align:center; font-size:1.25em;">
-                    <a class="stat-roll" data-stat-to-roll="{{name}}" title="Roll {{getSetting name}}">
+                    <a class="one-roll" data-roll-type="stat" data-roll-trait="{{name}}" data-stat-to-roll="{{name}}" title="Roll {{getSetting name}}">
                     <strong>{{stat.base}}d
                     {{#if (ne stat.expert 0)}}
                         + {{stat.expert}}ed

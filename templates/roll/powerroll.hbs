@@ -1,0 +1,25 @@
+<form class="ore roll-dialog">
+ <header class="roll-header">
+        <h1 class="ore roll-name">ROLL DIALOG</h1>
+    </header>
+ <div class="ore roll-dialog">
+     <div class="form-group">
+        <h2>Rolling {{trait}} {{powerBase}}d + {{powerExpert}}ed + {{powerMaster}}md</h2>
+        <input type="hidden" name="selStat" id="selStat" value="none">
+        <input type="hidden" name="selSkill" id="selSkill" value="none">
+     </div>
+     <div class="form-group">
+        <label for="poolMod">{{localize "ORE.gen.bonusOrPenalty"}}</label>
+        <input class="ore statfield" type="text" name="poolMod" id="poolMod" value="0" data-dtype="Number">
+     </div>
+     
+     <div id="expertDiceDiv" style="display:hidden;">
+        <!--do this very simply right now, just ask to enter numbers as a comma-separated string-->
+        <p>Enter desired Expert Dice values separated by commas (e.g., "9,7")</p>
+        <input class="ore" type="text" name="setEd" id="setEd" value="" data-dtype="String">
+     </div>
+     
+ </div>
+
+
+</form>

@@ -50,7 +50,7 @@
             </td>
             <td style="border-bottom:1px solid rgb(187, 179, 159);text-align:left;">
                 
-                <a title="Roll {{power.name}}" data-power-to-roll="{{power.id}}"><i class="fa-solid fa-bracket-square"></i>
+                <a class="one-roll" title="Roll {{power.name}}" data-roll-type="power" data-roll-trait="{{power.id}}" ><i class="fa-solid fa-bracket-square"></i>
                 <strong>{{power.system.dice.base}}d
                 {{#if (ne power.system.dice.expert 0)}}
                     + {{power.system.dice.expert}}ed

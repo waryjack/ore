@@ -176,10 +176,12 @@ export default class OneRollActorSheet extends ActorSheet {
 
     // Roll Methods
     _onOneRoll(e) {
+        console.warn("onOneRoll fired");
         e.preventDefault();
         let elem = e.currentTarget;
-        let type = elem.dataset.roll-type;
-        let trait = elem.dataset.roll-trait;
+        let type = elem.dataset.rollType;
+        let trait = elem.dataset.rollTrait;
+        console.warn(elem, type, trait);
         return this.actor.oneRoll(type,trait);
     }
 

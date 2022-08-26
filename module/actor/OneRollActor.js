@@ -126,18 +126,22 @@ export default class OneRollActor extends Actor {
     }
 
     oneRoll(type, trait) {
+        console.warn("actor oneRoll fired");
         let template = "";
 
         let dialogData = {
             actor: this._id,
             template: template,
-            allSkills: this.item.filter(i => i.type === "skill"),
+            allSkills: this.items.filter(i => i.type === "skill"),
             allStats: this.system.stats,
             selectStat: "None",
             selectSkill: "None",
             selectedPower: "None",
+            powerBase:0,
+            powerExpert:0,
+            powerMaster:0,
             linkedStat: "None",
-            rollType
+            rollType:0
         }
 
 
@@ -154,25 +158,30 @@ export default class OneRollActor extends Actor {
             break;
             case "skill": {
                 dialogData.template = "systems/ore/templates/roll/statskill.hbs"
-                dialogData.selectSkill = trait;
-                let selectSkillObject = this.items.get(selectSkillId);
+                let selectSkillObject = this.items.get(trait);
                 dialogData.linkedStat = selectSkillObject.system.linked_stat;  
                 dialogData.selectSkill = selectSkillObject.name;  
                 dialogData.rollType = 2;
             }
             break;
             case "power": {
-                dialogData.template = "systems/ore/templates/roll/basicroll.hbs";
-                dialogData.selectedPower = trait;
+                dialogData.template = "systems/ore/templates/roll/powerroll.hbs";
+                
+                let powerData = this.items.get(trait);
+                dialogData.selectedPower = powerData.name;
+                dialogData.powerBase = powerData.system.dice.base;
+                dialogData.powerExpert = powerData.system.dice.expert;
+                dialogData.powerMaster = powerData.system.dice.master;
                 dialogData.rollType = 3;
+
             }
             break;
             default:{
-                return "Error: unknown roll type";
+                console.error("Unknown roll type");
             }
         }
-
-        OREDialogHelper.generateOneRollDialog(dialogData);
+        console.warn("generated dialogData", dialogData);
+        OneRollDialogHelper.generateOneRollDialog(dialogData);
     }
 
     rollStatOrSkill(stat,type) { // need to refactor this to DialogHelper I think; it's very ugly here
