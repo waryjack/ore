@@ -257,12 +257,12 @@ export default class OneRollActor extends Actor {
 
                     // Get initial state for the expert dice div 
 
-                    let chosenStat = statSelector.val();
-                    let chosenSkill = skillSelector.val();
+                    let chosenStat = html.find("#selStat").val();
+                    let chosenSkill = html.find("#selSkill").val();
                     let chosenSkillEd = 0;
                     
                     if(chosenSkill != "none") {
-                        chosenSkillObj = this.items.filter(i => i.name === chosenSkill);
+                        let chosenSkillObj = this.items.filter(i => i.name === chosenSkill);
                         chosenSkillEd = chosenSkillObj[0].system.dice.expert;
                     } else {
                         chosenSkillEd = 0;
@@ -282,7 +282,26 @@ export default class OneRollActor extends Actor {
                     
                     statSelector.addEventListener("change", () => {
                         console.log("Changed Selection Listener");
+                        let chosenStat = html.find("#selStat").val();
+                    let chosenSkill = html.find("#selSkill").val();
+                    let chosenSkillEd = 0;
+                    
+                    if(chosenSkill != "none") {
+                        let chosenSkillObj = this.items.filter(i => i.name === chosenSkill);
+                        chosenSkillEd = chosenSkillObj[0].system.dice.expert;
+                    } else {
+                        chosenSkillEd = 0;
+                    }
 
+                    let chosenStatEd = this.system.stats[chosenStat].expert;
+
+                    let totalEd = chosenStatEd + chosenSkillEd;
+
+                    if(totalEd > 0) {
+                        $("#expertDiceDiv").css({'display':'block'});
+                    } else {
+                        $("#expertDiceDiv").css({'display':'none'});
+                    }
                     
                         
                         // get ExpertDiceTotal from stat and skill
@@ -293,11 +312,26 @@ export default class OneRollActor extends Actor {
                     });
                     skillSelector.addEventListener("change", () =>{
                         console.log("Changed Skill Selection Listener");
-                        // get expert dice total from Stat and Skill
-                        // if expert dice total more than 0
-                        // $('#expertDiceDiv').css({'display':'block'});
-                        // else
-                        // $('#expertDiceDiv').css({'display':'none'});
+                        let chosenStat = html.find("#selStat").val();
+                    let chosenSkill = html.find("#selSkill").val();
+                    let chosenSkillEd = 0;
+                    
+                    if(chosenSkill != "none") {
+                        let chosenSkillObj = this.items.filter(i => i.name === chosenSkill);
+                        chosenSkillEd = chosenSkillObj[0].system.dice.expert;
+                    } else {
+                        chosenSkillEd = 0;
+                    }
+
+                    let chosenStatEd = this.system.stats[chosenStat].expert;
+
+                    let totalEd = chosenStatEd + chosenSkillEd;
+
+                    if(totalEd > 0) {
+                        $("#expertDiceDiv").css({'display':'block'});
+                    } else {
+                        $("#expertDiceDiv").css({'display':'none'});
+                    }
                     });
                 },   
                 default: "close"
