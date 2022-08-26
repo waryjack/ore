@@ -124,7 +124,8 @@ export default class OneRollActor extends Actor {
 
     }
 
-    rollStatOrSkill(stat,type) {
+    rollStatOrSkill(stat,type) { // need to refactor this to DialogHelper I think; it's very ugly here
+                                 // maybe a dialogData builder function too?
 
 
         let selectStat = "None";
