@@ -161,7 +161,7 @@ export class OneRollDialogHelper {
                     // get the key selector objects
                     const statSelector = html[0].querySelector("#selStat");
                     const skillSelector = html[0].querySelector("#selSkill");
-
+                                        
                     // Get initial state for the expert dice div based on default selected expert dice
                     let chosenStat = html.find("#selStat").val();
                     let chosenSkill = html.find("#selSkill").val();
@@ -191,7 +191,7 @@ export class OneRollDialogHelper {
 
                 default: "close"
             },
-            {id:'basic-roll-dialog', classes:['ore','dialog']}).render(true);
+            {id:'basic-roll-dialog', resizeable:true, 'height':'100%', classes:['ore','dialog']},).render(true);
         
         
         });

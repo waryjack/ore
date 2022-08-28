@@ -151,7 +151,7 @@ export default class OneRollActor extends Actor {
                 dialogData.rollType = 0;
             }
             case "stat":{
-                dialogData.template = "systems/ore/templates/roll/statskillroll.hbs"
+                dialogData.template = "systems/ore/templates/roll/statskill.hbs"
                 dialogData.selectStat = trait;
                 dialogData.rollType = 1;
             } 

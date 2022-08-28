@@ -29,7 +29,7 @@ Hooks.once("init", () => {
         registerSettings,
     }; 
 
-    // CONFIG.debug.hooks = true;
+    CONFIG.debug.hooks = true;
     
     Actors.unregisterSheet("core", ActorSheet);
     Items.unregisterSheet("core", ItemSheet);
@@ -156,6 +156,12 @@ Hooks.once("init", () => {
 
 });
 
+Hooks.on("renderDialog", (app, html, data) => {
+  const hDom = html[0];
+  let h = Math.max(hDom.scrollHeight, hDom.offsetHeight);
+ 
+  // app.setPosition({height:h});
+});
 
 /**
  * Utility setting getter
