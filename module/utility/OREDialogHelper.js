@@ -124,9 +124,11 @@ export class OneRollDialogHelper {
                      label: game.i18n.localize("ORE.ui.buttons.continue"),
                      callback: (html) => {
                         
+                            let pe = 0;
                             console.warn("dialogData.type", dialogData.type);
                             if(dialogData.rollType == 3) {
                                 rollData = this.buildPowerRollData(html, dialogData.actor, dialogData.trait);
+                                pe = dialogData.powerExpert;
                             } else {
                                 rollData = this.buildTraitRollData(html, dialogData.actor);
                             }
@@ -161,11 +163,16 @@ export class OneRollDialogHelper {
                     // get the key selector objects
                     const statSelector = html[0].querySelector("#selStat");
                     const skillSelector = html[0].querySelector("#selSkill");
+                    console.warn("DialogData in Render key: ", dialogData);
                                         
                     // Get initial state for the expert dice div based on default selected expert dice
                     let chosenStat = html.find("#selStat").val();
                     let chosenSkill = html.find("#selSkill").val();
                     let display = OneRollDialogHelper.countExpertDice(chosenStat, chosenSkill, dialogData.actor);
+                    console.warn("display: ", display);
+                    if(dialogData.rollType == 3 && dialogData.powerExpert > 0) {
+                        display = 'block'
+                    }
                     $("#expertDiceDiv").css({'display':[display]});
 
                     // listen for changes to selected stat and update div accordingly

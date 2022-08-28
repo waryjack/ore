@@ -33,7 +33,7 @@
     "ORE.gen.bonusOrPenalty": "Dice Pool Modifier (use negative numbers for penalties)",
     "ORE.gen.setExpertDice": "Set your Expert Dice",
 
-    "ORE.dialog.traitRollDialogTitle": "Stat / Skill Roll",
+    "ORE.dialog.traitRollDialogTitle": "Stat, Skill, or Power Roll",
     "ORE.dialog.powerRollDialogTitle": "Power Roll",
     "ORE.dialog.basicRollDialogTitle": "Basic Roll",
 
