@@ -33,8 +33,8 @@
              <option value="none">No Skill Selected</option>
             {{#select skill}}
                 {{#each allSkills as |sk name|}}
-                
-                    <option value="{{sk.name}}" {{#ife sk.name ../selectSkill}}selected{{/ife}}>{{sk.name}} {{sk.system.dice.base}}d + {{sk.system.dice.expert}}ed + {{sk.system.dice.master}}md</option>
+                {{log "Skill ids" sk.id}}
+                    <option value="{{sk.id}}" {{#ife sk.name ../selectSkill}}selected{{/ife}}>{{sk.name}} {{sk.system.dice.base}}d + {{sk.system.dice.expert}}ed + {{sk.system.dice.master}}md</option>
                 {{/each}}
             {{/select}}
          </select>

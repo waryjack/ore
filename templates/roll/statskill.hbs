@@ -34,7 +34,7 @@
             {{#select skill}}
                 {{#each allSkills as |sk name|}}
                 
-                    <option value="{{sk.name}}" {{#ife sk.name ../selectSkill}}selected{{/ife}}>{{sk.name}} {{sk.system.dice.base}}d + {{sk.system.dice.expert}}ed + {{sk.system.dice.master}}md</option>
+                    <option value="{{sk.id}}" {{#ife sk.name ../selectSkill}}selected{{/ife}}>{{sk.name}} {{sk.system.dice.base}}d + {{sk.system.dice.expert}}ed + {{sk.system.dice.master}}md</option>
                 {{/each}}
             {{/select}}
          </select>

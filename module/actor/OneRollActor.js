@@ -141,7 +141,8 @@ export default class OneRollActor extends Actor {
             powerExpert:0,
             powerMaster:0,
             linkedStat: "None",
-            rollType:0
+            rollType:0,
+            trait:""
         }
 
 
@@ -149,6 +150,7 @@ export default class OneRollActor extends Actor {
             case "basic" : {
                 dialogData.template = "systems/ore/templates/roll/basicroll.hbs";
                 dialogData.rollType = 0;
+                dialogData.trait = trait;
             }
             case "stat":{
                 dialogData.template = "systems/ore/templates/roll/statskill.hbs"
@@ -162,6 +164,7 @@ export default class OneRollActor extends Actor {
                 dialogData.linkedStat = selectSkillObject.system.linked_stat;  
                 dialogData.selectSkill = selectSkillObject.name;  
                 dialogData.rollType = 2;
+                dialogData.trait = trait;
             }
             break;
             case "power": {
@@ -173,6 +176,7 @@ export default class OneRollActor extends Actor {
                 dialogData.powerExpert = powerData.system.dice.expert;
                 dialogData.powerMaster = powerData.system.dice.master;
                 dialogData.rollType = 3;
+                dialogData.trait = trait;
 
             }
             break;

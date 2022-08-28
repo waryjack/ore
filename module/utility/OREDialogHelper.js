@@ -4,14 +4,16 @@ import { OneRoll } from "../dice/OneRoll.js";
 
 export class OneRollDialogHelper {
 
-    static countExpertDice(chosenStat, chosenSkill, actorId) {
+    static countExpertDice(chosenStat, chosenSkill, actorId, trait) {
+        console.warn("incoming countExpert data: ", chosenStat, chosenSkill, actorId, trait);
         let chosenSkillEd = 0;
         let chosenStatEd = 0;
         let chosenPowerEd = 0;
         let displayMode = "";
         if(chosenSkill != "none") {
-            let chosenSkillObj = game.actors.get(actorId).items.filter(i => i.name === chosenSkill);
-            chosenSkillEd = chosenSkillObj[0].system.dice.expert;
+            let chosenSkillObj = game.actors.get(actorId).items.get(chosenSkill);
+            console.warn("countexpertdice chosenskill: ", chosenSkillObj);
+            chosenSkillEd = chosenSkillObj.system.dice.expert;
         } else {
             chosenSkillEd = 0;
         }
@@ -34,8 +36,9 @@ export class OneRollDialogHelper {
 
     static buildPowerRollData(html, actorId, trait) {
         let actor = game.actors.get(actorId);
-        let power = actor.items.filter(i => i.name === trait);
-
+        let power = actor.items.get(trait);
+        let powerName = power.name;
+        console.warn("Power data: ", power);
         let base = power.system.dice.base;
         let exp = power.system.dice.exp;
         let poolMod = Number(html.find("#poolMod").val());
@@ -47,7 +50,7 @@ export class OneRollDialogHelper {
             poolMod: poolMod,
             actor: actorId,
             dieType: dtype,
-            displayText: trait,
+            displayText: powerName,
             expertDice: edValues,
             maxPool: 10 // placeholder for now
         }
@@ -56,7 +59,7 @@ export class OneRollDialogHelper {
 
     }
 
-    static buildTraitRollData(html, actorId) {
+    static buildTraitRollData(html, actorId, trait) {
         // Collect actor and stat information
         let actor = game.actors.get(actorId);
         let chosenStat = html.find("#selStat").val();
@@ -72,11 +75,11 @@ export class OneRollDialogHelper {
 
     // get skill data if it's a skill roll
         if(chosenSkill != "none") {
-            chosenSkillObj = actor.items.filter(i => i.name === chosenSkill);
+            chosenSkillObj = actor.items.get(chosenSkill);
             console.warn("skill obj ", chosenSkillObj);
-            chosenSkillVal = chosenSkillObj[0].system.dice.base;
-            chosenSkillEd = chosenSkillObj[0].system.dice.expert;
-            chosenSkillText = " + " + chosenSkill;
+            chosenSkillVal = chosenSkillObj.system.dice.base;
+            chosenSkillEd = chosenSkillObj.system.dice.expert;
+            chosenSkillText = " + " + chosenSkillObj.name;
         }
         
     // get stat data 
@@ -130,7 +133,7 @@ export class OneRollDialogHelper {
                                 rollData = this.buildPowerRollData(html, dialogData.actor, dialogData.trait);
                                 pe = dialogData.powerExpert;
                             } else {
-                                rollData = this.buildTraitRollData(html, dialogData.actor);
+                                rollData = this.buildTraitRollData(html, dialogData.actor, dialogData.trait);
                             }
                        
                             let roll = new OneRoll(rollData);
@@ -168,7 +171,7 @@ export class OneRollDialogHelper {
                     // Get initial state for the expert dice div based on default selected expert dice
                     let chosenStat = html.find("#selStat").val();
                     let chosenSkill = html.find("#selSkill").val();
-                    let display = OneRollDialogHelper.countExpertDice(chosenStat, chosenSkill, dialogData.actor);
+                    let display = OneRollDialogHelper.countExpertDice(chosenStat, chosenSkill, dialogData.actor, dialogData.trait);
                     console.warn("display: ", display);
                     if(dialogData.rollType == 3 && dialogData.powerExpert > 0) {
                         display = 'block'
@@ -181,7 +184,8 @@ export class OneRollDialogHelper {
                         console.log("Changed Selection Listener");
                         let chosenStat = html.find("#selStat").val();
                         let chosenSkill = html.find("#selSkill").val();
-                        let display = OneRollDialogHelper.countExpertDice(chosenStat, chosenSkill, dialogData.actor);
+                        console.warn("chosen stat and skill / render key: ", chosenStat, chosenSkill);
+                        let display = OneRollDialogHelper.countExpertDice(chosenStat, chosenSkill, dialogData.actor, dialogData.trait);
                         $("#expertDiceDiv").css({'display':[display]});
                     });
 
@@ -191,7 +195,8 @@ export class OneRollDialogHelper {
                         console.log("Changed Skill Selection Listener");
                         let chosenStat = html.find("#selStat").val();
                         let chosenSkill = html.find("#selSkill").val();
-                        let display = OneRollDialogHelper.countExpertDice(chosenStat, chosenSkill, dialogData.actor);
+                        console.warn("chosen stat and skill / render key: ", chosenStat, chosenSkill);
+                        let display = OneRollDialogHelper.countExpertDice(chosenStat, chosenSkill, dialogData.actor, dialogData.trait);
                         $("#expertDiceDiv").css({'display':[display]});
                     });
                 },   
