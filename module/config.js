@@ -64,6 +64,9 @@ export const ORE =
         one: "ORE.weapon.hands.one",
         two: "ORE.weapon.hands.two",
         crew: "ORE.weapon.hands.crew"
+    },
+    chatmessages: {
+        traitroll: "systems/ore/templates/message/chatmessage.hbs"
     }
 
 };

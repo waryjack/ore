@@ -8,7 +8,6 @@ export class OneRollDialogHelper {
         console.warn("incoming countExpert data: ", chosenStat, chosenSkill, actorId, trait);
         let chosenSkillEd = 0;
         let chosenStatEd = 0;
-        let chosenPowerEd = 0;
         let displayMode = "";
         if(chosenSkill != "none") {
             let chosenSkillObj = game.actors.get(actorId).items.get(chosenSkill);
@@ -40,7 +39,6 @@ export class OneRollDialogHelper {
         let powerName = power.name;
         console.warn("Power data: ", power);
         let base = power.system.dice.base;
-        let exp = power.system.dice.exp;
         let poolMod = Number(html.find("#poolMod").val());
         let edValues = html.find("#setEd").val();
         let dtype = game.settings.get("ore", "coreDieType");
@@ -111,6 +109,22 @@ export class OneRollDialogHelper {
         return rollData;
     }
 
+    generateChatMessage(roll, template) {
+        
+        console.warn("Roll: ", roll);
+        
+        renderTemplate(msgTemplate, roll).then((dlg) => {
+            ChatMessage.create({
+                user: game.user._id,
+             // roll: data.roll,
+            //  type:CONST.CHAT_MESSAGE_TYPES.ROLL,
+                speaker: ChatMessage.getSpeaker(),
+                content: dlg
+            });
+        });
+    }
+    
+
     static generateOneRollDialog(dialogData) {
     console.warn("generateOneRollDialog fired");
         let template = dialogData.template;
@@ -138,20 +152,11 @@ export class OneRollDialogHelper {
                        
                             let roll = new OneRoll(rollData);
                             roll.roll();
+                            this.generateChatMessage(roll, CONFIG.chatmessages.traitroll);
+
                             
                             // render the chat message and display it
-                            let msgTemplate = "systems/ore/templates/message/chatmessage.hbs";
-                            console.warn("Roll: ", roll);
-                            console.warn("Roll Data: ", rollData);
-                            renderTemplate(msgTemplate, roll).then((dlg) => {
-                                ChatMessage.create({
-                                    user: game.user._id,
-                                    // roll: data.roll,
-                                    //  type:CONST.CHAT_MESSAGE_TYPES.ROLL,
-                                    speaker: ChatMessage.getSpeaker(),
-                                    content: dlg
-                                });
-                            });
+                            
                         }
 
                     },
