@@ -4,6 +4,15 @@ import { OneRoll } from "../dice/OneRoll.js";
 
 export class OneRollDialogHelper {
 
+    /**
+     * Get the expert dice available to the roll, based on 
+     * selected stat and or skill.
+     * 
+     * @param chosenStat {String} - the unique name of the selected Stat (e.g., "bod" or "crd")
+     * @param chosenSkill {String} - the unique ID of the selected Skill
+     * @param actorId {String} - the unique ID of the selected actor
+     * @param trait {String} - not used at this time
+     */
     static countExpertDice(chosenStat, chosenSkill, actorId, trait) {
         console.warn("incoming countExpert data: ", chosenStat, chosenSkill, actorId, trait);
         let chosenSkillEd = 0;
@@ -33,6 +42,14 @@ export class OneRollDialogHelper {
 
     }
 
+    /**
+     * Assemble the rollData object for use of a Power that is used to populate the chat message
+     * 
+     * @param html {String} - the html of the roll dialog
+     * @param actorId {String} - the unique ID of the actor
+     * @param trait {String} - the unique ID of the Power being rolled
+     */
+
     static buildPowerRollData(html, actorId, trait) {
         let actor = game.actors.get(actorId);
         let power = actor.items.get(trait);
@@ -56,6 +73,14 @@ export class OneRollDialogHelper {
         return rollData;
 
     }
+
+     /**
+     * Assemble the rollData object for use of a Power that is used to populate the chat message
+     * 
+     * @param html {String} - the html of the roll dialog
+     * @param actorId {String} - the unique ID of the actor
+     * @param trait {String} - not used
+     */
 
     static buildTraitRollData(html, actorId, trait) {
         // Collect actor and stat information
@@ -109,11 +134,18 @@ export class OneRollDialogHelper {
         return rollData;
     }
 
+    /**
+     * Renders and displays the chat message with roll details
+     * 
+     * @param roll {OneRoll} - the object containing all roll information
+     * @param template {String} - the Handlebars template to be rendered
+     */
+
     static generateChatMessage(roll, template) {
         
         console.warn("Roll: ", roll);
         
-        renderTemplate(msgTemplate, roll).then((dlg) => {
+        renderTemplate(template, roll).then((dlg) => {
             ChatMessage.create({
                 user: game.user._id,
              // roll: data.roll,
@@ -123,6 +155,15 @@ export class OneRollDialogHelper {
             });
         });
     }
+
+    /**
+     * Watch for changes in the dialog selectors and update the dialog to show or hide the Expert dice div
+     * as needed
+     * 
+     * @param html {String} the html of the dialog
+     * @param actor {String} the unique ID of the actor
+     * @param trait {String} the ID or name of the selected trait (ID if Skill or Power)
+     */
     
     static onSelectorChange(html, actor, trait) {
         let chosenStat = html.find("#selStat").val();
