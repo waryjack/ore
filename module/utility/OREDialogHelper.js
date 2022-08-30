@@ -109,7 +109,7 @@ export class OneRollDialogHelper {
         return rollData;
     }
 
-    generateChatMessage(roll, template) {
+    static generateChatMessage(roll, template) {
         
         console.warn("Roll: ", roll);
         
@@ -124,6 +124,13 @@ export class OneRollDialogHelper {
         });
     }
     
+    static onSelectorChange(html, actor, trait) {
+        let chosenStat = html.find("#selStat").val();
+        let chosenSkill = html.find("#selSkill").val();
+        console.warn("chosen stat and skill / render key: ", chosenStat, chosenSkill);
+        let display = OneRollDialogHelper.onSelectorChange(html, actor, trait);
+        return display;
+    }
 
     static generateOneRollDialog(dialogData) {
     console.warn("generateOneRollDialog fired");
@@ -152,7 +159,7 @@ export class OneRollDialogHelper {
                        
                             let roll = new OneRoll(rollData);
                             roll.roll();
-                            this.generateChatMessage(roll, CONFIG.chatmessages.traitroll);
+                            OneRollDialogHelper.generateChatMessage(roll, CONFIG.chatmessages.traitroll);
 
                             
                             // render the chat message and display it
@@ -174,9 +181,7 @@ export class OneRollDialogHelper {
                     console.warn("DialogData in Render key: ", dialogData);
                                         
                     // Get initial state for the expert dice div based on default selected expert dice
-                    let chosenStat = html.find("#selStat").val();
-                    let chosenSkill = html.find("#selSkill").val();
-                    let display = OneRollDialogHelper.countExpertDice(chosenStat, chosenSkill, dialogData.actor, dialogData.trait);
+                    let display = OneRollDialogHelper.onSelectorChange(html, dialogData.actor, dialogData.trait);
                     console.warn("display: ", display);
                     if(dialogData.rollType == 3 && dialogData.powerExpert > 0) {
                         display = 'block'
@@ -184,24 +189,15 @@ export class OneRollDialogHelper {
                     $("#expertDiceDiv").css({'display':[display]});
 
                     // listen for changes to selected stat and update div accordingly
-                    
                     statSelector.addEventListener("change", () => {
-                        console.log("Changed Selection Listener");
-                        let chosenStat = html.find("#selStat").val();
-                        let chosenSkill = html.find("#selSkill").val();
-                        console.warn("chosen stat and skill / render key: ", chosenStat, chosenSkill);
-                        let display = OneRollDialogHelper.countExpertDice(chosenStat, chosenSkill, dialogData.actor, dialogData.trait);
+                        let display = OneRollDialogHelper.onSelectorChange(html, dialogData.actor, dialogData.trait);
                         $("#expertDiceDiv").css({'display':[display]});
                     });
 
                     // listen for changes to selected skill and update accordingly
 
                     skillSelector.addEventListener("change", () =>{
-                        console.log("Changed Skill Selection Listener");
-                        let chosenStat = html.find("#selStat").val();
-                        let chosenSkill = html.find("#selSkill").val();
-                        console.warn("chosen stat and skill / render key: ", chosenStat, chosenSkill);
-                        let display = OneRollDialogHelper.countExpertDice(chosenStat, chosenSkill, dialogData.actor, dialogData.trait);
+                        let display = OneRollDialogHelper.onSelectorChange(html, dialogData.actor, dialogData.trait);
                         $("#expertDiceDiv").css({'display':[display]});
                     });
                 },   
