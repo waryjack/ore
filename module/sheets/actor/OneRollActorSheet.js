@@ -31,7 +31,7 @@ export default class OneRollActorSheet extends ActorSheet {
        
         let ownedItems = this.actor.items;
 
-        if(charData.Type != "squad") {
+        if(charData.type != "squad") {
             // charData.stats = ownedItems.filter(item => item.type === "stat");
             charData.skills = ownedItems.filter(item => item.type === "skill");
             // build list of skill names
