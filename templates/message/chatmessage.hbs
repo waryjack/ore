@@ -3,7 +3,17 @@
         <h3 class="roll-name">Rolling {{displayText}} {{pool}}D</h3>
 </header>
 <div class="taskroll-msg">
-    <p style="text-align:center">{{render diceImgs}}</p>
-    <p style="font-size:1.35em"> <strong>Sets: </strong>{{#if (eq sets "")}}None{{else}}{{sets}}{{/if}}</p>
+    <div class="ore flexrow" >
+        <div class="ore flex-item" style="flex-grow:2; border-right:2px solid black">
+            <p style="text-align:left;">{{render diceImgs}}</p>
+        </div>
+        <div class="ore flex-item">
+            <p style="font-size:1em">{{render looseImgs}}</p>
+        </div>
+    </div>
+    
+    
+    
+    <!--p style="font-size:1em"> <strong>Roll: </strong>{{allDice}}{{!--#if (eq sets "")}}None{{else}}{{sets}}{{/if--}}</p-->
 </div>
 </form>

@@ -168,8 +168,20 @@ export class OneRollDialogHelper {
     static onSelectorChange(html, actor, trait) {
         let chosenStat = html.find("#selStat").val();
         let chosenSkill = html.find("#selSkill").val();
-        console.warn("chosen stat and skill / render key: ", chosenStat, chosenSkill);
-        let display = OneRollDialogHelper.onSelectorChange(html, actor, trait);
+        let display = "none";
+        let skillEd = 0;
+        let statEd = 0;
+
+        let a = game.actors.get(actor);
+        let s = a.items.get(chosenSkill);
+        if (chosenStat != "none") { statEd = a.system.stats[chosenStat].expert; }
+        if (chosenSkill != "none") { skillEd = s.system.dice.expert;}
+
+        if (statEd > 0 || skillEd > 0) {
+            display = "block";
+        } else {
+            display = "none";
+        }
         return display;
     }
 
@@ -200,7 +212,7 @@ export class OneRollDialogHelper {
                        
                             let roll = new OneRoll(rollData);
                             roll.roll();
-                            OneRollDialogHelper.generateChatMessage(roll, CONFIG.chatmessages.traitroll);
+                            OneRollDialogHelper.generateChatMessage(roll, "systems/ore/templates/message/chatmessage.hbs");
 
                             
                             // render the chat message and display it

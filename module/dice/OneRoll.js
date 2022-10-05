@@ -25,15 +25,35 @@ export class OneRoll {
         
         var rawRoll = this.buildArray(this.pool);
         var rollImgs = [];
+        var setImgs = [];
+        var looseImgs = [];
+
         rawRoll.forEach(i => {
             rollImgs.push(`<img src="systems/ore/assets/dice_img/${this.dieType}/${this.dieType}-${i}.png" style="border:none;" height="48" width="48">`);
         });
         var parsedRoll = this.countSets(rawRoll);
 
+        parsedRoll.sets.forEach(s => {
+            let wh = s.split("x");
+            let w = wh[0];
+            let h = wh[1];
+            for(let x = 0; x<w; x++) {
+                setImgs.push(`<img src="systems/ore/assets/dice_img/${this.dieType}/${this.dieType}-${h}.png" style="border:none;" height="40" width="40">`);
+            }
+            setImgs.push("<br/>");
+        });
+
+        parsedRoll.loose.forEach(l => {
+            looseImgs.push(`<img src="systems/ore/assets/dice_img/${this.dieType}/${this.dieType}-${l}.png" style="border:none; filter:opacity(50%)" height="32" width="32">`);
+        })
+
+        console.log("Set Images: ", setImgs);
         this.allDice = rawRoll;
         this.sets = parsedRoll.sets.toString();
         this.loose = parsedRoll.loose.toString();
-        this.diceImgs = rollImgs.join("").toString();;
+        this.diceImgs = setImgs.join("").toString();
+        this.looseImgs = looseImgs.join("").toString();
+
     }
 
    
