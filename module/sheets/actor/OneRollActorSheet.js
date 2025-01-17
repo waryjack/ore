@@ -45,6 +45,7 @@ export default class OneRollActorSheet extends ActorSheet {
             charData.armor = ownedItems.filter(item => item.type === "armor");
             charData.pools = ownedItems.filter(item => item.type === "point_pool");
             charData.stats = this.actor.system.stats;
+         
             
         } else {
             charData.weapons = ownedItems.filter(item => item.type === "weapon");
@@ -53,6 +54,7 @@ export default class OneRollActorSheet extends ActorSheet {
             charData.equipment = ownedItems.filter(item => item.type === "equipment");
             charData.qualities = ownedItems.filter(item => item.type === "quality");
         }
+
         console.warn("Actor: ", this.actor);
         console.warn("Main CharData: ", charData);
         console.warn("charData.type", charData.type);
@@ -93,6 +95,9 @@ export default class OneRollActorSheet extends ActorSheet {
         html.find('.power-roll').click(this._onRollPower.bind(this));
         html.find('.one-roll').click(this._onOneRoll.bind(this));
 
+        // Roll outcomes
+        html.find('.send-results').click(this._onSendResults.bind(this));
+
         let handler = (ev) => this._onDragStart(ev);
         html.find('.item-name').each((i, item) => {
             if (item.dataset && item.dataset.itemId) {
@@ -101,6 +106,23 @@ export default class OneRollActorSheet extends ActorSheet {
             }
         });
 
+    }
+
+    _onSendResults(e) {
+        e.preventDefault();
+        let s = this.actor.system.roll.pSets;
+        let l = this.actor.system.roll.pLoose;
+        let msgData = {sets:s,loose:l}
+        let msgTemplate = "systems/ore/templates/message/chatmessage.hbs";
+
+        renderTemplate(msgTemplate, msgData).then((dlg)=>{
+            ChatMessage.create({
+                user: game.user._id,
+                speaker: ChatMessage.getSpeaker(),
+                content: dlg
+            });
+        });
+        // console.log("Send results stub");
     }
 
     _onAddItem(e) {

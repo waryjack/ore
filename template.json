@@ -90,6 +90,7 @@
     },
     "Actor":{
         "types": ["major", "minor", "squad"],
+        "roll": {"pSets":"", "pLoose":""},
         "templates":{
             "stat_template":{
                 "stats":{

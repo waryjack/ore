@@ -11,6 +11,7 @@ export const preloadHandlebarsTemplates = async function() {
       "systems/ore/templates/partials/powers.hbs",
       "systems/ore/templates/partials/qualities.hbs",
       "systems/ore/templates/partials/weapons.hbs",
+      "systems/ore/templates/partials/rollresults.hbs"
     ]);
   };
   

@@ -199,7 +199,7 @@ export class OneRollDialogHelper {
                     roll: {
                      icon: '<i class="fas fa-check"></i>',
                      label: game.i18n.localize("ORE.ui.buttons.continue"),
-                     callback: (html) => {
+                     callback: async (html) => {
                         
                             let pe = 0;
                             console.warn("dialogData.type", dialogData.type);
@@ -211,8 +211,17 @@ export class OneRollDialogHelper {
                             }
                        
                             let roll = new OneRoll(rollData);
-                            roll.roll();
-                            OneRollDialogHelper.generateChatMessage(roll, "systems/ore/templates/message/chatmessage.hbs");
+                            await roll.roll();
+                            
+                            let currentActor = game.actors.get(dialogData.actor);
+                            let safeDiceImg = await new Handlebars.SafeString(roll.diceImgs);
+                            let safeLooseImg = await new Handlebars.SafeString(roll.looseImgs);
+                            foundry.utils.setProperty(currentActor, "system.roll.pSets", safeDiceImg);
+                            foundry.utils.setProperty(currentActor, "system.roll.pLoose", safeLooseImg);
+                            console.log(currentActor);
+
+                            currentActor.sheet.render(false);
+                            // OneRollDialogHelper.generateChatMessage(roll, "systems/ore/templates/message/chatmessage.hbs");
 
                             
                             // render the chat message and display it

@@ -21,9 +21,9 @@ export class OneRoll {
         this.expertDice = data.expertDice;
     }
 
-    roll() {
+    async roll() {
         
-        var rawRoll = this.buildArray(this.pool);
+        var rawRoll = await this.buildArray(this.pool);
         var rollImgs = [];
         var setImgs = [];
         var looseImgs = [];
@@ -32,6 +32,8 @@ export class OneRoll {
             rollImgs.push(`<img src="systems/ore/assets/dice_img/${this.dieType}/${this.dieType}-${i}.png" style="border:none;" height="48" width="48">`);
         });
         var parsedRoll = this.countSets(rawRoll);
+
+        console.log("Parsed Roll: ", parsedRoll);
 
         parsedRoll.sets.forEach(s => {
             let wh = s.split("x");
@@ -58,7 +60,7 @@ export class OneRoll {
 
    
 
-    buildArray(count) {
+    async buildArray(count) {
         const diceMaxes = {
             "d4": 4,
             "d6": 6,
@@ -71,8 +73,8 @@ export class OneRoll {
         var rollArr = new Array();
         let expr = "1" + this.dieType;
         for (i=0; i < count; i++){
-            let die = new Roll(expr);
-            let thisDie = die.roll({async:false});
+            // let die = new Roll(expr);
+            let thisDie = await new Roll(expr).evaluate();
             rollArr.push(thisDie.total);
         }
 		console.log("raw roll: " + rollArr);

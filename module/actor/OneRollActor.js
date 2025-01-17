@@ -48,8 +48,8 @@ export default class OneRollActor extends Actor {
         });
 
         // Check for extra stats being active
-        setProperty(charStats, "stats.ext1.active", game.settings.get("ore", "ext1Enable"));
-        setProperty(charStats, "stats.ext2.active", game.settings.get("ore", "ext2Enable"));
+        foundry.utils.setProperty(charStats, "stats.ext1.active", game.settings.get("ore", "ext1Enable"));
+        foundry.utils.setProperty(charStats, "stats.ext2.active", game.settings.get("ore", "ext2Enable"));
 
     }
 
