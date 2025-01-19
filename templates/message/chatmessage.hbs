@@ -1,19 +1,17 @@
 <form class="ore roll-dialog">
  <header class="roll-header taskroll-info">
         <h3 class="roll-name">Rolling {{displayText}} {{pool}}D</h3>
+        <p style="font-size:1.15em;"><strong>Sets</strong> {{sets}} | <strong>Loose</strong> {{loose}}</p>
 </header>
 <div class="taskroll-msg">
-    <div class="ore flexrow" >
-        <div class="ore flex-item" style="flex-grow:2; border-right:2px solid black">
+    <div class="ore flexcol" >
+        <div class="ore flex-row" style="border-bottom:1px solid black">
             <p style="text-align:left;">{{render diceImgs}}</p>
         </div>
-        <div class="ore flex-item">
+        <div class="ore flex-row">
             <p style="font-size:1em">{{render looseImgs}}</p>
         </div>
     </div>
-    
-    
-    
     <!--p style="font-size:1em"> <strong>Roll: </strong>{{allDice}}{{!--#if (eq sets "")}}None{{else}}{{sets}}{{/if--}}</p-->
 </div>
 </form>

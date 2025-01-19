@@ -16,7 +16,7 @@ export const registerSettings = function() {
             'd20': 'Use D20s'
         },
         onChange: (rule) => {
-           console.warn("New CoreDieType", game.settings.get("ore", "coreDieType"));
+         // console.warn("New CoreDieType", game.settings.get("ore", "coreDieType"));
         }
 
     });

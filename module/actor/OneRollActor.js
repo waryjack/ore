@@ -80,9 +80,9 @@ export default class OneRollActor extends Actor {
                  icon: '<i class="fas fa-check"></i>',
                  label: "Continue",
                  callback: (html) => {
-                  //  console.log("passed html: ", html); 
+                  // console.log("passed html: ", html); 
 
-                    console.warn("in callback");
+                  // console.warn("in callback");
                     
                     let statName = html.find("#statNameHidden").val();
                     let newBase = Number(html.find("#newBaseDice").val());
@@ -96,8 +96,8 @@ export default class OneRollActor extends Actor {
                     let masProp = `system.stats.${statName}.master`;
                     let defProp = `system.stats.${statName}.defname`;
 
-                    console.warn("props: ", baseProp, expProp, masProp);
-                    console.warn("newvals: ", newBase, newExpert, newMaster);
+                  // console.warn("props: ", baseProp, expProp, masProp);
+                  // console.warn("newvals: ", newBase, newExpert, newMaster);
 
                     this.update({[baseProp]:newBase});
                     this.update({[expProp]:newExpert});
@@ -127,7 +127,7 @@ export default class OneRollActor extends Actor {
     }
 
     oneRoll(type, trait) {
-        console.warn("actor oneRoll fired");
+      // console.warn("actor oneRoll fired");
         let template = "";
 
         let dialogData = {
@@ -183,10 +183,10 @@ export default class OneRollActor extends Actor {
             }
             break;
             default:{
-                console.error("Unknown roll type");
+              // console.error("Unknown roll type");
             }
         }
-        console.warn("generated dialogData", dialogData);
+      // console.warn("generated dialogData", dialogData);
         OneRollDialogHelper.generateOneRollDialog(dialogData);
     }
 
@@ -220,7 +220,7 @@ export default class OneRollActor extends Actor {
             actor: this._id
         }
 
-        console.warn("Dialog Data: ", dialogData);
+      // console.warn("Dialog Data: ", dialogData);
         OREDialogHelper.generateAbilityRollDialog(template, dialogData, actor);
 
     }
@@ -233,7 +233,7 @@ export default class OneRollActor extends Actor {
     }
 
     adjustPool(pool, dir) {
-        console.warn("adjustPool actor method");
+      // console.warn("adjustPool actor method");
         let item = this.items.get(pool);
         let thisPool = item.system;
         let poolMax = thisPool.max_points;

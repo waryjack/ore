@@ -22,7 +22,7 @@ export default class OneRollItemSheet extends ItemSheet {
         itemData.name = this.item.name;
         itemData.type = this.item.type;
         
-        console.warn("Item Data for sheet: ", itemData);
+      // console.warn("Item Data for sheet: ", itemData);
         
         return itemData;
     }

@@ -55,11 +55,11 @@ export default class OneRollActorSheet extends ActorSheet {
             charData.qualities = ownedItems.filter(item => item.type === "quality");
         }
 
-        console.warn("Actor: ", this.actor);
-        console.warn("Main CharData: ", charData);
-        console.warn("charData.type", charData.type);
-        console.warn("Chardata stats: ", charData.stats);
-        console.warn("Skill Name List: ", charData.skillNameList);
+      // console.warn("Actor: ", this.actor);
+      // console.warn("Main CharData: ", charData);
+      // console.warn("charData.type", charData.type);
+      // console.warn("Chardata stats: ", charData.stats);
+      // console.warn("Skill Name List: ", charData.skillNameList);
 
 
        
@@ -211,18 +211,18 @@ export default class OneRollActorSheet extends ActorSheet {
         let item = this.actor.items.get(itemId);
         let field = elem.dataset.field;
 
-        console.warn("Updated Item info: ", itemId, item.name, field, elem.value);
+      // console.warn("Updated Item info: ", itemId, item.name, field, elem.value);
         return item.update({[field]:elem.value});
     }
 
     // Roll Methods
     _onOneRoll(e) {
-        console.warn("onOneRoll fired");
+      // console.warn("onOneRoll fired");
         e.preventDefault();
         let elem = e.currentTarget;
         let type = elem.dataset.rollType;
         let trait = elem.dataset.rollTrait;
-        console.warn(elem, type, trait);
+      // console.warn(elem, type, trait);
         return this.actor.oneRoll(type,trait);
     }
 
@@ -235,7 +235,7 @@ export default class OneRollActorSheet extends ActorSheet {
 
     _onRollStat(e) {
         e.preventDefault();
-        console.warn("onRollStat fired");
+      // console.warn("onRollStat fired");
         let elem = e.currentTarget;
         let statToRoll = elem.dataset.statToRoll;
         return this.actor.rollStatOrSkill(statToRoll, "stat");
@@ -243,7 +243,7 @@ export default class OneRollActorSheet extends ActorSheet {
 
     _onRollSkill(e) {
         e.preventDefault();
-        console.warn("onRollSkill fired");
+      // console.warn("onRollSkill fired");
         let elem = e.currentTarget;
         let skillToRoll = elem.dataset.skillToRoll;
         return this.actor.rollStatOrSkill(skillToRoll, "skill");
@@ -252,7 +252,7 @@ export default class OneRollActorSheet extends ActorSheet {
 
     _onRollPower(e) {
         e.preventDefault();
-        console.warn("onRollPower fired");
+      // console.warn("onRollPower fired");
         let elem = e.currentTarget;
         let powerToRoll = elem.dataset.powerToRoll;
         return this.actor.rollPower(powerToRoll);
@@ -260,44 +260,44 @@ export default class OneRollActorSheet extends ActorSheet {
 
     _addHitBox(e) {
         e.preventDefault();
-        console.warn("adding hit box");
+      // console.warn("adding hit box");
         let elem = e.currentTarget;
         let max = elem.dataset.max; // system.hitlocs.head.box_max
         let currboxmax = getProperty(this.actor, max);
         let states = elem.dataset.states; // system.hitlocs.head.boxstates
         let stateArray = getProperty(this.actor, states);
 
-       console.warn("Max Boxes string: ", max);
-       console.warn("States string: ", states);
-       console.warn("State array before: ", stateArray);
+     // console.warn("Max Boxes string: ", max);
+     // console.warn("States string: ", states);
+     // console.warn("State array before: ", stateArray);
        stateArray.push("h");
-       console.warn("State Array after: ", stateArray);
-       console.warn("Curr Box Before: ", currboxmax);
+     // console.warn("State Array after: ", stateArray);
+     // console.warn("Curr Box Before: ", currboxmax);
        currboxmax++;
-       console.warn("Curr Box After: ", currboxmax);
+     // console.warn("Curr Box After: ", currboxmax);
        this.actor.update({[max]:currboxmax});
        this.actor.update({[states]:stateArray});
     }
 
     _delHitBox(e) {
         e.preventDefault();
-        console.warn("adding hit box");
+      // console.warn("adding hit box");
         let elem = e.currentTarget;
         let max = elem.dataset.max; // system.hitlocs.head.box_max
         let currboxmax = getProperty(this.actor, max);
         let states = elem.dataset.states; // system.hitlocs.head.boxstates
         let stateArray = getProperty(this.actor, states);
 
-       console.warn("Max Boxes string: ", max);
-       console.warn("States string: ", states);
-       console.warn("State array before: ", stateArray);
+     // console.warn("Max Boxes string: ", max);
+     // console.warn("States string: ", states);
+     // console.warn("State array before: ", stateArray);
        let removed = stateArray.pop();
-       console.warn("State Array after: ", stateArray);
-       console.warn("Curr Box Before: ", currboxmax);
-       console.warn("REmoved: ", removed);
+     // console.warn("State Array after: ", stateArray);
+     // console.warn("Curr Box Before: ", currboxmax);
+     // console.warn("REmoved: ", removed);
        currboxmax--;
        currboxmax = Math.max(1, currboxmax);
-       console.warn("Curr Box After: ", currboxmax);
+     // console.warn("Curr Box After: ", currboxmax);
        this.actor.update({[max]:currboxmax});
        this.actor.update({[states]:stateArray});
 
@@ -305,12 +305,12 @@ export default class OneRollActorSheet extends ActorSheet {
 
     _onCycleHitBox(e) {
         e.preventDefault();
-        console.warn("cycling hit box");
+      // console.warn("cycling hit box");
         let elem = e.currentTarget;
         let hitLocation = elem.dataset.loc;
         let position = elem.dataset.pos;
 
-        console.warn("clicked location: ", hitLocation, "box position: ", position);
+      // console.warn("clicked location: ", hitLocation, "box position: ", position);
         
         let currBoxArray = this.actor.system.hitlocs[hitLocation].boxstates;
         let currBoxState = currBoxArray[position];
@@ -334,7 +334,7 @@ export default class OneRollActorSheet extends ActorSheet {
     }
 
     _onEditStat(e){
-        console.warn("editStat fired");
+      // console.warn("editStat fired");
         e.preventDefault();
         let elem = e.currentTarget;
         let statClicked = elem.dataset.stat;
@@ -342,13 +342,13 @@ export default class OneRollActorSheet extends ActorSheet {
     }
 
     _onAdjustPool(e) {
-        console.warn("adjustPool fired");
+      // console.warn("adjustPool fired");
         e.preventDefault();
         let elem = e.currentTarget;
         let dir = elem.dataset.dir;
         let poolId = elem.dataset.poolId;
         let poolObj = this.actor.items.get(poolId);
-        console.warn("Pool selected: ", poolObj);
+      // console.warn("Pool selected: ", poolObj);
         return poolObj.adjustPool(dir);
     }
 }

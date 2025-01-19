@@ -14,13 +14,13 @@ export class OneRollDialogHelper {
      * @param trait {String} - not used at this time
      */
     static countExpertDice(chosenStat, chosenSkill, actorId, trait) {
-        console.warn("incoming countExpert data: ", chosenStat, chosenSkill, actorId, trait);
+      // console.warn("incoming countExpert data: ", chosenStat, chosenSkill, actorId, trait);
         let chosenSkillEd = 0;
         let chosenStatEd = 0;
         let displayMode = "";
         if(chosenSkill != "none") {
             let chosenSkillObj = game.actors.get(actorId).items.get(chosenSkill);
-            console.warn("countexpertdice chosenskill: ", chosenSkillObj);
+          // console.warn("countexpertdice chosenskill: ", chosenSkillObj);
             chosenSkillEd = chosenSkillObj.system.dice.expert;
         } else {
             chosenSkillEd = 0;
@@ -54,7 +54,7 @@ export class OneRollDialogHelper {
         let actor = game.actors.get(actorId);
         let power = actor.items.get(trait);
         let powerName = power.name;
-        console.warn("Power data: ", power);
+      // console.warn("Power data: ", power);
         let base = power.system.dice.base;
         let poolMod = Number(html.find("#poolMod").val());
         let edValues = html.find("#setEd").val();
@@ -102,7 +102,7 @@ export class OneRollDialogHelper {
     // get skill data if it's a skill roll
         if(chosenSkill != "none") {
             chosenSkillObj = actor.items.get(chosenSkill);
-            console.warn("skill obj ", chosenSkillObj);
+          // console.warn("skill obj ", chosenSkillObj);
             chosenSkillVal = chosenSkillObj.system.dice.base;
             chosenSkillEd = chosenSkillObj.system.dice.expert;
             chosenSkillMaster = chosenSkillObj.system.dice.master;
@@ -113,8 +113,8 @@ export class OneRollDialogHelper {
         chosenStatVal = actor.system.stats[chosenStat].base;
         chosenStatEd = actor.system.stats[chosenStat].expert;
         chosenStatMaster = actor.system.stats[chosenStat].master;
-        console.log("actor: ", actor);
-        console.log("chosen master dice: ", chosenStat, chosenStatMaster, actor.system.stats[chosenStat]);
+      // console.log("actor: ", actor);
+      // console.log("chosen master dice: ", chosenStat, chosenStatMaster, actor.system.stats[chosenStat]);
 
     // get number of expert dice to send to Roll object
         let expDiceSum = chosenStatEd + chosenSkillEd;
@@ -134,7 +134,7 @@ export class OneRollDialogHelper {
         masterFlag = false;
     }
 
-    console.log("masterFlag: ", masterFlag);
+  // console.log("masterFlag: ", masterFlag);
 
     // package data for dice roller                                                    
         let rollData = {
@@ -160,13 +160,13 @@ export class OneRollDialogHelper {
 
     static generateChatMessage(roll, template) {
         
-        console.warn("Roll: ", roll);
+      // console.warn("Roll: ", roll);
         
         renderTemplate(template, roll).then((dlg) => {
             ChatMessage.create({
                 user: game.user._id,
-             // roll: data.roll,
-            //  type:CONST.CHAT_MESSAGE_TYPES.ROLL,
+                // rolls: [roll],
+                type:CONST.CHAT_MESSAGE_STYLES.ROLL,
                 speaker: ChatMessage.getSpeaker(),
                 content: dlg
             });
@@ -203,7 +203,7 @@ export class OneRollDialogHelper {
     }
 
     static generateOneRollDialog(dialogData) {
-    console.warn("generateOneRollDialog fired");
+  // console.warn("generateOneRollDialog fired");
         let template = dialogData.template;
         let rollData = {};
         
@@ -226,23 +226,23 @@ export class OneRollDialogHelper {
                             } else {
                                 rollData = this.buildTraitRollData(html, dialogData.actor, dialogData.trait);
                             }
-                            console.log("Rolldata: ", rollData);
+                          // console.log("Rolldata: ", rollData);
                             let theRoll = new OneRoll(rollData);
                             await theRoll.roll();
-                            console.log("Roll prior to interruption: ", theRoll);
+                          // console.log("Roll prior to interruption: ", theRoll);
                             let currentActor = game.actors.get(dialogData.actor);
                             let safeDiceImg = await new Handlebars.SafeString(theRoll.diceImgs);
                             let safeLooseImg = await new Handlebars.SafeString(theRoll.looseImgs);
                             foundry.utils.setProperty(currentActor, "system.roll.pSets", safeDiceImg);
                             foundry.utils.setProperty(currentActor, "system.roll.pLoose", safeLooseImg);
-                            console.log(currentActor);
+                          // console.log(currentActor);
 
                             //todo - build and render a template and pass in data including the "hasMaster" value, for reparsing the roll
                             if(theRoll.hasMaster) {
-                                let dhtml = "You have a master die. Select the desired value!<br/>";
-                                dhtml += safeDiceImg + " | ";
-                                dhtml += safeLooseImg + " | ";
-                                dhtml += "<select name='masterval' id='masterval'>"
+                                let dhtml = "<div class='ore flexrow'><p style='align:center;'><b>You have a master die. Select the desired value!</b></p></div>";
+                                dhtml += "<div class='ore flexrow'><div class='ore flex-item'><h2>Sets</h2> (" + theRoll.sets + ")<br/>" + safeDiceImg + "</div>";
+                                dhtml += "<div class='ore flex-item'><h2>Loose</h2> (" + theRoll.loose + ")<br/>" + safeLooseImg + "</div>";
+                                dhtml += "<div class='ore flex-item'><h2>Master Die</h2><select name='masterval' id='masterval'>"
                                 let selOpts = "";
                                 const diceMaxes = {
                                     "d4": 4,
@@ -258,7 +258,7 @@ export class OneRollDialogHelper {
                                     selOpts += `<option value='${i}'>${i}</option>`;
                                 }
                                 dhtml += selOpts;
-                                dhtml += "</select>";
+                                dhtml += "</select></div></div>";
                             
                                 //get master value in a dialog
                                 new Dialog({
@@ -269,7 +269,7 @@ export class OneRollDialogHelper {
                                             icon: '<i class="fas fa-check"></i>',
                                             label: game.i18n.localize("ORE.ui.buttons.continue"),
                                             callback: (masterHtml) => { 
-                                                console.log("in callback: ", theRoll);
+                                              // console.log("in callback: ", theRoll);
                                                 let masterval = Number(masterHtml.find("#masterval").val());
                                                 theRoll.rawRoll.push(masterval);
                                                 let newSets = theRoll.countSets(theRoll.rawRoll);
@@ -310,11 +310,11 @@ export class OneRollDialogHelper {
                     // get the key selector objects
                     const statSelector = html[0].querySelector("#selStat");
                     const skillSelector = html[0].querySelector("#selSkill");
-                    console.warn("DialogData in Render key: ", dialogData);
+                  // console.warn("DialogData in Render key: ", dialogData);
                                         
                     // Get initial state for the expert dice div based on default selected expert dice
                     let display = OneRollDialogHelper.onSelectorChange(html, dialogData.actor, dialogData.trait);
-                    console.warn("display: ", display);
+                  // console.warn("display: ", display);
                     if(dialogData.rollType == 3 && dialogData.powerExpert > 0) {
                         display = 'block'
                     }
@@ -344,8 +344,8 @@ export class OneRollDialogHelper {
 
     static generateBasicRollDialog(inPool = 0, inName="Basic", actor="") {
 
-        console.warn("generate dialog called");
-        console.warn("inName: ", inName);
+      // console.warn("generate dialog called");
+      // console.warn("inName: ", inName);
 
         /**
          * TODO: make this a template for easier
@@ -368,9 +368,9 @@ export class OneRollDialogHelper {
                      icon: '<i class="fas fa-check"></i>',
                      label: "Continue",
                      callback: (html) => {
-                      //  console.log("passed html: ", html); 
+                      // console.log("passed html: ", html); 
 
-                      console.warn("in callback");
+                    // console.warn("in callback");
                         
                         let pool = Number(html.find("#poolVal").val());
                         let expertDice = html.find("#setEd").val();

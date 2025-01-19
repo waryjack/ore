@@ -13,7 +13,7 @@ import { registerSettings } from "./settings.js";
 // Initialize system
 
 Hooks.once("init", () => {
-    console.log("ore | Initializing One Roll Engine");
+  // console.log("ore | Initializing One Roll Engine");
 
     CONFIG.ore = ORE; 
 

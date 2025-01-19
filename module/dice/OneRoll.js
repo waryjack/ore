@@ -13,7 +13,7 @@ export class OneRoll {
      */
 
     constructor(data) {
-        console.warn("OneRoll received data: ", data);
+      // console.warn("OneRoll received data: ", data);
         this.pool = data.rollPool;
         this.actor = data.actor;
         this.dieType = data.dieType;
@@ -71,12 +71,12 @@ export class OneRoll {
 
         if(this.expertDice != "--" && this.expertDice.length != 0 && !this.expertAlreadyCounted) {
             let expertDiceArray = this.expertDice.split(",");
-            console.log("expert dice array: ", expertDiceArray);
+          // console.log("expert dice array: ", expertDiceArray);
             expertDiceArray.forEach(i => {
                 
                 let iVal = Number(i);
-                console.log("expert dice array i: ", i, "iVal: ", iVal);
-                console.log("typeof iVal: ", typeof iVal);
+              // console.log("expert dice array i: ", i, "iVal: ", iVal);
+              // console.log("typeof iVal: ", typeof iVal);
                 if(typeof iVal == "number") {
                     rollArr.push(iVal);
                 }
@@ -92,7 +92,7 @@ export class OneRoll {
     }
 
     countSets(raw) {
-        console.warn("Raw Array: ", raw);
+      // console.warn("Raw Array: ", raw);
 
         const diceFaces = {
             "d6": 6,
@@ -131,7 +131,7 @@ export class OneRoll {
         var looseImgs = [];
         // var parsedRoll = this.countSets(this.rawRoll);
 
-        console.log("Parsed Roll: ", parsedRoll);
+      // console.log("Parsed Roll: ", parsedRoll);
 
         parsedRoll.sets.forEach(s => {
             let wh = s.split("x");
@@ -152,7 +152,7 @@ export class OneRoll {
         this.loose = parsedRoll.loose.toString();
         this.diceImgs = setImgs.join("").toString();
         this.looseImgs = looseImgs.join("").toString();
-        console.log("Set Images: ", setImgs);
+      // console.log("Set Images: ", setImgs);
         return parsedRoll;
         
     }
