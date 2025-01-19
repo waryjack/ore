@@ -12,6 +12,8 @@ export class OneRoll {
                             }
      */
 
+    // TODO: custom Dice-so-nice integration; low priority
+
     constructor(data) {
       // console.warn("OneRoll received data: ", data);
         this.pool = data.rollPool;
