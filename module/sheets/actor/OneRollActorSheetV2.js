@@ -8,7 +8,7 @@ export default class OneRollActorSheet extends ActorSheet {
     }
 
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ['ore', 'sheet', 'actor', 'actor-sheet'],
             width: 775,
             height: 685,
@@ -23,7 +23,7 @@ export default class OneRollActorSheet extends ActorSheet {
      */
 
     getData() {
-        const charData = deepClone(this.actor.system);
+        const charData = foundry.utils.deepClone(this.actor.system);
 
         charData.config = CONFIG.ORE;
         charData.actor = this.actor;

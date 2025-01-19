@@ -6,7 +6,7 @@ export default class OneRollItemSheet extends ItemSheet {
     }
 
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ['ore', 'sheet', 'item', 'item-sheet'],
             width: 480,
             height: 240,

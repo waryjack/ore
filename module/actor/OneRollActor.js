@@ -44,7 +44,7 @@ export default class OneRollActor extends Actor {
                 finalStateArray = stateArray;
             }
             // console.warn("Location: ", element, "State Array: ", finalStateArray);
-            setProperty(charStats, `hitlocs.${element}.boxstates`, finalStateArray);
+            foundry.utils.setProperty(charStats, `hitlocs.${element}.boxstates`, finalStateArray);
         });
 
         // Check for extra stats being active

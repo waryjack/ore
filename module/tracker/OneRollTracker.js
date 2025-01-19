@@ -6,7 +6,7 @@ export class OneRollTrackWindow extends Application {
     }
 
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ['ore', 'sheet', 'app', 'window-app'],
             width: 775,
             height: 685,
