@@ -1,28 +1,44 @@
 // duplicate of actor sheet to work on AppV2 conversion
 
-export default class OneRollActorSheet extends ActorSheet {
+export default class OneRollActorSheet extends ActorSheetV2 {
 
     get template() {
         const path = 'systems/ore/templates/actor/';
         return `${path}${this.actor.type}sheet.hbs`;
     }
 
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            classes: ['ore', 'sheet', 'actor', 'actor-sheet'],
-            width: 775,
-            height: 685,
-            left:120,
-            tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheetbody", initial: "main"}],
-            dragDrop: [{dragSelector: ".dragline", dropSelector: null}]
-            });
+    static DEFAULT_OPTIONS = {
+        id: "actorsheet",
+        position:{
+          width: 775,
+          height:685,
+          left:120
+        },
+        tag:"div",
+        window:{title:"Actor Sheet V2"},
+      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheetbody", initial: "main"}],
+      dragDrop: [{dragSelector: ".dragline", dropSelector: null}],
+      actions: {
+        editStat: OneRollActorSheet.editStat,
+        addItem: OneRollActorSheet.addItem,
+        rollStat: OneRollActorSheet.rollStat,
+        rollBasic: OneRollActorSheet.rollBasic
+      }
+    }
+
+    static PARTS = {
+      template: "systems/ore/templates/actor/majorsheet.hbs"
+    }
+
+    get title() {
+      return `ORE: ${this.options.window.title}`;
     }
 
     /**
      * @override
      */
 
-    getData() {
+    _prepareContext() {
         const charData = foundry.utils.deepClone(this.actor.system);
 
         charData.config = CONFIG.ORE;
@@ -72,7 +88,8 @@ export default class OneRollActorSheet extends ActorSheet {
     /**
      * @override
      */
-     activateListeners(html) {
+     _onRender(context) {
+        const html = $(this.element);
         super.activateListeners(html);
         // Everything below here is only needed if the sheet is editable
         if (!this.options.editable) return;
@@ -111,7 +128,7 @@ export default class OneRollActorSheet extends ActorSheet {
 
     }
 
-    _onSendResults(e) {
+    sendResults(e) {
         e.preventDefault();
         let s = this.actor.system.roll.pSets;
         let l = this.actor.system.roll.pLoose;
@@ -128,7 +145,7 @@ export default class OneRollActorSheet extends ActorSheet {
         // console.log("Send results stub");
     }
 
-    _onSetMaster(e) {
+    static setMaster(e) {
         e.preventDefault();
         let elem = e.currentTarget;
         let masterVal = 0;
@@ -146,7 +163,7 @@ export default class OneRollActorSheet extends ActorSheet {
 
     }
 
-    _onAddItem(e) {
+    static addItem(e) {
         e.preventDefault();
         
         let elem = e.currentTarget;
@@ -162,7 +179,7 @@ export default class OneRollActorSheet extends ActorSheet {
         
     }
 
-    _onDeleteItem(e) {
+    static deleteItem(e) {
         e.preventDefault();
         let elem = e.currentTarget;
         let itemId = elem.closest(".item").dataset.itemId;
@@ -193,7 +210,7 @@ export default class OneRollActorSheet extends ActorSheet {
 
     }
 
-    _onEditItem(e) {
+    static editItem(e) {
         e.preventDefault();
 
         let elem = e.currentTarget;
@@ -206,7 +223,7 @@ export default class OneRollActorSheet extends ActorSheet {
 
     }
 
-    _onSheetEditItem(e) {
+    static sheetEditItem(e) {
         e.preventDefault();
         let elem = e.currentTarget;
         let itemId = elem.closest(".item").dataset.itemId;
@@ -218,7 +235,7 @@ export default class OneRollActorSheet extends ActorSheet {
     }
 
     // Roll Methods
-    _onOneRoll(e) {
+    static oneRoll(e) {
       // console.warn("onOneRoll fired");
         e.preventDefault();
         let elem = e.currentTarget;
@@ -229,13 +246,13 @@ export default class OneRollActorSheet extends ActorSheet {
     }
 
     // trigger the basic, non-pre-populated roll dialog
-    _onRollBasic(e) {
+    static rollBasic(e) {
         e.preventDefault();
         let element = e.currentTarget;
         return this.actor.RollBasicPool();
     }
 
-    _onRollStat(e) {
+    static rollStat(e) {
         e.preventDefault();
       // console.warn("onRollStat fired");
         let elem = e.currentTarget;
@@ -243,7 +260,7 @@ export default class OneRollActorSheet extends ActorSheet {
         return this.actor.rollStatOrSkill(statToRoll, "stat");
     }
 
-    _onRollSkill(e) {
+    static rollSkill(e) {
         e.preventDefault();
       // console.warn("onRollSkill fired");
         let elem = e.currentTarget;
@@ -252,7 +269,7 @@ export default class OneRollActorSheet extends ActorSheet {
         
     }
 
-    _onRollPower(e) {
+    static rollPower(e) {
         e.preventDefault();
       // console.warn("onRollPower fired");
         let elem = e.currentTarget;
@@ -260,7 +277,7 @@ export default class OneRollActorSheet extends ActorSheet {
         return this.actor.rollPower(powerToRoll);
     }
 
-    _addHitBox(e) {
+    static addHitBox(e) {
         e.preventDefault();
       // console.warn("adding hit box");
         let elem = e.currentTarget;
@@ -281,7 +298,7 @@ export default class OneRollActorSheet extends ActorSheet {
        this.actor.update({[states]:stateArray});
     }
 
-    _delHitBox(e) {
+    static delHitBox(e) {
         e.preventDefault();
       // console.warn("adding hit box");
         let elem = e.currentTarget;
@@ -305,7 +322,7 @@ export default class OneRollActorSheet extends ActorSheet {
 
     }
 
-    _onCycleHitBox(e) {
+    static cycleHitBox(e) {
         e.preventDefault();
       // console.warn("cycling hit box");
         let elem = e.currentTarget;
@@ -330,12 +347,12 @@ export default class OneRollActorSheet extends ActorSheet {
         return this.actor.update({[`system.hitlocs.${hitLocation}.boxstates`]:currBoxArray});
     }
 
-    _onRollBasic(e) {
+    static rollBasic(e) {
         e.preventDefault();
         return this.actor.basicRoll();
     }
 
-    _onEditStat(e){
+    static editStat(e, target){
       // console.warn("editStat fired");
         e.preventDefault();
         let elem = e.currentTarget;
@@ -343,7 +360,7 @@ export default class OneRollActorSheet extends ActorSheet {
         return this.actor.editStat(statClicked);
     }
 
-    _onAdjustPool(e) {
+    static adjustPool(e) {
       // console.warn("adjustPool fired");
         e.preventDefault();
         let elem = e.currentTarget;

@@ -1,0 +1,84 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="ore sheethead">
+        <div class="ore header-flexitem">
+        <img class="profile-img" style="min-width:64px !important; min-height:64px !important" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
+        </div>
+        <div class="ore header-flexitem name-block">
+            <div class="charname">
+                <input class="ore charname" style="width:50%; vertical-align:top; background:#f1e9db;" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
+                <div class="form-group" style="float:right; color:white;">
+                </div>
+            </div>
+
+        </div>
+       <div class="ore flexcol">
+        <div style="align-items:flex-start;"><a class="basic-roll roll-icon" data-action="rollBasic" style="margin:0px !important;"><i class="fa-solid fa-dice-d20"></i></a></div>
+
+        </div>
+
+    </header>
+{{!-- Sheet Tab Navigation --}}
+    <nav class="ore sheet-tabs tabs" data-group="primary">
+        <a class="ore item" style="font-family:'Aboreto', sans-serif; font-weight:700; font-size:1.25em;" data-tab="main">{{localize "ORE.gen.charsheet.tabs.essentials"}}</a>
+        <a class="ore item" style="font-family:'Aboreto', sans-serif; font-weight:700; font-size:1.25em;" data-tab="gear">{{localize "ORE.gen.charsheet.tabs.inventory"}}</a>
+        <!--a class="ore item" data-tab="misc">{{localize "ORE.gen.charsheet.tabs.miscellaneous"}}</a-->
+    </nav>
+
+    <section class="sheetbody">
+        <div class="tab main" data-group="primary" data-tab="main">
+            <div class="ore flexcol"> {{!--Outermost Flex Container--}}
+                <div class="ore flexrow">
+                    {{> 'systems/ore/templates/partials/stats-h.hbs'}}
+                </div>
+                
+                <div class="ore flexrow">
+                    
+                    {{> 'systems/ore/templates/partials/skills.hbs'}}
+                    {{> 'systems/ore/templates/partials/qualities.hbs'}}
+                    {{!--> 'systems/ore/templates/partials/powers.hbs'--}}
+                    {{> 'systems/ore/templates/partials/hitlocs.hbs'}}
+                     
+                </div>
+                <div class="ore flexrow">
+                    
+                        
+                        {{!--> 'systems/ore/templates/partials/armor.hbs'--}}
+                      {{> 'systems/ore/templates/partials/weapons.hbs'}}
+                        {{> 'systems/ore/templates/partials/pools.hbs'}}
+                        
+                    </div>
+                <div class="ore flexrow">
+                </div>
+                
+            </div>
+        </div>
+        <div class="tab gear" data-group="primary" data-tab="gear">
+            <div class="ore flexcol">
+                <div class="ore flexrow">
+                    
+                    {{> 'systems/ore/templates/partials/equipment.hbs'}}
+                    
+                </div>
+            </div>
+        </div>
+        <!--div class="tab misc" data-group="primary" data-tab="misc">
+            <div class="ore flexcol">
+                <div class="ore flexrow">
+                     <div class="ore flex-item">
+                         <h3 class="traitsheet-header"><div>{{localize "Miscellaneous Info"}}</div>
+                    </h3>
+                    </div>
+                    <div class="ore flex-item edit-cont">
+                        {{editor backstory target="system.bio.char_bio_text" button=true owner=owner editable="editable"}}
+                    </div>
+                </div>
+                <div class="ore flexrow">
+                    
+                </div>
+
+            </div>
+        </div-->
+
+    </section>
+</form>
+
