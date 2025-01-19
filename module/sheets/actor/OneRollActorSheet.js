@@ -97,6 +97,7 @@ export default class OneRollActorSheet extends ActorSheet {
 
         // Roll outcomes
         html.find('.send-results').click(this._onSendResults.bind(this));
+        html.find('.set-master').click(this._onSetMaster.bind(this));
 
         let handler = (ev) => this._onDragStart(ev);
         html.find('.item-name').each((i, item) => {
@@ -123,6 +124,24 @@ export default class OneRollActorSheet extends ActorSheet {
             });
         });
         // console.log("Send results stub");
+    }
+
+    _onSetMaster(e) {
+        e.preventDefault();
+        let elem = e.currentTarget;
+        let masterVal = 0;
+        const diceMaxes = {
+            "d4": 4,
+            "d6": 6,
+            "d8": 8,
+            "d10": 10,
+            "d12": 12,
+            "d20": 20
+        }
+        let dieType = game.settings.get("ore", "coreDieType");
+        let dieMax = diceMaxes[dieType];
+
+
     }
 
     _onAddItem(e) {

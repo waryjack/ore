@@ -19,46 +19,34 @@ export class OneRoll {
         this.dieType = data.dieType;
         this.displayText = data.displayText;
         this.expertDice = data.expertDice;
+        this.hasMaster = data.hasMaster;
+        this.expertAlreadyCounted = false;
+        this.rawRoll = [];
+        this.parsedRoll = [];
     }
 
     async roll() {
+       // var rollImgs = [];
+        // take the initial roll information and create a sorted array of rolls
+        // including any expert dice that were selected in the initial roll dialog
         
-        var rawRoll = await this.buildArray(this.pool);
-        var rollImgs = [];
-        var setImgs = [];
-        var looseImgs = [];
+        let rawRoll = await this.buildArray(this.pool);
 
-        rawRoll.forEach(i => {
+        // send the rawRoll array to counted into sets
+        let setsFound = this.countSets(rawRoll);
+
+        //take the now-counted sets, and convert them into image strings for display
+        let parsedRoll = this.parseRoll(setsFound);
+
+        /* rawRoll.forEach(i => {
             rollImgs.push(`<img src="systems/ore/assets/dice_img/${this.dieType}/${this.dieType}-${i}.png" style="border:none;" height="48" width="48">`);
-        });
-        var parsedRoll = this.countSets(rawRoll);
+        });*/ 
 
-        console.log("Parsed Roll: ", parsedRoll);
-
-        parsedRoll.sets.forEach(s => {
-            let wh = s.split("x");
-            let w = wh[0];
-            let h = wh[1];
-            for(let x = 0; x<w; x++) {
-                setImgs.push(`<img src="systems/ore/assets/dice_img/${this.dieType}/${this.dieType}-${h}.png" style="border:none;" height="40" width="40">`);
-            }
-            setImgs.push("<br/>");
-        });
-
-        parsedRoll.loose.forEach(l => {
-            looseImgs.push(`<img src="systems/ore/assets/dice_img/${this.dieType}/${this.dieType}-${l}.png" style="border:none; filter:opacity(50%)" height="32" width="32">`);
-        })
-
-        console.log("Set Images: ", setImgs);
-        this.allDice = rawRoll;
-        this.sets = parsedRoll.sets.toString();
-        this.loose = parsedRoll.loose.toString();
-        this.diceImgs = setImgs.join("").toString();
-        this.looseImgs = looseImgs.join("").toString();
-
+        this.rawRoll = rawRoll;
+        this.parsedRoll = parsedRoll;
+        
+       
     }
-
-   
 
     async buildArray(count) {
         const diceMaxes = {
@@ -81,7 +69,7 @@ export class OneRoll {
 
         // add expert dice, if any
 
-        if(this.expertDice != "--" && this.expertDice.length != 0) {
+        if(this.expertDice != "--" && this.expertDice.length != 0 && !this.expertAlreadyCounted) {
             let expertDiceArray = this.expertDice.split(",");
             console.log("expert dice array: ", expertDiceArray);
             expertDiceArray.forEach(i => {
@@ -94,9 +82,11 @@ export class OneRoll {
                 }
                 
             })
-
+            this.expertAlreadyCounted = true;
 
         }
+        
+
         return rollArr.sort();
 
     }
@@ -133,6 +123,41 @@ export class OneRoll {
 		
         return rollFinal;
 		
+
+    }
+
+    parseRoll(parsedRoll) {
+        var setImgs = [];
+        var looseImgs = [];
+        // var parsedRoll = this.countSets(this.rawRoll);
+
+        console.log("Parsed Roll: ", parsedRoll);
+
+        parsedRoll.sets.forEach(s => {
+            let wh = s.split("x");
+            let w = wh[0];
+            let h = wh[1];
+            for(let x = 0; x<w; x++) {
+                setImgs.push(`<img src="systems/ore/assets/dice_img/${this.dieType}/${this.dieType}-${h}.png" style="border:none;" height="40" width="40">`);
+            }
+            setImgs.push("<br/>");
+        });
+
+        parsedRoll.loose.forEach(l => {
+            looseImgs.push(`<img src="systems/ore/assets/dice_img/${this.dieType}/${this.dieType}-${l}.png" style="border:none; filter:opacity(50%)" height="32" width="32">`);
+        })
+
+        this.allDice = this.rawRoll;
+        this.sets = parsedRoll.sets.toString();
+        this.loose = parsedRoll.loose.toString();
+        this.diceImgs = setImgs.join("").toString();
+        this.looseImgs = looseImgs.join("").toString();
+        console.log("Set Images: ", setImgs);
+        return parsedRoll;
+        
+    }
+
+    addMasterDie(val) {
 
     }
 

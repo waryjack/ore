@@ -92,9 +92,12 @@ export class OneRollDialogHelper {
         let chosenStatVal = 0;
         let chosenSkillVal = 0;
         let chosenSkillEd = 0;
+        let chosenSkillMaster = 0;
         let chosenStatEd = 0;
+        let chosenStatMaster = 0;
         let chosenSkillObj = {};
         let chosenSkillText = "";
+        let masterFlag = false;
 
     // get skill data if it's a skill roll
         if(chosenSkill != "none") {
@@ -102,12 +105,16 @@ export class OneRollDialogHelper {
             console.warn("skill obj ", chosenSkillObj);
             chosenSkillVal = chosenSkillObj.system.dice.base;
             chosenSkillEd = chosenSkillObj.system.dice.expert;
+            chosenSkillMaster = chosenSkillObj.system.dice.master;
             chosenSkillText = " + " + chosenSkillObj.name;
         }
         
     // get stat data 
         chosenStatVal = actor.system.stats[chosenStat].base;
         chosenStatEd = actor.system.stats[chosenStat].expert;
+        chosenStatMaster = actor.system.stats[chosenStat].master;
+        console.log("actor: ", actor);
+        console.log("chosen master dice: ", chosenStat, chosenStatMaster, actor.system.stats[chosenStat]);
 
     // get number of expert dice to send to Roll object
         let expDiceSum = chosenStatEd + chosenSkillEd;
@@ -120,6 +127,15 @@ export class OneRollDialogHelper {
         let dtype = game.settings.get("ore", "coreDieType");
         let statSkillText = game.settings.get("ore", chosenStat) + chosenSkillText;
 
+    // figure out if there are master dice involved and flag
+    if (chosenSkillMaster != 0 || chosenStatMaster != 0) {
+        masterFlag = true;
+    } else {
+        masterFlag = false;
+    }
+
+    console.log("masterFlag: ", masterFlag);
+
     // package data for dice roller                                                    
         let rollData = {
             rollPool: pool,
@@ -128,7 +144,8 @@ export class OneRollDialogHelper {
             dieType: dtype,
             displayText: statSkillText,
             expertDice: edValues,
-            maxPool: maxPoolSize
+            maxPool: maxPoolSize,
+            hasMaster: masterFlag
         }
 
         return rollData;
@@ -202,26 +219,58 @@ export class OneRollDialogHelper {
                      callback: async (html) => {
                         
                             let pe = 0;
-                            console.warn("dialogData.type", dialogData.type);
+                           // console.warn("dialogData.type", dialogData.type);
                             if(dialogData.rollType == 3) {
                                 rollData = this.buildPowerRollData(html, dialogData.actor, dialogData.trait);
                                 pe = dialogData.powerExpert;
                             } else {
                                 rollData = this.buildTraitRollData(html, dialogData.actor, dialogData.trait);
                             }
-                       
-                            let roll = new OneRoll(rollData);
-                            await roll.roll();
-                            
+                            console.log("Rolldata: ", rollData);
+                            let theRoll = new OneRoll(rollData);
+                            await theRoll.roll();
+                            console.log("Roll prior to interruption: ", theRoll);
                             let currentActor = game.actors.get(dialogData.actor);
-                            let safeDiceImg = await new Handlebars.SafeString(roll.diceImgs);
-                            let safeLooseImg = await new Handlebars.SafeString(roll.looseImgs);
+                            let safeDiceImg = await new Handlebars.SafeString(theRoll.diceImgs);
+                            let safeLooseImg = await new Handlebars.SafeString(theRoll.looseImgs);
                             foundry.utils.setProperty(currentActor, "system.roll.pSets", safeDiceImg);
                             foundry.utils.setProperty(currentActor, "system.roll.pLoose", safeLooseImg);
                             console.log(currentActor);
 
-                            currentActor.sheet.render(false);
-                            // OneRollDialogHelper.generateChatMessage(roll, "systems/ore/templates/message/chatmessage.hbs");
+                            //todo - build and render a template and pass in data including the "hasMaster" value, for reparsing the roll
+                            if(theRoll.hasMaster) {
+                                //get master value in a dialog
+                                new Dialog({
+                                    title: "Select Value of Master Die",
+                                    content: "You have a master die. Select the desired value.<br/>"+safeDiceImg+"<br/>"+safeLooseImg,
+                                    buttons: {
+                                        roll: {
+                                            icon: '<i class="fas fa-check"></i>',
+                                            label: game.i18n.localize("ORE.ui.buttons.continue"),
+                                            callback: () => { 
+                                                console.log("in callback: ", theRoll);
+                                                let masterval = 7;
+                                                theRoll.rawRoll.push(masterval);
+                                                let newSets = theRoll.countSets(theRoll.rawRoll);
+                                                theRoll.parseRoll(newSets)
+                                                OneRollDialogHelper.generateChatMessage(theRoll, "systems/ore/templates/message/chatmessage.hbs"); 
+                                            }
+                                        },
+                                        close: {
+                                            icon: '<i class="fas fa-times"></i>',
+                                            label: game.i18n.localize("ORE.ui.buttons.cancel"),
+                                            callback: () => { return; }
+                                        }
+                                    },
+                                    default:"close",
+                                }).render(true);
+                                /* let selectedMasterVal = 0;
+                                roll.rawRoll.push = selectedMasterVal;
+                                roll.parseRoll();*/
+                            }
+
+                            // currentActor.sheet.render(false);
+                            OneRollDialogHelper.generateChatMessage(theRoll, "systems/ore/templates/message/chatmessage.hbs");
 
                             
                             // render the chat message and display it

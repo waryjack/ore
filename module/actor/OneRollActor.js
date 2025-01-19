@@ -97,6 +97,7 @@ export default class OneRollActor extends Actor {
                     let defProp = `system.stats.${statName}.defname`;
 
                     console.warn("props: ", baseProp, expProp, masProp);
+                    console.warn("newvals: ", newBase, newExpert, newMaster);
 
                     this.update({[baseProp]:newBase});
                     this.update({[expProp]:newExpert});
@@ -142,7 +143,8 @@ export default class OneRollActor extends Actor {
             powerMaster:0,
             linkedStat: "None",
             rollType:0,
-            trait:""
+            trait:"",
+            hasMaster: false
         }
 
 
