@@ -242,14 +242,14 @@ export class OneRollDialogHelper {
                                 //get master value in a dialog
                                 new Dialog({
                                     title: "Select Value of Master Die",
-                                    content: "You have a master die. Select the desired value.<br/>"+safeDiceImg+"<br/>"+safeLooseImg,
+                                    content: "You have a master die. Select the desired value.<br/>"+safeDiceImg+"<br/>"+safeLooseImg+"| <select name='masterval' id='masterval'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option><option value='9'>9</option><option value='10'>10</option></select>",
                                     buttons: {
                                         roll: {
                                             icon: '<i class="fas fa-check"></i>',
                                             label: game.i18n.localize("ORE.ui.buttons.continue"),
-                                            callback: () => { 
+                                            callback: (masterHtml) => { 
                                                 console.log("in callback: ", theRoll);
-                                                let masterval = 7;
+                                                let masterval = Number(masterHtml.find("#masterval").val());
                                                 theRoll.rawRoll.push(masterval);
                                                 let newSets = theRoll.countSets(theRoll.rawRoll);
                                                 theRoll.parseRoll(newSets)
@@ -267,12 +267,12 @@ export class OneRollDialogHelper {
                                 /* let selectedMasterVal = 0;
                                 roll.rawRoll.push = selectedMasterVal;
                                 roll.parseRoll();*/
-                            }
+                            } else {
 
                             // currentActor.sheet.render(false);
                             OneRollDialogHelper.generateChatMessage(theRoll, "systems/ore/templates/message/chatmessage.hbs");
 
-                            
+                            }
                             // render the chat message and display it
                             
                         }
