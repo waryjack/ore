@@ -239,10 +239,31 @@ export class OneRollDialogHelper {
 
                             //todo - build and render a template and pass in data including the "hasMaster" value, for reparsing the roll
                             if(theRoll.hasMaster) {
+                                let dhtml = "You have a master die. Select the desired value!<br/>";
+                                dhtml += safeDiceImg + " | ";
+                                dhtml += safeLooseImg + " | ";
+                                dhtml += "<select name='masterval' id='masterval'>"
+                                let selOpts = "";
+                                const diceMaxes = {
+                                    "d4": 4,
+                                    "d6": 6,
+                                    "d8": 8,
+                                    "d10": 10,
+                                    "d12": 12,
+                                    "d20": 20
+                                }
+                                let coreDieType = game.settings.get("ore", "coreDieType");
+                                let maxFace = diceMaxes[coreDieType];
+                                for(let i = 1; i <= maxFace; i++) {
+                                    selOpts += `<option value='${i}'>${i}</option>`;
+                                }
+                                dhtml += selOpts;
+                                dhtml += "</select>";
+                            
                                 //get master value in a dialog
                                 new Dialog({
                                     title: "Select Value of Master Die",
-                                    content: "You have a master die. Select the desired value.<br/>"+safeDiceImg+"<br/>"+safeLooseImg+"| <select name='masterval' id='masterval'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option><option value='9'>9</option><option value='10'>10</option></select>",
+                                    content: dhtml,
                                     buttons: {
                                         roll: {
                                             icon: '<i class="fas fa-check"></i>',
