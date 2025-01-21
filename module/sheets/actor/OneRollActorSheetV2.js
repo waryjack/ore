@@ -1,33 +1,48 @@
 // duplicate of actor sheet to work on AppV2 conversion
 
-export default class OneRollActorSheet extends ActorSheetV2 {
+const {ActorSheetV2} = foundry.applications.sheets;
+const {HandlebarsApplicationMixin} = foundry.applications.api;
 
-    get template() {
+export default class OneRollActorSheetV2 extends HandlebarsApplicationMixin(ActorSheetV2) {
+
+    /* get template() {
         const path = 'systems/ore/templates/actor/';
         return `${path}${this.actor.type}sheet.hbs`;
-    }
+    }*/
 
     static DEFAULT_OPTIONS = {
         id: "actorsheet",
         position:{
-          width: 775,
-          height:685,
-          left:120
+          left:120,
+          width:800
         },
-        tag:"div",
-        window:{title:"Actor Sheet V2"},
-      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheetbody", initial: "main"}],
-      dragDrop: [{dragSelector: ".dragline", dropSelector: null}],
-      actions: {
-        editStat: OneRollActorSheet.editStat,
-        addItem: OneRollActorSheet.addItem,
-        rollStat: OneRollActorSheet.rollStat,
-        rollBasic: OneRollActorSheet.rollBasic
-      }
+        tag:"form",
+        window:{title:"Character Sheet"},
+        actions: {
+          editStat: OneRollActorSheetV2.editStat,
+          addItem: OneRollActorSheetV2.addItem,
+          rollStat: OneRollActorSheetV2.rollStat,
+          rollBasic: OneRollActorSheetV2.rollBasic,
+          sendResults: OneRollActorSheetV2.sendResults,
+          addItem: OneRollActorSheetV2.addItem,
+          deleteItem: OneRollActorSheetV2.deleteItem,
+          editItem: OneRollActorSheetV2.editItem,
+          sheetEditItem: OneRollActorSheetV2.sheetEditItem,
+          oneRoll: OneRollActorSheetV2.oneRoll,
+          rollSkill: OneRollActorSheetV2.rollSkill,
+          rollPower: OneRollActorSheetV2.rollPower,
+          addHitBox: OneRollActorSheetV2.addHitBox,
+          delHitBox: OneRollActorSheetV2.delHitBox,
+          cycleHitBox: OneRollActorSheetV2.cycleHitBox,
+          adjustPool: OneRollActorSheetV2.adjustPool
+        },
+        dragDrop: [{ dragSelector: '[data-drag]', dropSelector: null }]
     }
 
     static PARTS = {
-      template: "systems/ore/templates/actor/majorsheet.hbs"
+      form: {
+        template: "systems/ore/templates/actor/majorsheet.hbs"
+      }
     }
 
     get title() {
@@ -88,36 +103,11 @@ export default class OneRollActorSheet extends ActorSheetV2 {
     /**
      * @override
      */
-     _onRender(context) {
+     _onRender() {
         const html = $(this.element);
-        super.activateListeners(html);
+        
         // Everything below here is only needed if the sheet is editable
         if (!this.options.editable) return;
-
-        // Popout editing of items (remember, all stats / traits are Items)
-        html.find('.item-create').click(this._onAddItem.bind(this));
-        html.find('.item-edit').click(this._onEditItem.bind(this));
-        html.find('.item-delete').click(this._onDeleteItem.bind(this));
-
-        // On-sheet editing of stats and skill values
-        html.find('.inline-edit').blur(this._onSheetEditItem.bind(this));
-        html.find('.addHitBox').click(this._addHitBox.bind(this));
-        html.find('.delHitBox').click(this._delHitBox.bind(this));
-        html.find('.cycle-hit').click(this._onCycleHitBox.bind(this));
-        html.find('.edit-stat').click(this._onEditStat.bind(this));
-        html.find('.adjust-pool').click(this._onAdjustPool.bind(this));
-
-        // Rolls
-        html.find('.stat-roll').click(this._onRollStat.bind(this));
-        html.find('.skill-roll').click(this._onRollSkill.bind(this));
-        html.find('.basic-roll').click(this._onRollBasic.bind(this));
-        html.find('.power-roll').click(this._onRollPower.bind(this));
-        html.find('.one-roll').click(this._onOneRoll.bind(this));
-
-        // Roll outcomes
-        html.find('.send-results').click(this._onSendResults.bind(this));
-        html.find('.set-master').click(this._onSetMaster.bind(this));
-
         let handler = (ev) => this._onDragStart(ev);
         html.find('.item-name').each((i, item) => {
             if (item.dataset && item.dataset.itemId) {
@@ -128,7 +118,7 @@ export default class OneRollActorSheet extends ActorSheetV2 {
 
     }
 
-    sendResults(e) {
+    static sendResults(e) {
         e.preventDefault();
         let s = this.actor.system.roll.pSets;
         let l = this.actor.system.roll.pLoose;
@@ -163,10 +153,10 @@ export default class OneRollActorSheet extends ActorSheetV2 {
 
     }
 
-    static addItem(e) {
+    static addItem(e,t) {
         e.preventDefault();
         
-        let elem = e.currentTarget;
+        let elem = t;
         let itemType = elem.dataset.type;
         var localizer = "ORE.gen.new."+itemType;
 
@@ -347,15 +337,15 @@ export default class OneRollActorSheet extends ActorSheetV2 {
         return this.actor.update({[`system.hitlocs.${hitLocation}.boxstates`]:currBoxArray});
     }
 
-    static rollBasic(e) {
+    static rollBasic(e, t) {
         e.preventDefault();
         return this.actor.basicRoll();
     }
 
-    static editStat(e, target){
-      // console.warn("editStat fired");
+    static editStat(e, t){
+        console.warn("editStat fired: ", e, t);
         e.preventDefault();
-        let elem = e.currentTarget;
+        let elem = t;
         let statClicked = elem.dataset.stat;
         return this.actor.editStat(statClicked);
     }

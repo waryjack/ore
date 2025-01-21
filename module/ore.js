@@ -5,6 +5,7 @@ import { ORE } from "./config.js";
 import { OneRoll } from "./dice/OneRoll.js";
 import OneRollItemSheet from "./sheets/item/OneRollItemSheet.js";
 import OneRollActorSheet from "./sheets/actor/OneRollActorSheet.js";
+import OneRollActorSheetV2 from "./sheets/actor/OneRollActorSheetV2.js";
 import OneRollActor from "./actor/OneRollActor.js";
 import OneRollCombat from "./combat/OneRollCombat.js";
 import OneRollItem from "./item/OneRollItem.js";
@@ -23,6 +24,7 @@ Hooks.once("init", () => {
         OneRollActor,
         OneRoll,
         OneRollActorSheet,
+        OneRollActorSheetV2,
         OneRollItemSheet,
         OneRollItem,
         OneRollCombat,
@@ -34,7 +36,7 @@ Hooks.once("init", () => {
     Actors.unregisterSheet("core", ActorSheet);
     Items.unregisterSheet("core", ItemSheet);
 
-    Actors.registerSheet("ore", OneRollActorSheet, { types:["major", "minor", "squad"], makeDefault:true});
+    Actors.registerSheet("ore", OneRollActorSheet, { label: "V2 Actor Sheet", types:["major", "minor", "squad"], makeDefault:true});
     Items.registerSheet("ore", OneRollItemSheet, { makeDefault: true});
     
     CONFIG.Actor.documentClass = OneRollActor;
