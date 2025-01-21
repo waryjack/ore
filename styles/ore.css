@@ -180,6 +180,7 @@ h3 {
   display:flex;
   flex-flow:row nowrap;
   justify-content:space-between;
+  align-content:flex-start;
 
 }
 

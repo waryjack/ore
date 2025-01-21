@@ -1,3 +1,4 @@
+<div class="standard-form">
 <form class="{{cssClass}}" autocomplete="off">
     <header class="ore sheethead">
         <div class="ore header-flexitem">
@@ -26,25 +27,25 @@
 
     <section class="sheetbody">
         
-            <div class="ore flexcol"> {{!--Outermost Flex Container--}}
+            
                 <div class="ore flexrow">
                     {{> 'systems/ore/templates/partials/stats-h.hbs'}}
                 </div>
-                <div class="ore flexrow">
+                <div class="ore flexrow" style="align-items:flex-start">
                     {{> 'systems/ore/templates/partials/skills.hbs'}}
                     {{> 'systems/ore/templates/partials/qualities.hbs'}}
                     {{!--> 'systems/ore/templates/partials/powers.hbs'--}}
                     {{> 'systems/ore/templates/partials/hitlocs.hbs'}}
                 </div>
-                <div class="ore flexrow">       
+                <div class="ore flexrow" style="align-items:flex-start">       
                     {{!--> 'systems/ore/templates/partials/armor.hbs'--}}
                     {{> 'systems/ore/templates/partials/weapons.hbs'}}
                     {{> 'systems/ore/templates/partials/pools.hbs'}}  
                 </div>
-                <div class="ore flexrow">
+                <div class="ore flexrow" style="align-items:flex-start">
                     {{> 'systems/ore/templates/partials/equipment.hbs'}} 
                 </div>
-            </div>
+            
         
         <!--div class="tab misc" data-group="primary" data-tab="misc">
             <div class="ore flexcol">
@@ -66,4 +67,5 @@
 
     </section>
 </form>
+</div>
 

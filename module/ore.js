@@ -36,7 +36,7 @@ Hooks.once("init", () => {
     Actors.unregisterSheet("core", ActorSheet);
     Items.unregisterSheet("core", ItemSheet);
 
-    Actors.registerSheet("ore", OneRollActorSheet, { label: "V2 Actor Sheet", types:["major", "minor", "squad"], makeDefault:true});
+    Actors.registerSheet("ore", OneRollActorSheetV2, { label: "V2 Actor Sheet", types:["major", "minor", "squad"], makeDefault:true});
     Items.registerSheet("ore", OneRollItemSheet, { makeDefault: true});
     
     CONFIG.Actor.documentClass = OneRollActor;
