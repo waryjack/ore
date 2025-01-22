@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="260"
+   height="270"
+   viewBox="0 0 68.791664 71.437499"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="personicon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.0485264"
+     inkscape:cx="209.41883"
+     inkscape:cy="169.63413"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g2"
+       transform="matrix(1,0,0,0.90177753,-2.9706313,-3.5961367)"
+       style="fill:#b3b3b3">
+      <ellipse
+         style="fill:#b3b3b3;stroke:none;stroke-width:0.13663;stroke-linecap:round;paint-order:markers stroke fill"
+         id="path1"
+         cx="37.197472"
+         cy="11.236736"
+         rx="6.0521054"
+         ry="7.0853682" />
+      <path
+         style="fill:#b3b3b3;stroke:none;stroke-width:0.1;stroke-linecap:round;paint-order:markers stroke fill"
+         d="m 35.647575,16.273893 -1.549896,4.26221 -8.007787,1.033263 -21.5693662,19.631997 1.1624209,1.80821 20.0194713,-12.399155 2.970631,8.007789 -0.129156,11.882525 -20.6652624,29.835469 4.1330524,2.712315 25.185787,-28.414734 -1e-6,-37.197468 z"
+         id="path2"
+         sodipodi:nodetypes="ccccccccccccc" />
+      <path
+         style="fill:#b3b3b3;stroke:none;stroke-width:0.1;stroke-linecap:round;paint-order:markers stroke fill"
+         d="m 38.732139,16.273893 1.549896,4.26221 8.007787,1.033263 21.569366,19.631997 -1.162421,1.80821 -20.019471,-12.399155 -2.970631,8.007789 0.129156,11.882525 20.665262,29.835469 -4.133052,2.712315 -25.185787,-28.414734 1e-6,-37.197468 z"
+         id="path2-4"
+         sodipodi:nodetypes="ccccccccccccc" />
+    </g>
+  </g>
+</svg>
