@@ -1,11 +1,13 @@
-<div class="ore flex-item">
-    <h3 class="traitsheet-header">
-        <div>{{localize "ORE.gen.skills"}} <a class="item-create" data-action="addItem" title="Add Skill" data-type="skill">
-            <span style="font-size:0.85em"><i class="fas fa-plus"></i></a></span></a>
-        
-    </h3>
-    <table class="item-table" style="border-collapse:separate">
-        
+<div class="flexcol" style="align-items:flex-start; border:1px solid blue;">
+<div class="flex-item">
+  
+        <div class="traitsheet-header">{{localize "ORE.gen.skills"}} 
+            <a class="item-create" data-action="addItem" title="Add Skill" data-type="skill">
+                <i class="fas fa-plus"></i>
+            </a>
+        </div>
+  
+    <table class="item-table" style="border-collapse:separate">    
     {{#each skills as |skill id|}}
          <tr>
             <td style="border-bottom:1px solid rgb(187, 179, 159)" class="item-name item" data-item-id="{{skill.id}}">
@@ -31,4 +33,6 @@
         </tr>
     {{/each}}
     </table>
+
+</div>
 </div>

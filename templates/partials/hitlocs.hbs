@@ -1,16 +1,14 @@
-<div class="ore flex-item">
-    <h3 class="traitsheet-header">
+<div class="flexcol" style="flex-grow:0; border:1px solid green;">
+<div class="flex-item">
+    <div class="traitsheet-header">
         <div>{{localize "ORE.gen.hitlocs"}}</div>
        
-    </h3>
-    <table class="item-table">
+    </div>
+    <table style="border:none; width:260px; padding:none;">
         <tr>
-            <td>
-                {{localize "ORE.hitloc.head"}}
-       
-                <!--input class="ore statfield" style="width:2ch;" type="text" name="system.hitlocs.head.box_max" data-dtype="Number" value="{{hitlocs.head.box_max}}"-->
-            </td>
-            <td style="text-align:left;">
+            <td></td>
+            <td style="text-align:center; border:1px solid black; padding:1px">
+                {{localize "ORE.hitloc.head"}}<br/>
                 {{#each hitlocs.head.boxstates as |state count|}}
                     
                         {{#ife state "h"}}
@@ -23,61 +21,16 @@
                             <a data-loc="head" data-pos="{{count}}" class="cycle-hit"><img class="kill-box"></a>
                         {{/ife}}
                 {{/each}}
+
+                    <br/><a class="addHitBox" data-loc="head" data-max="system.hitlocs.head.box_max" data-states="system.hitlocs.head.boxstates"><i class="fa-solid fa-square-arrow-up"></i></a>&nbsp;&nbsp;<a class="delHitBox" data-max="system.hitlocs.head.box_max" data-states="system.hitlocs.head.boxstates"><i class="fa-solid fa-square-arrow-down"></i></a>
+     
             </td>
-            <td>
-                <a class="addHitBox" data-loc="head" data-max="system.hitlocs.head.box_max" data-states="system.hitlocs.head.boxstates"><i class="fa-solid fa-square-arrow-up"></i></a>&nbsp;&nbsp;<a class="delHitBox" data-max="system.hitlocs.head.box_max" data-states="system.hitlocs.head.boxstates"><i class="fa-solid fa-square-arrow-down"></i></a>
-            </td>
+            <td></td>
             
         </tr>
         <tr>
-            <td>
-                {{localize "ORE.hitloc.torso"}}
-            </td>
-             <td style="text-align:left;">
-                {{#each hitlocs.torso.boxstates as |state count|}}
-                    
-                        {{#ife state "h"}}
-                            <a data-loc="torso" data-pos="{{count}}" class="cycle-hit"><img class="healthy-box"></a>
-                        {{/ife}}
-                         {{#ife state "s"}}
-                            <a data-loc="torso" data-pos="{{count}}" class="cycle-hit"><img class="shock-box"></a>
-                        {{/ife}}
-                        {{#ife state "k"}}
-                            <a data-loc="torso" data-pos="{{count}}" class="cycle-hit"><img class="kill-box"></a>
-                        {{/ife}}
-                {{/each}}
-            </td>
-            <td>
-                <a class="addHitBox" data-loc="torso" data-max="system.hitlocs.torso.box_max" data-states="system.hitlocs.torso.boxstates"><i class="fa-solid fa-square-arrow-up"></i></a>&nbsp;&nbsp;<a class="delHitBox" data-max="system.hitlocs.torso.box_max" data-states="system.hitlocs.torso.boxstates"><i class="fa-solid fa-square-arrow-down"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                {{localize "ORE.hitloc.vitals"}}
-            </td>
-             <td style="text-align:left;">
-                {{#each hitlocs.vitals.boxstates as |state count|}}
-                    
-                        {{#ife state "h"}}
-                            <a data-loc="vitals" data-pos="{{count}}" class="cycle-hit"><img class="healthy-box"></a>
-                        {{/ife}}
-                         {{#ife state "s"}}
-                            <a data-loc="vitals" data-pos="{{count}}" class="cycle-hit"><img class="shock-box"></a>
-                        {{/ife}}
-                        {{#ife state "k"}}
-                            <a data-loc="vitals" data-pos="{{count}}" class="cycle-hit"><img class="kill-box"></a>
-                        {{/ife}}
-                {{/each}}
-            </td>
-            <td>
-                <a class="addHitBox" data-loc="vitals" data-max="system.hitlocs.vitals.box_max" data-states="system.hitlocs.vitals.boxstates"><i class="fa-solid fa-square-arrow-up"></i></a>&nbsp;&nbsp;<a class="delHitBox" data-max="system.hitlocs.vitals.box_max" data-states="system.hitlocs.vitals.boxstates"><i class="fa-solid fa-square-arrow-down"></i></a>
-            </td>
-        </tr>
-        <tr>
-          <td>
-                {{localize "ORE.hitloc.la"}}
-            </td>
-             <td style="text-align:left;">
+            <td style="text-align:center; border:1px solid black; padding:1px">
+                {{localize "ORE.hitloc.la"}}<br/>
                 {{#each hitlocs.larm.boxstates as |state count|}}
                     
                         {{#ife state "h"}}
@@ -90,16 +43,26 @@
                             <a data-loc="larm" data-pos="{{count}}" class="cycle-hit"><img class="kill-box"></a>
                         {{/ife}}
                 {{/each}}
+                <br/><a class="addHitBox" data-loc="larm" data-max="system.hitlocs.larm.box_max" data-states="system.hitlocs.larm.boxstates"><i class="fa-solid fa-square-arrow-up"></i></a>&nbsp;&nbsp;<a class="delHitBox" data-max="system.hitlocs.larm.box_max" data-states="system.hitlocs.larm.boxstates"><i class="fa-solid fa-square-arrow-down"></i></a>
             </td>
-            <td>
-                <a class="addHitBox" data-loc="larm" data-max="system.hitlocs.larm.box_max" data-states="system.hitlocs.larm.boxstates"><i class="fa-solid fa-square-arrow-up"></i></a>&nbsp;&nbsp;<a class="delHitBox" data-max="system.hitlocs.larm.box_max" data-states="system.hitlocs.larm.boxstates"><i class="fa-solid fa-square-arrow-down"></i></a>
+             <td style="text-align:center; border:1px solid black; padding:1px">
+                 {{localize "ORE.hitloc.torso"}}<br/>
+                {{#each hitlocs.torso.boxstates as |state count|}}
+                    
+                        {{#ife state "h"}}
+                            <a data-loc="torso" data-pos="{{count}}" class="cycle-hit"><img class="healthy-box"></a>
+                        {{/ife}}
+                         {{#ife state "s"}}
+                            <a data-loc="torso" data-pos="{{count}}" class="cycle-hit"><img class="shock-box"></a>
+                        {{/ife}}
+                        {{#ife state "k"}}
+                            <a data-loc="torso" data-pos="{{count}}" class="cycle-hit"><img class="kill-box"></a>
+                        {{/ife}}
+                {{/each}}
+           <br/><a class="addHitBox" data-loc="torso" data-max="system.hitlocs.torso.box_max" data-states="system.hitlocs.torso.boxstates"><i class="fa-solid fa-square-arrow-up"></i></a>&nbsp;&nbsp;<a class="delHitBox" data-max="system.hitlocs.torso.box_max" data-states="system.hitlocs.torso.boxstates"><i class="fa-solid fa-square-arrow-down"></i></a>
             </td>
-        </tr>
-        <tr>
-            <td>
-                {{localize "ORE.hitloc.ra"}}
-            </td>
-             <td style="text-align:left;">
+            <td style="text-align:center; border:1px solid black; padding:1px">
+                {{localize "ORE.hitloc.ra"}}<br/>
                 {{#each hitlocs.rarm.boxstates as |state count|}}
                     
                         {{#ife state "h"}}
@@ -112,16 +75,36 @@
                             <a data-loc="rarm" data-pos="{{count}}" class="cycle-hit"><img class="kill-box"></a>
                         {{/ife}}
                 {{/each}}
-            </td>
-            <td>
+            <br/>
                 <a class="addHitBox" data-loc="rarm" data-max="system.hitlocs.rarm.box_max" data-states="system.hitlocs.rarm.boxstates"><i class="fa-solid fa-square-arrow-up"></i></a>&nbsp;&nbsp;<a class="delHitBox" data-max="system.hitlocs.rarm.box_max" data-states="system.hitlocs.rarm.boxstates"><i class="fa-solid fa-square-arrow-down"></i></a>
             </td>
         </tr>
         <tr>
             <td>
-                {{localize "ORE.hitloc.ll"}}
             </td>
-             <td style="text-align:left;">
+             <td style="text-align:center; border:1px solid black; padding:1px">
+                {{localize "ORE.hitloc.vitals"}}<br/>
+                {{#each hitlocs.vitals.boxstates as |state count|}}
+                    
+                        {{#ife state "h"}}
+                            <a data-loc="vitals" data-pos="{{count}}" class="cycle-hit"><img class="healthy-box"></a>
+                        {{/ife}}
+                         {{#ife state "s"}}
+                            <a data-loc="vitals" data-pos="{{count}}" class="cycle-hit"><img class="shock-box"></a>
+                        {{/ife}}
+                        {{#ife state "k"}}
+                            <a data-loc="vitals" data-pos="{{count}}" class="cycle-hit"><img class="kill-box"></a>
+                        {{/ife}}
+                {{/each}}
+           <br/>
+                <a class="addHitBox" data-loc="vitals" data-max="system.hitlocs.vitals.box_max" data-states="system.hitlocs.vitals.boxstates"><i class="fa-solid fa-square-arrow-up"></i></a>&nbsp;&nbsp;<a class="delHitBox" data-max="system.hitlocs.vitals.box_max" data-states="system.hitlocs.vitals.boxstates"><i class="fa-solid fa-square-arrow-down"></i></a>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            
+             <td style="text-align:center; border:1px solid black; padding:1px">
+                 {{localize "ORE.hitloc.ll"}}<br/>
                 {{#each hitlocs.lleg.boxstates as |state count|}}
                     
                         {{#ife state "h"}}
@@ -134,16 +117,12 @@
                             <a data-loc="lleg" data-pos="{{count}}" class="cycle-hit"><img class="kill-box"></a>
                         {{/ife}}
                 {{/each}}
-            </td>
-            <td>
+            <br/>
                 <a class="addHitBox" data-loc="lleg" data-max="system.hitlocs.lleg.box_max" data-states="system.hitlocs.lleg.boxstates"><i class="fa-solid fa-square-arrow-up"></i></a>&nbsp;&nbsp;<a class="delHitBox" data-max="system.hitlocs.lleg.box_max" data-states="system.hitlocs.lleg.boxstates"><i class="fa-solid fa-square-arrow-down"></i></a>
             </td>
-        </tr>
-        <tr>
-            <td>
-                {{localize "ORE.hitloc.rl"}}
-            </td>
-             <td style="text-align:left;">
+            <td></td>
+            <td style="text-align:center; border:1px solid black; padding:1px">
+                {{localize "ORE.hitloc.rl"}}<br/>
                 {{#each hitlocs.rleg.boxstates as |state count|}}
                     
                         {{#ife state "h"}}
@@ -156,10 +135,11 @@
                             <a data-loc="rleg" data-pos="{{count}}" class="cycle-hit"><img class="kill-box"></a>
                         {{/ife}}
                 {{/each}}
-            </td>
-            <td>
+            <br/>
                 <a class="addHitBox" data-loc="rleg" data-max="system.hitlocs.rleg.box_max" data-states="system.hitlocs.rleg.boxstates"><i class="fa-solid fa-square-arrow-up"></i></a>&nbsp;&nbsp;<a class="delHitBox" data-max="system.hitlocs.rleg.box_max" data-states="system.hitlocs.rleg.boxstates"><i class="fa-solid fa-square-arrow-down"></i></a>
             </td>
+
         </tr>
     </table>
+</div>
 </div>

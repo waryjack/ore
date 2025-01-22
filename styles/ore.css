@@ -41,6 +41,15 @@ h3 {
   color:white !important;
 }*/
 
+.application .window-resize-handle {
+  position: absolute;
+  inset: auto -2px -3px auto;
+  width: 11px;
+  height: 11px;
+  cursor: nwse-resize;
+  background: transparent url(../ui/resize-handle.webp) no-repeat center / contain; 
+}
+
 .editor {
   visibility:visible;
   height:210px;

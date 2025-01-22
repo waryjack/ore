@@ -1,10 +1,10 @@
-<div class="ore flex-item">
-    <h3 class="traitsheet-header">
-        <div>{{localize "ORE.gen.qualities"}}
+<div class="flexcol" style="align-items:flex-start">
+    <div class="traitsheet-header">
+        {{localize "ORE.gen.qualities"}}
         <a class="item-create" title="Add Quality" data-type="quality">
-        <span style="font-size:0.85em;"><i class="fa fa-plus"></i></a></span>
-        </div>
-    </h3>
+            <i class="fa fa-plus"></i>
+        </a>
+    </div>
     <table class="item-table">
         
     {{#each qualities as |qual id|}}

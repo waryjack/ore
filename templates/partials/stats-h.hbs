@@ -1,44 +1,21 @@
 
-   <div class="ore flexrow">
          {{#each stats as |stat name|}}
             {{#if stat.active}}
-            <div class="ore flex-item">
-            <span class="traitsheet-header align-center" style="text-align:center; !important">
-            <div style="margin:auto;"><a title="Edit {{getSetting name}}" class="edit-stat" data-action="editStat" data-stat="{{name}}">{{getSetting name}}</a></div>
-        <!--a class="item-create" title="Add Stat" data-type="stat"><i class="fas fa-plus-square"></i></a-->
-            </span>
-            <table class="item-table">
-            <!--tr>
-                <td style="text-align:center; text-transform:uppercase;">
-                    
-                    <a class="edit-stat" data-stat="{{name}}"><strong>{{stat.defname}}</strong></a>
-                </td>
-            </tr-->
-            <tr>
-                    <!--td class="ore statfield" style="width:2ch;">
-                        <input class="attr-name" name="system.stats.{{name}}.base" type="text" value="{{stat.base}}" data-dtype="Number" maxwidth='2' size='3' />
-                    </td>
-                    <td class="ore statfield" style="width:2ch;">
-                        <input class="attr-name" name="system.stats.{{name}}.expert" type="text" value="{{stat.expert}}" data-dtype="Number" maxwidth='2' size='3' />
-                    </td>
-                    <td class="ore statfield" style="width:2ch;"> 
-                        <input class="attr-name" name="system.stats.{{name}}.master" type="text" value="{{stat.master}}" data-dtype="Number" maxwidth='2' size='3' />
-                    </td-->
-                <td style="text-align:center; font-size:1.25em;">
+            <div class="flex-item">
+                <div style="margin:auto;" class="traitsheet-header">
+                    <a title="Edit {{getSetting name}}" class="edit-stat" data-action="editStat" data-stat="{{name}}">{{getSetting name}}</a>
+                </div>
                     <a class="one-roll" data-roll-type="stat" data-roll-trait="{{name}}" data-stat-to-roll="{{name}}" title="Roll {{getSetting name}}">
-                    <strong>{{stat.base}}d
-                    {{#if (ne stat.expert 0)}}
-                        + {{stat.expert}}ed
-                    {{/if}}
-                    {{#if (ne stat.master 0)}}
-                        + {{stat.master}}md
-                    {{/if}}
-                    </strong></a>
-                </td>
-            </tr>
-            </table>
+                        <strong>{{stat.base}}d
+                        {{#if (ne stat.expert 0)}}
+                            + {{stat.expert}}ed
+                        {{/if}}
+                        {{#if (ne stat.master 0)}}
+                            + {{stat.master}}md
+                        {{/if}}
+                        </strong>
+                    </a>
             </div>
             {{/if}}
             {{/each}}
-    </div>
 
