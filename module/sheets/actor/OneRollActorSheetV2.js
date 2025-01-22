@@ -13,11 +13,14 @@ export default class OneRollActorSheetV2 extends HandlebarsApplicationMixin(Acto
     static DEFAULT_OPTIONS = {
         id: "actorsheet",
         position:{
-          left:120,
-          width:800
+          width:1000,
+          height:600
         },
         tag:"form",
-        window:{title:"Character Sheet"},
+        window:{
+          title:"Character Sheet",
+          resizable:true
+        },
         actions: {
           editStat: OneRollActorSheetV2.editStat,
           addItem: OneRollActorSheetV2.addItem,
@@ -41,7 +44,8 @@ export default class OneRollActorSheetV2 extends HandlebarsApplicationMixin(Acto
 
     static PARTS = {
       form: {
-        template: "systems/ore/templates/actor/majorsheet.hbs"
+        template: "systems/ore/templates/actor/majorsheet.hbs",
+        scrollable: ['scrollable']
       }
     }
 
