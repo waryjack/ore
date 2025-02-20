@@ -71,6 +71,7 @@ export default class OneRollActorSheetV2 extends HandlebarsApplicationMixin(Acto
         if(charData.type != "squad") {
             // charData.stats = ownedItems.filter(item => item.type === "stat");
             charData.skills = ownedItems.filter(item => item.type === "skill");
+            charData.stats = ownedItems.filter(item => item.type === "stat");
             // build list of skill names
             let skillNameList = [];
                 charData.skills.forEach(element => skillNameList.push(element.name));
