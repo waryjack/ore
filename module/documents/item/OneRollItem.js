@@ -1,12 +1,15 @@
-export default class OneRollItem extends Item {
+export default class OneRollBaseItem extends Item {
     
-    prepareBaseData(){
-        super.prepareBaseData();
 
-        const itemStats = this.system; // actorData is "actor.data.data"
+    /** @override */
+    getRollData() {
+        const rollData = this.system ?? {};
+        return rollData;
+    }
 
-        // console.warn("prepareBaseData object: ", actorData);
-        
+    /** @override */
+    prepareDerivedData() {
+        super.prepareDerivedData()
     }
 
     adjustPool(dir) {
