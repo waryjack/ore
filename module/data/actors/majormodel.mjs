@@ -27,7 +27,7 @@ const {
     _hitLocSchema(max) {
       return {
         box_max: new NumberField({required:true, initial:max, min:0, integer:true}),
-        states: new ArrayField(new StringField(), {required:true, initial:[]}),
+        states: new ArrayField(new StringField(), {required:true, initial:new Array(max).fill("h").flat()}),
         shock: new NumberField({required:true, initial:0, min:0, integer:true}),
         killing: new NumberField({required:true, initial:0, min:0, integer:true})
       }
